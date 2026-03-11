@@ -108,15 +108,3 @@ def create_spend_chart(categories):
     chart += footer
     chart += "\n".join(after_lines)
     return chart
-
-
-food = Category("Food")
-food.deposit(1000, "initial_deposit")
-food.withdraw(10.15, "groceries")
-food.withdraw(15.89, "restaurant and more food for dessert")
-clothing = Category("Clothing")
-clothing.deposit(1000, "initial_deposit")
-clothing.withdraw(10, "groceries")
-clothing.withdraw(30.85, "restaurant and more food for dessert")
-categories = [food, clothing]
-print(create_spend_chart(categories))
