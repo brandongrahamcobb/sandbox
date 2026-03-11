@@ -1,7 +1,5 @@
 import csv
 import pathlib
-import pickle
-import re
 import sys
 import uuid
 
@@ -19,44 +17,42 @@ def length_extract(line):
     return extracted_line, level
 
 
-def build_dict():
-    dictionary = {}
+def build_dict_from_markdown():
+    markdown_dictionary = {}
     for filename in pathlib.Path().rglob("topics.md"):
         with open(filename, "r") as mdfile:
             for ln, line in enumerate(mdfile):
                 extracted_line, header_level = length_extract(line)
-                dictionary[ln] = {
+                markdown_dictionary[ln] = {
                     "content": extracted_line,
                     "level": header_level,
-                    "before_scores": {},
-                    "after_scores": {},
                 }
-    return dictionary
+                if header_level > 0:
+                    markdown_dictionary[ln].update(
+                        {
+                            "score": {},
+                        }
+                    )
+    return markdown_dictionary
 
 
-def load_csv(dictionary):
+def load_csv(markdown_dictionary):
+    loaded_dictionary = markdown_dictionary
     with open(
         "scores.csv",
         "r",
     ) as file:
         r = csv.reader(file)
-        header_row = None
-        for i, row in enumerate(r):
-            if i == 0:
-                header_row = row
-                continue
-            if i == 1:
-                continue
+        y = [row for row in r]
+        names = [row[0] for row in y]
+        uuids = [row[1] for row in y]
+        for row in y[2:]:
             for value in range(2, len(row)):
-                if "before" in row[1]:
-                    dictionary[int(row[0])]["before_scores"][header_row[value]] = row[
-                        value
-                    ]
-                elif "after" in row[1]:
-                    dictionary[int(row[0])]["after_scores"][header_row[value]] = row[
-                        value
-                    ]
-    return dictionary
+                if row[value] == "":
+                    loaded_dictionary[int(row[0])]["score"][uuids[value]] = 0
+                else:
+                    loaded_dictionary[int(row[0])]["score"][uuids[value]] = row[value]
+    return loaded_dictionary
 
 
 def build_csv(uuids, names, d):
@@ -85,32 +81,12 @@ def build_csv(uuids, names, d):
         w.writerows(data)
 
 
-# def test_build_dict():
-#     dictionary = build_dict()
-#
-#
-# def test_build_csv():
-#     dictionary = build_dict()
-#     students = ["Brandon"]
-#     student_uuids = ["5sfd23-a3vds3"]
-#     build_csv(student_uuids=student_uuids, students=students, dictionary=dictionary)
-#
-#
-# def test_load_csv():
-#     dictionary = build_dict()
-#     students = ["Brandon"]
-#     student_uuids = ["5sfd23-a3vds3"]
-#     build_csv(student_uuids=student_uuids, students=students, dictionary=dictionary)
-#     dictionary = load_csv(dictionary)
-#     print(dictionary)
-
-
-def walk(dictionary):
+def walk(updated_markdown_dictionary):
     sorted_dict = {
         k: v
         for k, v in reversed(
             sorted(
-                dictionary.items(),
+                updated_markdown_dictionary.items(),
                 key=lambda item: item[1].get("average_difference", -999999999999),
             )
         )
@@ -120,67 +96,47 @@ def walk(dictionary):
             continue
         if v.get("average_difference", None) is not None:
             print(v["content"])
-            for i, key in enumerate(dictionary, k + 1):
-                if dictionary.get(i, None):
-                    if dictionary[i]["content"] == "":
+            for i, key in enumerate(updated_markdown_dictionary, k + 1):
+                if updated_markdown_dictionary.get(i, None):
+                    if updated_markdown_dictionary[i]["content"] == "":
                         continue
-                    input(dictionary[i]["content"])
-                    if "average_difference" in dictionary[i]:
+                    input(updated_markdown_dictionary[i]["content"])
+                    if "average_difference" in updated_markdown_dictionary[i]:
                         break
 
 
-def average_scores(dictionary, *, score_key, average_key):
+def average_scores(loaded_dictionary):
+    scores_dictionary = loaded_dictionary
     i = 0
-    for key, data in dictionary.items():
+    for key, data in loaded_dictionary.items():
         total = 0
         times = 0
-        for key, value in data.get(score_key, None).items():
-            total += int(value)
-            times += 1
-        if times:
-            average = total / times
-            dictionary[i][average_key] = average
+        if data.get("score", None):
+            for key, value in data.get("score", None).items():
+                total += int(value)
+                times += 1
+            if times:
+                average = total / times
+                scores_dictionary[i]["average_score"] = average
         i += 1
-    return dictionary
+    return scores_dictionary
 
 
-def create_average_difference(dictionary):
-    for key, value in dictionary.items():
-        if value.get("average_after_score", None) and value.get(
-            "average_before_score", None
-        ):
-            difference = (
-                dictionary[key]["average_before_score"]
-                - dictionary[key]["average_after_score"]
-            )
-            dictionary[key]["average_difference"] = difference
-    return dictionary
-
-
-def test_create_average_differences():
-    d = build_dict()
-    dicti = load_csv(dictionary=d)
-    before_key = "before_scores"
-    before_average_key = "average_before_score"
-    after_key = "after_scores"
-    after_average_key = "average_after_score"
-    dictio = average_scores(
-        dictionary=dicti, score_key=before_key, average_key=before_average_key
-    )
-    dictio.update(
-        average_scores(
-            dictionary=dictio,
-            score_key=after_key,
-            average_key=after_average_key,
-        )
-    )
-    diction = create_average_difference(dictionary=dictio)
-    walk(dictionary=diction)
+def create_average_difference(markdown_dictionary, scores_dictionary):
+    keys_iter = iter(scores_dictionary)
+    for key in keys_iter:
+        if scores_dictionary[key].get("average_score", None):
+            before_score = scores_dictionary[key]["average_score"]
+            next(keys_iter)
+            after_score = scores_dictionary[key]["average_score"]
+            difference = after_score - before_score
+            markdown_dictionary[key]["average_difference"] = difference
+    return markdown_dictionary
 
 
 def main():
 
-    d = build_dict()
+    markdown_dictionary = build_dict_from_markdown()
     match sys.argv[1]:
         case "--create":
             names = []
@@ -193,23 +149,13 @@ def main():
                     uuids.append(uuid.uuid4())
                     build_csv(names=names, uuids=uuids, d=d)
         case "--walkthrough":
-            dicti = load_csv(dictionary=d)
-            before_key = "before_scores"
-            before_average_key = "average_before_score"
-            after_key = "after_scores"
-            after_average_key = "average_after_score"
-            dictio = average_scores(
-                dictionary=dicti, score_key=before_key, average_key=before_average_key
+            loaded_dictionary = load_csv(markdown_dictionary=markdown_dictionary)
+            scores_dictionary = average_scores(loaded_dictionary=loaded_dictionary)
+            updated_markdown_dictionary = create_average_difference(
+                markdown_dictionary=markdown_dictionary,
+                scores_dictionary=scores_dictionary,
             )
-            dictio.update(
-                average_scores(
-                    dictionary=dictio,
-                    score_key=after_key,
-                    average_key=after_average_key,
-                )
-            )
-            diction = create_average_difference(dictio)
-            walk(dictionary=diction)
+            walk(updated_markdown_dictionary=updated_markdown_dictionary)
         case "--before":
             before()
         case "--after":
