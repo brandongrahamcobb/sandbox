@@ -75,26 +75,27 @@ def create_spend_chart(categories):
     total_spent = sum(totals)
     percents = [int((x / total_spent) * 100) // 10 * 10 for x in totals]
     bars = len(percents)
-    y_axis_prefixes = {100: "100|", 0: "  0|"}
+    y_axis_prefixes = {100: "100| ", 0: "  0| "}
     for value in range(10, 100, 10):
-        y_axis_prefixes.update({value: f" {value}|"})
+        y_axis_prefixes.update({value: f" {value}| "})
     before_lines = []
     for value in reversed(range(0, 110, 10)):
-        values = [f"{y_axis_prefixes[value]}"]
+        before_line = y_axis_prefixes[value]
+        values = []
         for o in percents:
             if o >= value:
                 values.append("o")
             else:
                 values.append(" ")
-        before_line = "  ".join(values)
+        before_line += "  ".join(values)
         before_lines.append(before_line)
-    footer = "\n    --"
+    footer = "\n    -"
     for category in categories:
         footer += "---"
     after_lines = []
     max_length = max([len(category.name) for category in categories])
     for i in range(max_length):
-        values = ["    "]
+        values = ["   "]
         for category in categories:
             if len(category.name) > i:
                 values.append(category.name[i])
@@ -107,3 +108,15 @@ def create_spend_chart(categories):
     chart += footer
     chart += "\n".join(after_lines)
     return chart
+
+
+food = Category("Food")
+food.deposit(1000, "initial_deposit")
+food.withdraw(10.15, "groceries")
+food.withdraw(15.89, "restaurant and more food for dessert")
+clothing = Category("Clothing")
+clothing.deposit(1000, "initial_deposit")
+clothing.withdraw(10, "groceries")
+clothing.withdraw(30.85, "restaurant and more food for dessert")
+categories = [food, clothing]
+print(create_spend_chart(categories))
