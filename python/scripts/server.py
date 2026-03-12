@@ -45,7 +45,7 @@ async def store_nutrition_data(
     monounsaturated_fat=None,
     polyunsaturated_fat=None,
 ) -> str:
-    pass
+    print("success!")
 
 
 def main():

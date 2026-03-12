@@ -3,6 +3,8 @@ from llama import Llama
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from typing import Optional
+from memory import Memory, Message
+from uuid import uuid4
 
 
 class CustomMCPClient:
@@ -10,6 +12,7 @@ class CustomMCPClient:
         self.session: Optional[ClientSession] = None
         self.exit_stack = AsyncExitStack()
         self.llama = Llama()
+        self.memory = Memory()
 
     async def __aenter__(self):
         await self.connect_to_server("server.py")
@@ -44,10 +47,19 @@ class CustomMCPClient:
         while True:
             try:
                 query = input("\nQuery: ").strip()
+                message = Message(
+                    content=query, identity=str(uuid4()), message_type="USER"
+                )
+                self.memory.add_message(message)
+                new_context = self.memory.build_context()
                 if query.lower() == "quit":
                     break
-                response = await self.process_query(query)
+                response = await self.process_query(new_context)
                 print("\n" + response)
+                message = Message(
+                    content=response, identity=str(uuid4()), message_type="AI"
+                )
+                self.memory.add_message(message)
             except Exception as e:
                 import traceback
 
@@ -66,7 +78,7 @@ class CustomMCPClient:
                 "function": {
                     "name": tool.name,
                     "description": tool.description,
-                    "input_schema": tool.inputSchema,
+                    "parameters": tool.inputSchema,
                 },
             }
             for tool in response.tools
@@ -77,4 +89,37 @@ class CustomMCPClient:
             messages=messages,
             tools=available_tools,
         )
-        return response
+        final_text = []
+        assistant_message_content = []
+        for content in response.content:
+            if content.type == "text":
+                final_text.append(content.text)
+                assistant_message_content.append(content)
+            elif content.type == "tool_use":
+                tool_name = content.name
+                tool_args = content.input
+                result = await self.session.call_tool(tool_name, tool_args)
+                final_text.append(f"[Calling tool {tool_name} with args {tool_args}]")
+                assistant_message_content.append(content)
+                messages.append(
+                    {"role": "assistant", "content": assistant_message_content}
+                )
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "tool_result",
+                                "tool_use_id": content.id,
+                                "content": result.content,
+                            }
+                        ],
+                    }
+                )
+                response = self.llama.messages.create(
+                    model="Qwen3.5-9B-Q4_K_M",
+                    max_tokens=128000,
+                    messages=messages,
+                    tools=available_tools,
+                )
+        return "\n".join(final_text)
