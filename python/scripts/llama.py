@@ -104,8 +104,9 @@ class Llama:
 
 @dataclass(frozen=True)
 class Content:
+    id: str
     type: str
-    input: list[str] = field(default_factory=list)
+    input: dict[str, str] = field(default_factory=dict)
     name: str | None = None
     text: str | None = None
 
@@ -140,6 +141,9 @@ class Messages:
         )
         x = requests.post("http://localhost:8080/v1/chat/completions", query)
         json_dict = json_to_dict(x.content)
+        print(json_dict)
+        id_key = "id"
+        id = json_dict.get(id_key, None)
         choices_key = "choices"
         choices_value = json_dict.get(choices_key, None)
         message_key = "message"
@@ -147,10 +151,12 @@ class Messages:
         if tool_calls := message_value.get("tool_calls", None):
             for tool_call in tool_calls:
                 name = tool_call.get("function", None).get("name", None)
-                args = tool_call.get("function", None).get("arguments", None)
-                contents.append(Content(type="tool_use", name=name, input=args))
+                args = json.loads(
+                    tool_call.get("function", None).get("arguments", None)
+                )
+                contents.append(Content(type="tool_use", id=id, name=name, input=args))
         if content := message_value.get("content", None):
-            contents.append(Content(type="text", text=content))
+            contents.append(Content(type="text", id=id, text=content))
         # llama = Llama()
         # container = llama.load(json=json_dict)
         #

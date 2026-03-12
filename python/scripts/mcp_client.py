@@ -1,4 +1,5 @@
 from contextlib import AsyncExitStack
+from dataclasses import asdict
 from llama import Llama
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -100,26 +101,32 @@ class CustomMCPClient:
                 tool_args = content.input
                 result = await self.session.call_tool(tool_name, tool_args)
                 final_text.append(f"[Calling tool {tool_name} with args {tool_args}]")
-                assistant_message_content.append(content)
+                assistant_message_content.append(
+                    f"[Tool call: {content.name} {content.input}]"
+                )
                 messages.append(
-                    {"role": "assistant", "content": assistant_message_content}
+                    {"role": "assistant", "content": assistant_message_content[0]}
                 )
                 messages.append(
                     {
                         "role": "user",
-                        "content": [
-                            {
-                                "type": "tool_result",
-                                "tool_use_id": content.id,
-                                "content": result.content,
-                            }
-                        ],
+                        "content": result.content[0].text,
+                        # "content": "test",
+                        # [
+                        #     {
+                        #         "type": "tool_result",
+                        #         "tool_use_id": content.id,
+                        #         "content": [entry.text for entry in result.content],
+                        #     }
+                        # ],
                     }
                 )
+                print(messages)
                 response = self.llama.messages.create(
                     model="Qwen3.5-9B-Q4_K_M",
                     max_tokens=128000,
                     messages=messages,
                     tools=available_tools,
                 )
+                final_text.append(response.content[0].text)
         return "\n".join(final_text)

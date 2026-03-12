@@ -4,8 +4,6 @@ from mcp_client import CustomMCPClient
 from web_client import CustomWebClient
 import asyncpg
 import asyncio
-import aiohttp
-import mcp
 
 
 class CustomBot:
