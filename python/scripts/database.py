@@ -1,6 +1,8 @@
 import asyncpg
 import os
 
+from dotenv import load_dotenv
+
 
 class CustomDatabase:
 
@@ -12,6 +14,7 @@ class CustomDatabase:
         password: str | None = None,
         user: str | None = None
     ):
+        load_dotenv()
         self._db_pool: asyncpg.Pool
         self.__database = database or os.environ["POSTGRES_DB"]
         self.__host = host or os.environ["POSTGRES_HOST"]

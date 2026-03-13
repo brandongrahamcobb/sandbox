@@ -121,7 +121,6 @@ class CustomMCPClient:
                         # ],
                     }
                 )
-                print(messages)
                 response = self.llama.messages.create(
                     model="Qwen3.5-9B-Q4_K_M",
                     max_tokens=128000,

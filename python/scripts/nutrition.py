@@ -7,6 +7,7 @@ import asyncio
 
 
 class CustomBot:
+
     def __init__(self, pool: asyncpg.Pool, mcp: CustomMCPClient, web: CustomWebClient):
         self.pool = pool
         self.mcp = mcp

@@ -141,7 +141,6 @@ class Messages:
         )
         x = requests.post("http://localhost:8080/v1/chat/completions", query)
         json_dict = json_to_dict(x.content)
-        print(json_dict)
         id_key = "id"
         id = json_dict.get(id_key, None)
         choices_key = "choices"
