@@ -1,5 +1,4 @@
 from database import CustomDatabase
-from dotenv import load_dotenv
 from mcp_client import CustomMCPClient
 from web_client import CustomWebClient
 import asyncpg
@@ -31,7 +30,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    import sys
-
-    load_dotenv()
     asyncio.run(main())

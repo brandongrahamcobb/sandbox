@@ -6,3 +6,5 @@ OAuth web interface
 medical record software
 github stuff on my website
 discord context tool mcp
+preliminary drug structure predicability
+discord matchmaking
