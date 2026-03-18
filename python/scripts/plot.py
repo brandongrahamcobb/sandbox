@@ -90,12 +90,13 @@ class PlotView(discord.ui.View):
         enforce = []
         undo = []
         for row in rows:
-            if row["infraction_type"] == option:
-                enforce.append(row)
-                data[row["created_at"]] = option
-            elif row["infraction_type"] == f"un{option}":
-                undo.append(row)
-                data[row["created_at"]] = f"un{option}"
+            if row["channel_snowflake"] == 1222056499959042108:
+                if row["infraction_type"] == option:
+                    enforce.append(row)
+                    data[row["created_at"]] = option
+                elif row["infraction_type"] == f"un{option}":
+                    undo.append(row)
+                    data[row["created_at"]] = f"un{option}"
         for enforce_item in enforce:
             for undo_item in undo:
                 if (
@@ -106,7 +107,10 @@ class PlotView(discord.ui.View):
                     break
             else:
                 if enforce_item["expires_at"] is not None:
-                    data[enforce_item["expires_at"]] = f"un{option}"
+                    timedelta = enforce_item["expires_at"] - enforce_item["created_at"]
+                    stop = timedelta.total_seconds()
+                    if stop > 20:
+                        data[enforce_item["expires_at"]] = f"un{option}"
         total = 0
         totals = {}
         for k, v in sorted(data.items()):
