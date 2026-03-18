@@ -59,6 +59,8 @@ class PlotView(discord.ui.View):
         super().__init__()
         self.__logger = logger
         self.__pool = pool
+        self.__identifier: str
+        self.__channel_snowflake: str
 
     @discord.ui.select(
         options=[
@@ -68,14 +70,29 @@ class PlotView(discord.ui.View):
         ],
         placeholder="Select an option",
     )
-    async def select(self, interaction: discord.Interaction, select) -> None:
+    async def identifier(self, interaction: discord.Interaction, select) -> None:
         await interaction.response.defer()
-        await self.plot(interaction, select.values[0])
-        await interaction.followup.send(
-            f"You selected {select.values[0]}", ephemeral=True
-        )
+        self.__identifier = select.values[0]
 
-    async def plot(self, interaction, option: str):
+    @discord.ui.select(
+        options=[
+            discord.SelectOption(label=str(1222056499959042108)),
+            discord.SelectOption(label="all"),
+        ],
+        placeholder="Select an option",
+    )
+    async def channel(self, interaction: discord.Interaction, select) -> None:
+        await interaction.response.defer()
+        self.__channel_snowflake = select.values[0]
+
+    @discord.ui.button(label="Submit", style=discord.ButtonStyle.blurple)
+    async def button(
+        self, interaction: discord.Interaction, button: discord.ui.Button
+    ) -> None:
+        await interaction.response.defer()
+        await self.plot(interaction, self.__channel_snowflake, self.__identifier)
+
+    async def plot(self, interaction, channel_snowflake: str, option: str):
         async with self.__pool.acquire() as conn:
             rows = await conn.fetch(
                 """
@@ -90,11 +107,19 @@ class PlotView(discord.ui.View):
         enforce = []
         undo = []
         for row in rows:
-            if row["channel_snowflake"] == 1222056499959042108:
-                if row["infraction_type"] == option:
+
+            if row["infraction_type"] == option:
+                if (
+                    channel_snowflake == "all"
+                    or row["channel_snowflake"] == channel_snowflake
+                ):
                     enforce.append(row)
                     data[row["created_at"]] = option
-                elif row["infraction_type"] == f"un{option}":
+            elif row["infraction_type"] == f"un{option}":
+                if (
+                    channel_snowflake == "all"
+                    or row["channel_snowflake"] == channel_snowflake
+                ):
                     undo.append(row)
                     data[row["created_at"]] = f"un{option}"
         for enforce_item in enforce:
