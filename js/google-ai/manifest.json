@@ -11,7 +11,7 @@
     { 
       "js": ["content.js"],
       "matches": [
-          "<all_urls>"
+          "*://google.com/*"
       ]
     }
   ]
