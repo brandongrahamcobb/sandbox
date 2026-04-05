@@ -1,0 +1,15 @@
+var host = "https://google.com/search?q"
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {          
+    if (changeInfo.status == 'complete') {
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs){
+         //   chrome.tabs.sendMessage(tabs[0].id, {action: "Redirect!"}, function(response) {});  
+            chrome.webNavigation.onBeforeNavigate.addListener(
+                function(details) {
+                    const regex = /[^\w*:\/\/\w*\.google\.com\/search.?q].*/gi;
+                    return {redirectUrl: host + tabs[0].url.match(regex) + "%20-ai"};
+                }
+            );
+        });
+    }
+});
+

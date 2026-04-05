@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "No-AI Extension",
+  "version": "1.0",
+  "description": "Navigate to google without AI extension",
+  "permissions": ["activeTab", "tabs", "webNavigation"],
+  "background": {
+      "service_worker": "background.js",
+      "persistent": false
+  },
+  "content_scripts": [
+    { 
+      "js": ["background.js"],
+      "matches": [
+          "<all_urls>"
+      ]
+    }
+  ]
+}
