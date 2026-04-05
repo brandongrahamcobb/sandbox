@@ -11,7 +11,7 @@
     { 
       "js": ["content.js"],
       "matches": [
-          "*://google.com/*"
+          "*://*.google.com/*"
       ]
     }
   ]
