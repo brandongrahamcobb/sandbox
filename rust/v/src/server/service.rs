@@ -4,7 +4,7 @@ use crate::server::error::RuntimeError;
 use rand::{RngExt, rng};
 use std::net::SocketAddr;
 use tokio::net::TcpStream;
-use tracing::error;
+use tracing::{error, warn};
 
 pub struct LoginServerActor;
 
@@ -82,11 +82,11 @@ impl LoginClientActor {
         }
     }
 
-    async fn handle_packet(&mut self, mut packet: Packet) -> Result<(), RuntimeError> {
+    async fn handle_packet(&mut self, packet: Packet) -> Result<(), RuntimeError> {
         let opcode = packet.opcode();
         match opcode {
             0x01 => match login::build_login_status_packet(0) {
-                Ok(response) => {
+                Ok(mut response) => {
                     if let Err(e) = self.writer.send_packet(&mut response).await {
                         match e {
                             PacketError::Io(pe) => {
@@ -114,7 +114,7 @@ impl LoginClientActor {
                 Err(e) => Err(RuntimeError::Handler(e.to_string())),
             },
             _ => {
-                debug!(
+                warn!(
                     "Expected successful login opcode. Found an unhandled opcode. Debug: {}",
                     opcode
                 );

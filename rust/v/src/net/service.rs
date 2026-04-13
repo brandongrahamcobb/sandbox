@@ -1,8 +1,9 @@
 use crate::helpers::to_hex_string;
 use crate::io::packet::Packet;
+use crate::io::read::PktRead;
 use crate::net::error::NetworkError;
-use tokio::io::BufReader;
-
+use crate::net::login;
+use std::io::BufReader;
 pub struct LoginCredentialsHandler;
 
 impl LoginCredentialsHandler {
@@ -11,7 +12,7 @@ impl LoginCredentialsHandler {
     }
 
     fn read_credentials(packet: &mut Packet) -> Result<(String, String, String), NetworkError> {
-        let mut reader = BufReader::new(packet.byts.as_slice());
+        let mut reader = BufReader::new(packet.bytes.as_slice());
         reader.read_short()?;
         let user = reader.read_str_with_length()?;
         let pw = reader.read_str_with_length()?;
@@ -22,6 +23,6 @@ impl LoginCredentialsHandler {
 
     pub fn handle(packet: &mut Packet) -> Result<Packet, NetworkError> {
         let (_user, _pw, _hwid) = Self::read_credentials(packet)?;
-        build_successful_login_packet(0)?;
+        login::build_login_status_packet(0)
     }
 }

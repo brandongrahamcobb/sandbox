@@ -93,7 +93,7 @@ pub fn validate_against_hash(plain: &str, hashed: &str) -> BcryptResult<bool> {
 
 #[cfg(test)]
 mod tests {
-    use rand::{random, rng};
+    use rand::{RngExt, random, rng};
 
     #[test]
     fn test_rot_nop_on_max_and_zero() {
@@ -156,7 +156,7 @@ mod tests {
     fn test_encrypt_decrypt_original() {
         let mut rng = rng();
         for _ in 0..100 {
-            let length = rng.gen_range(1, 255);
+            let length = rng.random_range(1..255);
             let mut bytes: Vec<u8> = Vec::new();
             let mut expected: Vec<u8> = Vec::new();
 

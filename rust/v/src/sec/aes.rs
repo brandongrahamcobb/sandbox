@@ -1,6 +1,6 @@
 use aes::Aes256;
+use aes::cipher::BlockCipherEncrypt;
 use aes::cipher::KeyInit;
-use generic_array::GenericArray;
 
 use crate::sec::constants;
 
@@ -21,20 +21,19 @@ impl AES {
         let mut remaining = data.len();
         let mut llength = 0x5B0;
         let mut start = 0;
-        let mut key = self.get_trimmed_user_key();
-        let key = GenericArray::from_mut_slice(&mut key);
-        let cipher = Aes256::new(key);
+        let key = self.get_trimmed_user_key();
+        let cipher = Aes256::new_from_slice(&key).expect("Invalid key length");
         while remaining > 0 {
-            let mut iv = self.repeat_bytes(&self.iv, 4);
-            let iv = GenericArray::from_mut_slice(&mut iv);
+            let iv = self.repeat_bytes(&self.iv, 4);
+            let mut block = aes::Block::try_from(&iv[..16]).expect("Invalid block length");
             if remaining < llength {
                 llength = remaining;
             }
             for i in start..(start + llength) {
                 if (i - start) % iv.len() == 0 {
-                    cipher.encrypt_block(iv);
+                    cipher.encrypt_block(&mut block);
                 }
-                data[i] ^= iv[(i - start) % iv.len()];
+                data[i] ^= block[(i - start) % 16];
             }
             start += llength;
             remaining -= llength;
