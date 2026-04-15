@@ -1,7 +1,7 @@
-use crate::server::LoginServerActor;
 use std::env;
 use tracing::info;
 use tracing_subscriber::EnvFilter;
+use v::server::service::LoginServerActor;
 
 #[tokio::main]
 async fn main() {

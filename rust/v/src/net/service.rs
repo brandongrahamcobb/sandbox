@@ -1,4 +1,3 @@
-use crate::helpers::to_hex_string;
 use crate::io::packet::Packet;
 use crate::io::read::PktRead;
 use crate::net::error::NetworkError;
@@ -25,4 +24,9 @@ impl LoginCredentialsHandler {
         let (_user, _pw, _hwid) = Self::read_credentials(packet)?;
         login::build_login_status_packet(0)
     }
+}
+
+fn to_hex_string(bytes: &Vec<u8>) -> String {
+    let strs: Vec<String> = bytes.iter().map(|b| format!("{:02X}", b)).collect();
+    strs.join(" ")
 }

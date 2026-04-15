@@ -4,3 +4,4 @@ pub mod net;
 pub mod op;
 pub mod sec;
 pub mod server;
+mod test_suite;

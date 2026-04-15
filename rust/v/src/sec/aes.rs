@@ -130,3 +130,51 @@ impl AES {
         result
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use byteorder::{BigEndian, ReadBytesExt};
+    use rand::{RngExt, random, rng};
+
+    #[test]
+    fn test_aes_round_trip() {
+        for _ in 0..25 {
+            let mut iv: Vec<u8> = Vec::new();
+            for _ in 0..4 {
+                iv.push(random());
+            }
+            let mut encrypt_cipher = super::AES::new(&iv, 27);
+            let mut decrypt_cipher = super::AES::new(&iv, 27);
+            let length: u16 = random();
+            let mut to_crypt: Vec<u8> = Vec::new();
+            let mut expected: Vec<u8> = Vec::new();
+            for _ in 0..length {
+                let byte: u8 = random();
+                to_crypt.push(byte);
+                expected.push(byte);
+            }
+            encrypt_cipher.crypt(to_crypt.as_mut_slice());
+            assert_ne!(to_crypt, expected);
+            decrypt_cipher.crypt(to_crypt.as_mut_slice());
+            assert_eq!(to_crypt, expected);
+        }
+    }
+
+    #[test]
+    fn packet_header_round_trip() {
+        let mut rng = rng();
+        for _ in 0..100 {
+            let mut iv: Vec<u8> = Vec::new();
+            for _ in 0..4 {
+                iv.push(random());
+            }
+            let cipher = super::AES::new(&iv, 27);
+            let initial_length: i16 = rng.random_range(0..16000);
+            let header = cipher.gen_packet_header(initial_length);
+            let header_int: u32 = header.as_slice().read_u32::<BigEndian>().unwrap();
+            assert!(cipher.check_header_u32(header_int));
+            let length: i16 = cipher.get_packet_length(&header);
+            assert_eq!(length, initial_length);
+        }
+    }
+}

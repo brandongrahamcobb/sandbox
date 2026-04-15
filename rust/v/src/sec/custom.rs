@@ -1,5 +1,3 @@
-use bcrypt::{BcryptResult, DEFAULT_COST, hash, verify};
-
 pub fn encrypt(data: &mut [u8]) {
     let size: usize = data.len();
     let mut c: u8;
@@ -83,14 +81,6 @@ fn rotr(byte: u8, count: u32) -> u8 {
     }
 }
 
-pub fn hash_password(pw: &str) -> BcryptResult<String> {
-    hash(pw, DEFAULT_COST)
-}
-
-pub fn validate_against_hash(plain: &str, hashed: &str) -> BcryptResult<bool> {
-    verify(plain, hashed)
-}
-
 #[cfg(test)]
 mod tests {
     use rand::{RngExt, random, rng};
@@ -99,7 +89,6 @@ mod tests {
     fn test_rot_nop_on_max_and_zero() {
         let max: u8 = u8::MAX;
         let zero: u8 = 0;
-
         for i in 0..9 {
             assert_eq!(super::rotl(max, i), max);
             assert_eq!(super::rotr(max, i), max);
@@ -159,13 +148,11 @@ mod tests {
             let length = rng.random_range(1..255);
             let mut bytes: Vec<u8> = Vec::new();
             let mut expected: Vec<u8> = Vec::new();
-
             for _ in 0..length {
                 let byte: u8 = random();
                 bytes.push(byte);
                 expected.push(byte);
             }
-
             super::encrypt(&mut bytes);
             assert_ne!(expected, bytes);
             super::decrypt(&mut bytes);
