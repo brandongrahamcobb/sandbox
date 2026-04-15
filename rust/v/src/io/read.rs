@@ -6,6 +6,7 @@ use byteorder::{LittleEndian, ReadBytesExt};
 use std::io::Read;
 use tokio::io::{AsyncReadExt, BufReader};
 use tokio::net::tcp::OwnedReadHalf;
+use tracing::error;
 
 pub struct PacketReader {
     reader: BufReader<OwnedReadHalf>,
@@ -31,9 +32,14 @@ impl PacketReader {
             Ok(_) => {}
             Err(e) if e.kind() == std::io::ErrorKind::UnexpectedEof => {
                 return Err(PacketError::Io(e));
-                // Redundant, consider a different error.
             }
-            Err(e) => return Err(PacketError::Io(e)),
+            Err(e) => {
+                error!(
+                    "Expected to read a packet header. Found an unhandled error: {}",
+                    e.to_string()
+                );
+                return Err(PacketError::Io(e));
+            }
         }
         if !self.aes.check_header(&header_buf) {
             return Err(PacketError::InvalidHeader);
@@ -51,9 +57,14 @@ impl PacketReader {
             Ok(_) => {}
             Err(e) if e.kind() == std::io::ErrorKind::UnexpectedEof => {
                 return Err(PacketError::Io(e));
-                // Redundant, consider a different error.
             }
-            Err(e) => return Err(PacketError::Io(e)),
+            Err(e) => {
+                error!(
+                    "Expected to read packet data. Found an unhandled error: {}",
+                    e.to_string()
+                );
+                return Err(PacketError::Io(e));
+            }
         }
         self.aes.crypt(&mut buf);
         custom::decrypt(&mut buf);

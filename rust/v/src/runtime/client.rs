@@ -1,42 +1,19 @@
 use crate::io::{error::PacketError, packet::Packet, read::PacketReader, write::PacketWriter};
 use crate::net::login;
-use crate::server::error::RuntimeError;
+use crate::runtime::error::RuntimeError;
 use rand::{RngExt, rng};
 use std::net::SocketAddr;
 use tokio::net::TcpStream;
 use tracing::{error, warn};
 
-pub struct LoginServerActor;
-
-impl LoginServerActor {
-    pub async fn run(addr: &str) -> Result<(), RuntimeError> {
-        let listener = tokio::net::TcpListener::bind(addr).await?;
-        loop {
-            match listener.accept().await {
-                Ok((stream, peer_addr)) => {
-                    tokio::spawn(async move {
-                        match LoginClientActor::new(stream, peer_addr).await {
-                            Ok(actor) => actor.run().await,
-                            Err(e) => error!(error = %e, "Failed to create LoginClientActor"),
-                        }
-                    });
-                }
-                Err(e) => {
-                    error!(error = %e, "Error accepting login connection");
-                }
-            }
-        }
-    }
-}
-
-pub struct LoginClientActor {
+pub struct ActiveLogin {
     reader: PacketReader,
     writer: PacketWriter,
-    peer_addr: SocketAddr,
+    addr: SocketAddr,
 }
 
-impl LoginClientActor {
-    pub async fn new(stream: TcpStream, peer_addr: SocketAddr) -> Result<Self, RuntimeError> {
+impl ActiveLogin {
+    pub async fn new(stream: TcpStream, addr: SocketAddr) -> Result<Self, RuntimeError> {
         let (recv_iv, send_iv) = {
             let mut recv_iv = vec![0u8; 4];
             let mut send_iv = vec![0u8; 4];
@@ -75,7 +52,7 @@ impl LoginClientActor {
                 Ok(Self {
                     reader,
                     writer,
-                    peer_addr,
+                    addr,
                 })
             }
             Err(e) => return Err(RuntimeError::Handler(e.to_string())),
