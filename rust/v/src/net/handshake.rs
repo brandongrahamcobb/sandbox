@@ -1,17 +1,8 @@
-use crate::io::{packet::Packet, write::PktWrite};
+use crate::config::settings;
 use crate::net::error::NetworkError;
-use crate::op::send::SendOpcode::LoginStatus;
+use crate::net::packet::{core::Packet, write::PktWrite};
 
-pub fn build_login_status_packet(status: u8) -> Result<Packet, NetworkError> {
-    // TODO: Need to create an enum for the status...
-    let mut packet = Packet::new_empty();
-    let opcode = LoginStatus as i16;
-    packet.write_short(opcode)?;
-    packet.write_byte(status)?;
-    packet.write_byte(0)?;
-    packet.write_int(0)?;
-    Ok(packet)
-}
+const VERSION: i16 = settings::get_version();
 
 pub fn build_handshake_packet(
     recv_iv: &Vec<u8>,
@@ -19,7 +10,7 @@ pub fn build_handshake_packet(
 ) -> Result<Packet, NetworkError> {
     let mut packet = Packet::new_empty();
     packet.write_short(0x0E)?;
-    packet.write_short(83)?; // Version
+    packet.write_short(VERSION)?;
     // Not sure what this part is meant to represent...
     // HeavenClient doesn't seem to care for these values but the
     // official clients do...

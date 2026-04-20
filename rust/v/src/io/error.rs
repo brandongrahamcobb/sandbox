@@ -1,16 +1,21 @@
-use thiserror::Error;
-
-#[derive(Debug, Error)]
-pub enum PacketError {
-    #[error("Packet read/write error: {0}")]
-    Io(#[from] std::io::Error),
-
-    #[error("Invalid packet header")]
-    InvalidHeader,
-
-    #[error("Invalid packet length: {0}")]
-    InvalidPacketLength(i16),
-
-    #[error("Empty packet.")]
-    EmptyPacket,
-}
+// use thiserror::Error;
+//
+// use crate::io::packet::{
+//     error::{PacketBuildError, PacketReadWriteError},
+//     handlers::error::HandlerPacketError,
+// };
+//
+// #[derive(Debug, Error)]
+// pub enum IoError {
+//     #[error("I/O layer error")]
+//     IoGenericError(#[from] std::io::Error),
+//
+//     #[error("Build packet error")]
+//     IoPacketBuildError(#[from] PacketBuildError),
+//
+//     #[error("Packet handler error in I/O layer")]
+//     IoHandlerPacketError(#[from] HandlerPacketError),
+//
+//     #[error("Read/write packet error in I/O layer")]
+//     IoPacketReadWriteError(#[from] PacketReadWriteError),
+// }

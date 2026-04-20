@@ -1,5 +1,6 @@
-use crate::io::error::PacketError;
-use crate::io::packet::Packet;
+use crate::net::error::NetworkError;
+use crate::net::packet::core::Packet;
+use crate::net::packet::error::PacketReadWriteError::PacketWriteError;
 use crate::sec::aes::AES;
 use crate::sec::custom;
 use byteorder::{LittleEndian, WriteBytesExt};
@@ -20,13 +21,13 @@ impl PacketWriter {
         }
     }
 
-    pub async fn send_handshake(&mut self, packet: &[u8]) -> Result<(), PacketError> {
+    pub async fn send_handshake(&mut self, packet: &[u8]) -> Result<(), NetworkError> {
         self.writer.write_all(packet).await?;
         self.writer.flush().await?;
         Ok(())
     }
 
-    pub async fn send_packet(&mut self, packet: &mut Packet) -> Result<(), PacketError> {
+    pub async fn send_packet(&mut self, packet: &mut Packet) -> Result<(), NetworkError> {
         let header = self.aes.gen_packet_header(packet.len() + 2);
         custom::encrypt(&mut packet.bytes);
         self.aes.crypt(&mut packet.bytes);

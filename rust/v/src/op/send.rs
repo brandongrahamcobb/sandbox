@@ -1,5 +1,6 @@
+#[derive(num_derive::FromPrimitive)]
 pub enum SendOpcode {
-    LoginStatus = 0x00,
+    Authentication = 0x00,
     // GuestIdLogin = 0x01,
     // ServerStatus = 0x03,
     // CheckPin = 0x06,

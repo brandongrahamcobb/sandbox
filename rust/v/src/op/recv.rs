@@ -1,5 +1,6 @@
+#[derive(num_derive::FromPrimitive)]
 pub enum RecvOpcode {
-    LoginCredentials = 0x01,
+    Authentication = 0x01,
     // GuestLogin = 0x02,
     // ServerListReRequest = 0x04,
     // CharListRequest = 0x05,
@@ -19,7 +20,7 @@ pub enum RecvOpcode {
     // CharSelectWithPic = 0x1E,
     // ViewAllPicRegister = 0x1F,
     // ViewAllWithPic = 0x20,
-    // LoginStarted = 0x23,
+    LoginStarted = 0x23,
     //
     // PlayerLoggedIn = 0x14,
     // ChangeChannel = 0x27,
