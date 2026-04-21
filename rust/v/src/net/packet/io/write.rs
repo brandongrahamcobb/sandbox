@@ -8,6 +8,8 @@ use std::io::Write;
 use tokio::io::{AsyncWriteExt, BufWriter};
 use tokio::net::tcp::OwnedWriteHalf;
 
+use tracing::error;
+
 pub struct PacketWriter {
     writer: BufWriter<OwnedWriteHalf>,
     aes: AES,
@@ -17,23 +19,26 @@ impl PacketWriter {
     pub fn new(write_half: OwnedWriteHalf, send_iv: &[u8]) -> Self {
         Self {
             writer: BufWriter::new(write_half),
-            aes: AES::new(&send_iv.to_vec(), 83),
+            aes: AES::new(&send_iv.to_vec()),
         }
-    }
-
-    pub async fn send_handshake(&mut self, packet: &[u8]) -> Result<(), NetworkError> {
-        self.writer.write_all(packet).await?;
-        self.writer.flush().await?;
-        Ok(())
     }
 
     pub async fn send_packet(&mut self, packet: &mut Packet) -> Result<(), NetworkError> {
         let header = self.aes.gen_packet_header(packet.len() + 2);
-        custom::encrypt(&mut packet.bytes);
         self.aes.crypt(&mut packet.bytes);
-        self.writer.write_all(&header).await?;
-        self.writer.write_all(&packet.bytes).await?;
-        self.writer.flush().await?;
+        custom::encrypt(&mut packet.bytes);
+        self.writer
+            .write_all(&header)
+            .await
+            .map_err(|e| PacketWriteError(e.to_string()))?;
+        self.writer
+            .write_all(&packet.bytes)
+            .await
+            .map_err(|e| PacketWriteError(e.to_string()))?;
+        self.writer
+            .flush()
+            .await
+            .map_err(|e| PacketWriteError(e.to_string()))?;
         Ok(())
     }
 }

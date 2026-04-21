@@ -16,5 +16,5 @@ pub struct Account {
     pub gender: i16,
     pub accepted_tos: bool,
     pub banned: bool,
-    pub connected: bool,
+    pub playing: bool,
 }

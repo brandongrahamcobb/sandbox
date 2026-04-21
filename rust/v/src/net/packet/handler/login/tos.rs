@@ -1,7 +1,6 @@
 use crate::net::error::NetworkError;
 use crate::net::packet::core::Packet;
-use crate::net::packet::handler::default::PacketHandler;
-use crate::net::packet::handler::error::PacketGenericError::TOSError;
+use crate::net::packet::handler::login::error::AuthenticationError::DeniedTOS;
 use crate::net::packet::handler::service::PacketHandlerResult;
 use std::io::BufReader;
 use tracing::error;
@@ -12,10 +11,8 @@ impl TOSHandler {
     pub fn new() -> Self {
         Self
     }
-}
 
-impl PacketHandler for TOSHandler {
-    fn handle(&self, packet: &mut Packet) -> Result<PacketHandlerResult, NetworkError> {
+    pub fn handle(&self, packet: &Packet) -> Result<PacketHandlerResult, NetworkError> {
         let mut reader = BufReader::new(&**packet);
         reader.read_short()?;
         let confirmed = reader.read_byte()?;
@@ -26,6 +23,7 @@ impl PacketHandler for TOSHandler {
         // NOT IMPLEMENTED
     }
 }
+
 // let account_id = ctx
 //     .session
 //     .session

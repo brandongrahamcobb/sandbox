@@ -1,43 +1,26 @@
+use crate::net::packet::build::error::GenericPacketBuildError;
+use crate::net::packet::handler::error::GenericPacketHandlerError;
+use crate::net::packet::io::error::GenericPacketIOError;
+use crate::net::packet::validation::error::GenericPacketValidationError;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
-pub enum PacketValidationError {
-    #[error("Invalid packet header in packet layer")]
-    InvalidHeader,
+pub enum PacketError {
+    #[error("Packet failed to build in packet layer")]
+    BuildError(#[from] GenericPacketBuildError),
 
-    #[error("Invalid packet length in packet layer: {0}")]
-    InvalidPacketLength(i16),
+    #[error("Invalid packet in packet layer")]
+    ValidationError(#[from] GenericPacketValidationError),
 
-    #[error("Empty packet in packet layer")]
-    EmptyPacket,
-}
+    #[error("Packet io error in packet layer")]
+    IOError(#[from] GenericPacketIOError),
 
-#[derive(Debug, Error)]
-pub enum PacketReadWriteError {
-    #[error("Read packet failed in packet layer")]
-    PacketReadError,
-
-    #[error("Write packet failed in packet layer")]
-    PacketWriteError,
-}
-
-#[derive(Debug, Error)]
-pub enum PacketBuildError {
-    #[error("Accept TOS packet failed to build in packet layer")]
-    PacketBuildTOSError,
-
-    #[error("Authentication packet failed to build in packet layer")]
-    PacketBuildAuthenticationError,
+    #[error("Packet handler error in packet layer")]
+    HandlerError(#[from] GenericPacketHandlerError),
 }
 
 #[derive(Debug, Error)]
 pub enum GenericPacketError {
-    #[error("Generic build error in packet layer")]
-    PacketGenericBuildError(#[from] PacketBuildError),
-
-    #[error("Generic read write error in packet layer")]
-    PacketGenericReadWriteError(#[from] PacketReadWriteError),
-
-    #[error("Generic validation error in packet layer")]
-    PacketGenericValidationError(#[from] PacketValidationError),
+    #[error("Packet failed in packet layer")]
+    GenericError(#[from] PacketError),
 }

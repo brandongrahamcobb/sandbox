@@ -1,6 +1,8 @@
 use crate::config::settings;
-use crate::runtime::error::RuntimeError;
-use crate::runtime::relay::{Authentication, World};
+use crate::runtime::error::{
+    RuntimeError, RuntimeRelayCreationError, RuntimeServerConnectionError,
+};
+use crate::runtime::relay::{Credentials, Runtime, World};
 use tokio::net::TcpStream;
 use tracing::{error, warn};
 
@@ -19,25 +21,28 @@ impl AuthenticationServer {
                 match listener.accept().await {
                     Ok((stream, addr)) => {
                         tokio::spawn(async move {
-                            match Login::new(stream, addr).await {
-                                Ok(login) => login.run().await,
-                                Err(e) => Err(RuntimeError::GenericRuntimeError(
-                                    "Failed to create Authentication. Error: {}",
-                                    e.to_string(),
+                            match Runtime::<Credentials>::new(stream, addr).await {
+                                Ok(cred) => {
+                                    if let Err(e) = cred.run().await {
+                                        !info(
+                                            "Expected a successful login relay. Received an error. Error: {}",
+                                            e.to_string(),
+                                        );
+                                    }
+                                }
+                                Err(e) => Err(RuntimeRelayCreationError::FailedLoginRelayCreation(
+                                    e.to_string,
                                 )),
-                            }
+                            };
                         });
                     }
-                    Err(e) => Err(RuntimeError::GenericRuntimeError(
-                        "Error accepting authentication connection. Error: {}",
+                    Err(e) => Err(RuntimeServerConnectionError::FailedLoginServerConnection(
                         e.to_string(),
                     )),
                 }
             }
         } else {
-            Err(RuntimeError::RuntimeConfigError(
-                "Expected a valid login SocketAddr. Received a ConfigError.",
-            ))
+            Err(RuntimeError::RuntimeConfigError)
         }
     }
 }
@@ -52,25 +57,28 @@ impl WorldServer {
                 match listener.accept().await {
                     Ok((stream, peer_addr)) => {
                         tokio::spawn(async move {
-                            match World::new(stream, peer_addr).await {
-                                Ok(world) => world.run().await,
-                                Err(e) => Err(RuntimeError::GenericRuntimeError(
-                                    "Failed to create World. Error: {}",
-                                    e.to_string(),
+                            match Runtime::<World>::new(stream, addr).await {
+                                Ok(world) => {
+                                    if let Err(e) = world.run().await {
+                                        !info(
+                                            "Expected a successful world relay. Received an error. Error: {}",
+                                            e.to_string(),
+                                        );
+                                    }
+                                }
+                                Err(e) => Err(RuntimeRelayCreationError::FailedWorldRelayCreation(
+                                    e.to_string,
                                 )),
-                            }
+                            };
                         });
                     }
-                    Err(e) => Err(RuntimeError::GenericRuntimeError(
-                        "Error accepting world connection. Error: {}",
+                    Err(e) => Err(RuntimeServerConnectionError::FailedWorldServerConnection(
                         e.to_string(),
                     )),
                 }
             }
         } else {
-            Err(RuntimeError::RuntimeConfigError(
-                "Expected a valid world SocketAddr. Received a ConfigError.",
-            ));
+            Err(RuntimeError::RuntimeConfigError)
         }
     }
 }

@@ -49,16 +49,7 @@ impl PacketReader {
         self.reader
             .read_exact(buf)
             .await
-            .map_err(|e| match e.kind() {
-                std::io::ErrorKind::UnexpectedEof => NetworkError::ClientDisconnectError,
-                _ => {
-                    error!(
-                        "Expected to read a packet header. Found an unhandled error: {}",
-                        e.to_string()
-                    );
-                    NetworkError::NetworkPacketReadWriteError(PacketReadError)
-                }
-            });
+            .map_err(|e| PacketReadError(e.to_string()))?;
         Ok(())
     }
 
@@ -79,6 +70,8 @@ impl PacketReader {
             .ok_or(PacketValidationError::InvalidPacketLength);
         let mut buf = vec![0u8; length as usize];
         self.read_buffer(&mut buf).await?;
+        self.aes.crypt(&mut buf);
+        custom::decrypt(&mut buf);
         Ok(Packet::new(&buf))
     }
 

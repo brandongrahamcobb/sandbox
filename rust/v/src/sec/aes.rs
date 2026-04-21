@@ -5,7 +5,7 @@ use aes::cipher::BlockCipherEncrypt;
 use aes::cipher::KeyInit;
 
 pub struct AES {
-    iv: Vec<u8>,
+    pub iv: Vec<u8>,
 }
 
 impl AES {

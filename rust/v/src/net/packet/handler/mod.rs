@@ -1,5 +1,3 @@
-pub mod auth;
-pub mod default;
 pub mod error;
+pub mod login;
 pub mod service;
-pub mod tos;

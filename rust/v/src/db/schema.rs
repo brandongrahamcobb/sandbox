@@ -13,7 +13,7 @@ diesel::table! {
         gender -> Int2,
         accepted_tos -> Bool,
         banned -> Bool,
-        connected -> Bool,
+        playing -> Bool,
     }
 }
 

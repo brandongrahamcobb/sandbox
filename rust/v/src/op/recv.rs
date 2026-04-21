@@ -1,11 +1,11 @@
 #[derive(num_derive::FromPrimitive)]
 pub enum RecvOpcode {
-    Authentication = 0x01,
+    RequestLogin = 0x01,
     // GuestLogin = 0x02,
     // ServerListReRequest = 0x04,
     // CharListRequest = 0x05,
     // ServerStatusRequest = 0x06,
-    // AcceptTOS = 0x07,
+    AcceptTOS = 0x07,
     // SetGender = 0x08,
     // AfterLogin = 0x09,
     // RegisterPin = 0x0A,

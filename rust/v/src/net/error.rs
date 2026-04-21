@@ -1,8 +1,6 @@
-use thiserror::Error;
-
-use crate::net::packet::error::{GenericPacketError, PacketReadWriteError};
-use crate::net::packet::handler::error::PacketHandlerError;
+use crate::net::packet::error::GenericPacketError;
 use std::time::SystemTimeError;
+use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum NetworkError {
@@ -13,17 +11,20 @@ pub enum NetworkError {
     SystemTimeError(#[from] SystemTimeError),
 
     #[error("Packet handler error in network layer")]
-    NetworkPacketHandlerError(#[from] PacketHandlerError),
-
-    #[error("Generic packet error in network layer")]
-    NetworkGenericPacketError(#[from] GenericPacketError),
+    HandlerError(#[from] PacketHandlerError),
 
     #[error("Handshake error in network layer")]
-    NetworkHandshakeError,
+    HandshakeError,
 
-    #[error("Packet read/write error in network layer")]
-    NetworkPacketReadWriteError(#[from] PacketReadWriteError),
+    #[error("Unexpected end of output in network layer")]
+    UnexpectedOf(#[from] std::io::Error),
 
-    #[error("Client disconnect in network layer")]
-    ClientDisconnectError,
+    #[error("Packet error in network layer")]
+    PacketError(#[from] GenericPacketError),
+}
+
+#[derive(Debug, Error)]
+pub enum GenericNetworkError {
+    #[error("Network failed in network layer")]
+    GenericError(#[from] NetworkError),
 }
