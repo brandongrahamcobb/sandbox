@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-diesel = { version = "2.3.7", features = ["postgres", "network-address"] }
+diesel = { version = "2.3.7", features = ["postgres", "network-address", "r2d2"] }
 ipnetwork = "0.21.1"
 thiserror = "2"
 aes = "0.9"

@@ -1,48 +1,49 @@
 use crate::config::settings;
-use crate::runtime::error::{
-    RuntimeError, RuntimeRelayCreationError, RuntimeServerConnectionError,
-};
+use crate::runtime::error::RuntimeError;
 use crate::runtime::relay::{Credentials, Runtime, World};
-use tokio::net::TcpStream;
-use tracing::{error, warn};
+use crate::runtime::state::SharedState;
+use tracing::info;
 
 pub enum ServerType {
-    AuthenticationServer,
+    LoginServer,
     WorldServer,
 }
 
-pub struct AuthenticationServer;
+pub struct LoginServer;
 
-impl AuthenticationServer {
-    pub async fn run() -> Result<(), RuntimeError> {
-        if let Ok(addr) = settings::get_login_server_addr() {
+impl LoginServer {
+    pub async fn run(state: &SharedState) -> Result<(), RuntimeError> {
+        if let Ok(addr) = settings::get_login_server_addr(&state.settings) {
             let listener = tokio::net::TcpListener::bind(&addr).await?;
             loop {
                 match listener.accept().await {
                     Ok((stream, addr)) => {
+                        let state = state.clone();
                         tokio::spawn(async move {
-                            match Runtime::<Credentials>::new(stream, addr).await {
-                                Ok(cred) => {
+                            match Runtime::<Credentials>::new(state, stream, addr).await {
+                                Ok(mut cred) => {
                                     if let Err(e) = cred.run().await {
-                                        !info(
-                                            "Expected a successful login relay. Received an error. Error: {}",
+                                        info!(
+                                            "Expected a successful login relay loop. Received an error. Error: {}",
                                             e.to_string(),
                                         );
                                     }
                                 }
-                                Err(e) => Err(RuntimeRelayCreationError::FailedLoginRelayCreation(
-                                    e.to_string,
-                                )),
+                                Err(e) => info!(
+                                    "Expected valid login relay creation. Received an error. Error: {}",
+                                    e.to_string(),
+                                ),
                             };
                         });
                     }
-                    Err(e) => Err(RuntimeServerConnectionError::FailedLoginServerConnection(
+                    Err(e) => info!(
+                        "Expected valid connection. Received an error. Error: {}",
                         e.to_string(),
-                    )),
+                    ),
                 }
             }
         } else {
-            Err(RuntimeError::RuntimeConfigError)
+            Err(RuntimeError::ConfigError)
         }
     }
 }
@@ -50,35 +51,38 @@ impl AuthenticationServer {
 pub struct WorldServer;
 
 impl WorldServer {
-    pub async fn run() -> Result<(), RuntimeError> {
-        if let Ok(addr) = settings::get_world_server_addr() {
+    pub async fn run(state: &SharedState) -> Result<(), RuntimeError> {
+        if let Ok(addr) = settings::get_world_server_addr(&state.settings) {
             let listener = tokio::net::TcpListener::bind(&addr).await?;
             loop {
                 match listener.accept().await {
-                    Ok((stream, peer_addr)) => {
+                    Ok((stream, addr)) => {
+                        let state = state.clone();
                         tokio::spawn(async move {
-                            match Runtime::<World>::new(stream, addr).await {
-                                Ok(world) => {
+                            match Runtime::<World>::new(state, stream, addr).await {
+                                Ok(mut world) => {
                                     if let Err(e) = world.run().await {
-                                        !info(
-                                            "Expected a successful world relay. Received an error. Error: {}",
+                                        info!(
+                                            "Expected a successful world relay loop. Received an error. Error: {}",
                                             e.to_string(),
                                         );
                                     }
                                 }
-                                Err(e) => Err(RuntimeRelayCreationError::FailedWorldRelayCreation(
-                                    e.to_string,
-                                )),
+                                Err(e) => info!(
+                                    "Expected valid world relay creation. Received an error. Error: {}",
+                                    e.to_string(),
+                                ),
                             };
                         });
                     }
-                    Err(e) => Err(RuntimeServerConnectionError::FailedWorldServerConnection(
+                    Err(e) => info!(
+                        "Expected valid connection. Received an error. Error: {}",
                         e.to_string(),
-                    )),
+                    ),
                 }
             }
         } else {
-            Err(RuntimeError::RuntimeConfigError)
+            Err(RuntimeError::ConfigError)
         }
     }
 }

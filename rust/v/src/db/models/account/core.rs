@@ -1,8 +1,8 @@
 use crate::db::schema::accounts;
-use diesel::Insertable;
+use diesel::prelude::*;
 use std::time::SystemTime;
 
-#[derive(Insertable)]
+#[derive(Identifiable, Queryable, AsChangeset)]
 #[diesel(table_name = accounts)]
 pub struct Account {
     pub id: i64,
@@ -17,4 +17,5 @@ pub struct Account {
     pub accepted_tos: bool,
     pub banned: bool,
     pub playing: bool,
+    pub updated_at: SystemTime,
 }

@@ -1,14 +1,8 @@
-use crate::net::packet::handler::login::error::GenericLoginPacketHandlerError;
+use crate::net::packet::handler::login::error::LoginError;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
-pub enum PacketHandlerError {
+pub enum HandlerError {
     #[error("Login packet failed in handler layer")]
-    LoginError(#[from] GenerticLoginPacketHandlerError),
-}
-
-#[derive(Debug, Error)]
-pub enum GenericPacketHandlerError {
-    #[error("Packet handler failed in handler layer")]
-    GenericError(#[from] PacketHandlerError),
+    LoginError(#[from] LoginError),
 }

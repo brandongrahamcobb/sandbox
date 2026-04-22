@@ -1,14 +1,16 @@
 use crate::config::settings;
 use crate::net::error::NetworkError;
-use crate::net::packet::core::{MAX_PACKET_LENGTH, Packet};
-use crate::net::packet::error::{PacketReadWriteError::PacketReadError, PacketValidationError};
+use crate::net::packet::core::Packet;
+use crate::net::packet::error::PacketError;
+use crate::net::packet::io::error::IOError::ReadError;
+use crate::net::packet::validation;
+use crate::runtime::state::SharedState;
 use crate::sec::aes::AES;
 use crate::sec::custom;
 use byteorder::{LittleEndian, ReadBytesExt};
 use std::io::Read;
 use tokio::io::{AsyncReadExt, BufReader};
 use tokio::net::tcp::OwnedReadHalf;
-use tracing::error;
 
 const HEADER_SIZE: u8 = 4;
 
@@ -18,30 +20,21 @@ pub struct PacketReader {
 }
 
 impl PacketReader {
-    pub fn new(read_half: OwnedReadHalf, recv_iv: &[u8]) -> Self {
-        Self {
+    pub fn new(
+        read_half: OwnedReadHalf,
+        recv_iv: &[u8],
+        state: &SharedState,
+    ) -> Result<Self, NetworkError> {
+        Ok(Self {
             reader: BufReader::new(read_half),
-            aes: AES::new(&recv_iv.to_vec()),
-        }
+            aes: AES::new(&recv_iv.to_vec(), settings::get_version(&state.settings)?),
+        })
     }
 
     // 1st Level
-    pub fn check_header(&self, header: &[u8]) -> bool {
-        const VERSION: u16 = settings::get_version();
-        ((header[0] ^ self.aes.iv[2]) & 0xFF) == ((VERSION >> 8) as u8 & 0xFF)
-            && ((header[1] ^ self.aes.iv[3]) & 0xFF) == (VERSION & 0xFF) as u8
-    }
-
     pub fn get_packet_length(&self, header: &[u8]) -> i16 {
         (header[0] as i16 + ((header[1] as i16) << 8))
             ^ (header[2] as i16 + ((header[3] as i16) << 8))
-    }
-
-    pub fn check_packet_length(&self, length: i16) -> bool {
-        if length < 2 || length > MAX_PACKET_LENGTH {
-            return false;
-        }
-        return true;
     }
 
     // 2nd Level
@@ -49,7 +42,9 @@ impl PacketReader {
         self.reader
             .read_exact(buf)
             .await
-            .map_err(|e| PacketReadError(e.to_string()))?;
+            .map_err(ReadError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from);
         Ok(())
     }
 
@@ -57,17 +52,13 @@ impl PacketReader {
     async fn read_header(&mut self) -> Result<[u8; HEADER_SIZE as usize], NetworkError> {
         let mut buf = [0u8; HEADER_SIZE as usize];
         self.read_buffer(&mut buf).await?;
-        self.check_header(&buf)
-            .then_some(())
-            .ok_or(PacketValidationError::InvalidHeader);
+        validation::core::check_header(&self.aes, &buf)?;
         Ok(buf)
     }
 
     async fn read_payload(&mut self, header: &[u8]) -> Result<Packet, NetworkError> {
         let length = self.get_packet_length(header);
-        self.check_packet_length(length)
-            .then_some(())
-            .ok_or(PacketValidationError::InvalidPacketLength);
+        validation::core::check_packet_length(length)?;
         let mut buf = vec![0u8; length as usize];
         self.read_buffer(&mut buf).await?;
         self.aes.crypt(&mut buf);

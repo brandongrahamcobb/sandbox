@@ -1,20 +1,22 @@
-use crate::db::schema::accounts::dsl::*;
+use crate::db;
+use crate::db::error::DatabaseError;
+use crate::db::models::account::core::Account;
 use crate::inc::helpers;
 use crate::net::error::NetworkError;
 use crate::net::packet::core::Packet;
-use crate::net::packet::handler::login::error::AuthenticationError;
-use crate::net::packet::handler::service::HandlerAction;
-use crate::net::packet::handler::service::PacketHandler;
-use crate::op::recv::RecvOpcode;
-use crate::op::send::SendOpcode;
-use crate::{
-    db::models::account::model::Account, net::packet::handler::service::PacketHandlerResult,
-};
+use crate::net::packet::error::PacketError;
+use crate::net::packet::handler::error::HandlerError;
+use crate::net::packet::handler::login::action::{LoginAction, RejectReason};
+use crate::net::packet::handler::login::error::LoginError;
+use crate::net::packet::handler::result::HandlerResult;
+use crate::net::packet::io::error::IOError;
+use crate::prelude::*;
+use crate::runtime::relay::RuntimeContext;
 use bcrypt::verify;
 use std::io::BufReader;
-use tracing::{error, warn};
 
 pub enum StatusCode {
+    InvalidCredentials = 0,
     Banned = 2,
     PendingTOS = 7,
     Playing = 23,
@@ -27,108 +29,123 @@ impl CredentialsHandler {
         Self
     }
 
-    fn authenticate(acc: Account, pw: &str) -> Result<Account, NetworkError> {
+    fn authenticate(self: &Self, acc: &Account, pw: &str) -> Result<bool, NetworkError> {
         match verify(pw, &acc.password) {
-            Ok(true) => Ok(acc),
-            Ok(false) => Err(AuthenticationError::InvalidCredentials),
-            _ => Err(AuthenticationError::UnhandledAuthenticationError),
+            Ok(true) => Ok(true),
+            Ok(false) => Err(NetworkError::from(PacketError::from(HandlerError::from(
+                LoginError::InvalidCredentials,
+            )))),
+            _ => Err(NetworkError::from(PacketError::from(HandlerError::from(
+                LoginError::UnexpectedError,
+            )))),
         }
     }
 
-    fn check_if_banned(acc: &Account) -> Result<(), NetworkError> {
+    fn check_if_banned(self: &Self, acc: &Account) -> Result<bool, NetworkError> {
         if !acc.banned {
-            Ok(())
+            return Ok(true);
         }
-        Err(AuthenticationError::Banned)
+        Err(NetworkError::from(PacketError::from(HandlerError::from(
+            LoginError::Banned,
+        ))))
     }
 
-    fn check_if_pending_tos(acc: &Account) -> Result<(), NetworkError> {
+    fn check_if_pending_tos(self: &Self, acc: &Account) -> Result<bool, NetworkError> {
         if acc.accepted_tos {
-            Ok(())
+            return Ok(true);
         }
-        Err(AuthenticationError::PendingTOS)
+        Err(NetworkError::from(PacketError::from(HandlerError::from(
+            LoginError::PendingTOS,
+        ))))
     }
 
-    fn check_if_playing(acc: &Account) -> Result<(), NetworkError> {
+    fn check_if_playing(self: &Self, acc: &Account) -> Result<bool, NetworkError> {
         if acc.playing {
-            Ok(())
+            return Ok(true);
         }
-        Err(AuthenticationError::Playing)
+        Err(NetworkError::from(PacketError::from(HandlerError::from(
+            LoginError::Playing,
+        ))))
     }
 
-    fn check_status(acc: &Account) -> Result<(), NetworkError> {
-        check_if_banned(&acc)?;
-        check_if_pending_tos(&acc)?;
-        check_if_playing(&acc)?;
-        Ok(())
+    fn get_login_action(&self, acc: Account, hwid: String) -> Result<LoginAction, NetworkError> {
+        if self.check_if_banned(&acc)? {
+            return Ok(LoginAction::RejectLogin {
+                reason: RejectReason::Banned,
+                acc: Some(acc),
+            });
+        }
+        if self.check_if_pending_tos(&acc)? {
+            return Ok(LoginAction::RejectLogin {
+                reason: RejectReason::PendingTOS,
+                acc: Some(acc),
+            });
+        }
+        if self.check_if_playing(&acc)? {
+            return Ok(LoginAction::RejectLogin {
+                reason: RejectReason::Playing,
+                acc: Some(acc),
+            });
+        }
+        Ok(LoginAction::AcceptLogin { acc, hwid })
     }
 
-    pub fn build_failed_packet(acc: &Account, status: i16) -> Result<Packet, NetworkError> {
-        let mut packet = Packet::new_empty();
-        let opcode = SendOpcode::AccountStatus as i16;
-        packet.write_short(opcode)?;
-        packet.write_byte(status)?;
-        packet.write_byte(0)?;
-        packet.write_int(0)?;
-        Ok(packet)
-    }
-
-    pub fn build_success_packet(acc: &Account) -> Result<Packet, NetworkError> {
-        let mut packet = Packet::new_empty();
-        let opcode = SendOpcode::AccountStatus as i16;
-        let settings = Settings::new();
-        let account_id = acc.id;
-        let gender = acc.gender;
-        let account_name = &acc.user_name;
-        let created_at: i64 = acc.created_at.duration_since(UNIX_EPOCH).as_secs() as i64;
-        packet.write_short(opcode)?;
-        packet.write_int(0)?;
-        packet.write_short(0)?;
-        packet.write_int(account_id)?;
-        packet.write_byte(gender as u8)?;
-        packet.write_byte(0)?;
-        packet.write_byte(0)?;
-        packet.write_byte(0)?;
-        packet.write_str_with_length(account_name)?;
-        packet.write_byte(0)?;
-        packet.write_byte(0)?;
-        packet.write_long(0)?;
-        packet.write_long(created_at)?;
-        packet.write_int(1)?;
-        packet.write_byte(settings.login.pin_required as u8)?;
-        packet.write_byte(1)?;
-        Ok(packet)
-    }
-
-    fn read_credentials(packet: &Packet) -> Result<(String, String, String), NetworkError> {
+    fn read_credentials(
+        self: &Self,
+        packet: &Packet,
+    ) -> Result<(String, String, String), NetworkError> {
         let mut reader = BufReader::new(&**packet);
-        reader.read_short()?;
-        let user = reader.read_str_with_length()?;
-        let pw = reader.read_str_with_length()?;
-        reader.read_bytes(6)?;
-        let hwid = helpers::to_hex_string(&reader.read_bytes(4)?);
+        reader
+            .read_short()
+            .map_err(IOError::ReadError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from)?;
+        let user = reader
+            .read_str_with_length()
+            .map_err(IOError::ReadError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from)?;
+        let pw = reader
+            .read_str_with_length()
+            .map_err(IOError::ReadError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from)?;
+        reader
+            .read_bytes(6)
+            .map_err(IOError::ReadError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from)?;
+        let hwid = helpers::to_hex_string(
+            &reader
+                .read_bytes(4)
+                .map_err(IOError::ReadError)
+                .map_err(PacketError::from)
+                .map_err(NetworkError::from)?,
+        );
         Ok((user, pw, hwid))
     }
 
-    pub fn handle(&self, packet: &Packet) -> Result<PacketHandlerResult, NetworkError> {
-        let (user, pw, hwid) = Self::read_credentials(&packet)?;
-        let acc = Self::authenticate(&user, &pw)?;
-        match Self::check_status(&acc) {
-            Ok(()) => {
-                packet = build_success_packet(&acc)?;
+    pub async fn handle(
+        self: &Self,
+        ctx: &RuntimeContext,
+        packet: &Packet,
+    ) -> Result<HandlerResult<LoginAction>, NetworkError> {
+        let mut result = HandlerResult::new();
+        let (user, pw, hwid) = self.read_credentials(packet)?;
+        let acc = db::models::account::service::get_account_by_username(&user, ctx)
+            .map_err(DatabaseError::from)
+            .map_err(NetworkError::from)?;
+        let login_action = {
+            if self.authenticate(&acc, &pw)? {
+                self.get_login_action(acc, hwid)?
+            } else {
+                LoginAction::RejectLogin {
+                    acc: None,
+                    reason: RejectReason::InvalidCredentials,
+                }
             }
-            Err(AuthenticationError::Banned) => {
-                packet = build_failed_packet(&acc, &StatusCode::Banned)?;
-            }
-            Err(AuthenticationError::PendingTOS) => {
-                packet = build_failed_packet(&acc, &StatusCode::PendingTOS)?;
-            }
-            Err(AuthenticationError::Playing) => {
-                packet = build_failed_packet(&acc, &StatusCode::Playing)?;
-            }
-            _ => Err(AuthenticationError::UnhandledAuthenticationError),
-        }
-        let action = HandlerAction::Reply(*packet);
-        Ok(PacketHandlerResult(action))
+        };
+        result.add_action(login_action);
+        Ok(result)
     }
 }

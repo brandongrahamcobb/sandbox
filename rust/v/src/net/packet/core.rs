@@ -1,5 +1,6 @@
 use std::io::Result;
 use std::io::Write;
+use std::ops::{Deref, DerefMut};
 
 pub const INVALID_OPCODE: i16 = 1;
 
@@ -48,5 +49,19 @@ impl Write for Packet {
 
     fn flush(&mut self) -> Result<()> {
         self.bytes.flush()
+    }
+}
+
+impl Deref for Packet {
+    type Target = [u8];
+
+    fn deref(&self) -> &Self::Target {
+        &self.bytes
+    }
+}
+
+impl DerefMut for Packet {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.bytes
     }
 }

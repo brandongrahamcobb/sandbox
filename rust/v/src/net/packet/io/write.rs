@@ -1,6 +1,9 @@
+use crate::config::settings;
 use crate::net::error::NetworkError;
 use crate::net::packet::core::Packet;
-use crate::net::packet::error::PacketReadWriteError::PacketWriteError;
+use crate::net::packet::error::PacketError;
+use crate::net::packet::io::error::IOError::WriteError;
+use crate::runtime::state::SharedState;
 use crate::sec::aes::AES;
 use crate::sec::custom;
 use byteorder::{LittleEndian, WriteBytesExt};
@@ -8,19 +11,21 @@ use std::io::Write;
 use tokio::io::{AsyncWriteExt, BufWriter};
 use tokio::net::tcp::OwnedWriteHalf;
 
-use tracing::error;
-
 pub struct PacketWriter {
     writer: BufWriter<OwnedWriteHalf>,
     aes: AES,
 }
 
 impl PacketWriter {
-    pub fn new(write_half: OwnedWriteHalf, send_iv: &[u8]) -> Self {
-        Self {
+    pub fn new(
+        write_half: OwnedWriteHalf,
+        send_iv: &[u8],
+        state: &SharedState,
+    ) -> Result<Self, NetworkError> {
+        Ok(Self {
             writer: BufWriter::new(write_half),
-            aes: AES::new(&send_iv.to_vec()),
-        }
+            aes: AES::new(&send_iv.to_vec(), settings::get_version(&state.settings)?),
+        })
     }
 
     pub async fn send_packet(&mut self, packet: &mut Packet) -> Result<(), NetworkError> {
@@ -30,15 +35,22 @@ impl PacketWriter {
         self.writer
             .write_all(&header)
             .await
-            .map_err(|e| PacketWriteError(e.to_string()))?;
+            .map_err(WriteError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from);
         self.writer
             .write_all(&packet.bytes)
             .await
-            .map_err(|e| PacketWriteError(e.to_string()))?;
+            .map_err(WriteError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from);
         self.writer
             .flush()
             .await
-            .map_err(|e| PacketWriteError(e.to_string()))?;
+            .map_err(WriteError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from);
+
         Ok(())
     }
 }

@@ -14,6 +14,7 @@ diesel::table! {
         accepted_tos -> Bool,
         banned -> Bool,
         playing -> Bool,
+        updated_at -> Timestamp
     }
 }
 
@@ -44,7 +45,21 @@ diesel::table! {
         gender -> Int2,
         created_at -> Timestamp,
         map -> Int4,
+        updated_at -> Timestamp
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(accounts, characters,);
+diesel::table! {
+    sessions (id) {
+        id -> Int4,
+        account_id -> Int8,
+        ip -> Inet,
+        hwid -> Varchar,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+        selected_world_id -> Nullable<Int2>,
+        selected_channel_id -> Nullable<Int2>,
+    }
+}
+
+diesel::allow_tables_to_appear_in_same_query!(accounts, characters, sessions,);

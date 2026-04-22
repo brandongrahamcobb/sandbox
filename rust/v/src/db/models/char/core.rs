@@ -30,4 +30,5 @@ pub struct Character {
     pub gender: i16,
     pub created_at: SystemTime,
     pub map: i32,
+    pub updated_at: SystemTime,
 }

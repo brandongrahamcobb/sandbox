@@ -1,17 +1,20 @@
-use crate::config::settings;
-use crate::sec::constants;
+use crate::constants;
 use aes::Aes256;
 use aes::cipher::BlockCipherEncrypt;
 use aes::cipher::KeyInit;
 
 pub struct AES {
     pub iv: Vec<u8>,
+    pub version: i16,
 }
 
 impl AES {
-    pub fn new(iv: &Vec<u8>) -> AES {
+    pub fn new(iv: &Vec<u8>, version: i16) -> AES {
         let iv = iv.clone();
-        AES { iv }
+        AES {
+            iv,
+            version: version,
+        }
     }
 
     pub fn crypt(&mut self, data: &mut [u8]) {
@@ -42,7 +45,7 @@ impl AES {
     pub fn gen_packet_header(&self, length: i16) -> Vec<u8> {
         let mut iiv: u32 = self.iv[3] as u32 & 0xFF;
         iiv |= ((self.iv[2] as u32) << 8) & 0xFF00;
-        iiv ^= settings::get_version() as u32;
+        iiv ^= self.version as u32;
         let mlength = (((length as u32) << 8) & 0xFF00) | ((length as u32) >> 8);
         let xored_iv = iiv ^ mlength;
         vec![

@@ -29,3 +29,50 @@ pub const SHUFFLE_BYTES: [u8; 256] = [
 ];
 
 pub const DEFAULT_AES_KEY_VALUE: [u8; 4] = [0xF2, 0x53, 0x50, 0xC6];
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum WorldID {
+    BELLOCAN = 0,
+    BERA = 1,
+    BROA = 2,
+    KHAINI = 3,
+    MARDIA = 4,
+    SCANIA = 5,
+    WINDIA = 6,
+    YELLONDE = 7,
+}
+
+pub const WORLDS: &[WorldInfo] = &[
+    WorldInfo {
+        id: 0,
+        name: "Bellocan",
+    },
+    WorldInfo {
+        id: 1,
+        name: "Bera",
+    },
+    WorldInfo {
+        id: 2,
+        name: "Broa",
+    },
+    WorldInfo {
+        id: 3,
+        name: "Khaini",
+    },
+    WorldInfo {
+        id: 4,
+        name: "Mardia",
+    },
+    WorldInfo {
+        id: 5,
+        name: "Scania",
+    },
+    WorldInfo {
+        id: 6,
+        name: "Windia",
+    },
+    WorldInfo {
+        id: 7,
+        name: "Yellonde",
+    },
+];

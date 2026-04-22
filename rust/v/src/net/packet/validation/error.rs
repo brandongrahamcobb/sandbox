@@ -1,7 +1,7 @@
 use thiserror::Error;
 
 #[derive(Debug, Error)]
-pub enum PacketValidationError {
+pub enum ValidationError {
     #[error("Invalid packet header in packet validation layer")]
     InvalidHeader,
 
@@ -10,10 +10,4 @@ pub enum PacketValidationError {
 
     #[error("Empty packet in packet validation layer")]
     EmptyPacket,
-}
-
-#[derive(Debug, Error)]
-pub enum GenericPacketValidationError {
-    #[error("Packet validation failed in packet validation layer")]
-    GenericError(#[from] PacketValidationError),
 }
