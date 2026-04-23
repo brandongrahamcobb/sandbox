@@ -1,12 +1,12 @@
-use thiserror::Error;
-
 use crate::db::error::DatabaseError;
 use crate::net::error::NetworkError;
+use config::ConfigError;
+use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum RuntimeError {
     #[error("Config error in runtime layer")]
-    ConfigError,
+    ConfigError(#[from] ConfigError),
 
     #[error("Network error in runtime layer")]
     NetworkError(#[from] NetworkError),
@@ -25,6 +25,9 @@ pub enum RuntimeError {
 
     #[error("Failed database in runtime layer")]
     DatabaseError(#[from] DatabaseError),
+
+    #[error("Unexpected error in runtime layer")]
+    UnexpectedError,
 }
 
 #[derive(Debug, Error)]

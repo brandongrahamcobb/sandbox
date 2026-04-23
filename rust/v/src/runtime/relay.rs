@@ -1,5 +1,5 @@
-use crate::net::channel::error::ChannelError;
-use crate::net::error::NetworkError::{self, UnsupportedOpcodeError};
+use crate::net::channel;
+use crate::net::error::NetworkError::UnsupportedOpcodeError;
 use crate::net::packet::build;
 use crate::net::packet::core::Packet;
 use crate::net::packet::handler::login::action::{LoginAction, RejectReason};
@@ -18,14 +18,14 @@ use tokio::net::TcpStream;
 
 pub struct RuntimeContext {
     pub session_id: u32,
-    pub state: SharedState,
+    pub shared_state: SharedState,
 }
 
 pub struct Runtime<T: RuntimeRelay> {
     reader: PacketReader,
     writer: PacketWriter,
     addr: SocketAddr,
-    state: SharedState,
+    shared_state: SharedState,
     relay: T,
     session_id: u32,
 }
@@ -45,9 +45,9 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
             (recv_iv, send_iv)
         };
         let (read_half, write_half) = stream.into_split();
-        let reader = PacketReader::new(read_half, &recv_iv, &shareD_state)?;
+        let reader = PacketReader::new(read_half, &recv_iv, &shared_state)?;
         let writer = PacketWriter::new(write_half, &send_iv, &shared_state)?;
-        let session_id = state.sessions.insert(Session {
+        let session_id = shared_state.sessions.insert(Session {
             id: 0,
             account_id: None,
             hwid: None,
@@ -70,7 +70,7 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
             let packet = self.reader.read_packet().await?;
             let ctx = RuntimeContext {
                 session_id: self.session_id,
-                shared_state: self.state.clone(),
+                shared_state: self.shared_state.clone(),
             };
             let result = self.relay.handle_packet(&ctx, &packet).await?;
             self.relay.execute(&ctx, result, &mut self.writer).await?
@@ -137,21 +137,21 @@ impl RuntimeRelay for Credentials {
             match action {
                 LoginAction::AcceptLogin { acc, hwid } => {
                     let mut packet = build::core::build_successful_login_packet(&acc, ctx)?;
-                    ctx.state.sessions.update(ctx.session_id, |session| {
+                    ctx.shared_state.sessions.update(ctx.session_id, |session| {
                         session.account_id = Some(acc.id);
                         session.hwid = Some(hwid);
-                        session.login_state = SessionState::Transition;
+                        session.session_state = SessionState::Transition;
                     });
                     writer.send_packet(&mut packet).await?;
-                    ctx.state.sessions.update(ctx.session_id, |session| {
-                        session.login_state = SessionState::AfterLogin;
+                    ctx.shared_state.sessions.update(ctx.session_id, |session| {
+                        session.session_state = SessionState::AfterLogin;
                     });
                 }
                 LoginAction::RejectLogin { reason, acc } => {
                     if let Some(acc) = acc {
-                        ctx.state.sessions.update(ctx.session_id, |session| {
+                        ctx.shared_state.sessions.update(ctx.session_id, |session| {
                             session.account_id = Some(acc.id);
-                            session.login_state = SessionState::Transition;
+                            session.session_state = SessionState::Transition;
                         });
                     }
                     match reason {
@@ -217,7 +217,6 @@ impl RuntimeRelay for World {
         result: HandlerResult<WorldAction>,
         writer: &mut PacketWriter,
     ) -> Result<(), RuntimeError> {
-        let packet = Packet::new_empty();
         let actions = result.actions;
         for action in actions {
             match action {
@@ -225,9 +224,10 @@ impl RuntimeRelay for World {
                     world_id,
                     channel_id,
                 } => {
-                    let channel = channel::resolve_channel(channel_id, world_id)?
-                        .map_err(RuntimeError::from)?;
-                    let session = self.state.sessions.get(self.session_id);
+                    let channel =
+                        channel::core::resolve_channel(channel_id, world_id, &ctx.shared_state)
+                            .map_err(RuntimeError::from)?;
+                    let session = ctx.shared_state.sessions.get(ctx.session_id);
                     // session.state = SessionState::Transition;
                     // db::session::update_session(session)
                     //     .map_err(|e| RuntimeError::Handler(e.to_string()))?;
@@ -246,7 +246,7 @@ impl RuntimeRelay for World {
                     // self.client_id = 0;
                     // return Err(RuntimeError::ClientDisconnected);
                     // packet = build::core::build_disconnect_packet()?;
-                    writer.send_packet(&mut packet).await?
+                    // writer.send_packet(&mut packet).await?
                 }
                 _ => (),
             }

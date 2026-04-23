@@ -12,15 +12,15 @@ pub enum ServerType {
 pub struct LoginServer;
 
 impl LoginServer {
-    pub async fn run(state: &SharedState) -> Result<(), RuntimeError> {
-        if let Ok(addr) = settings::get_login_server_addr(&state.settings) {
+    pub async fn run(shared_state: &SharedState) -> Result<(), RuntimeError> {
+        if let Ok(addr) = settings::get_login_server_addr(&shared_state.settings) {
             let listener = tokio::net::TcpListener::bind(&addr).await?;
             loop {
                 match listener.accept().await {
                     Ok((stream, addr)) => {
-                        let state = state.clone();
+                        let shared_state = shared_state.clone();
                         tokio::spawn(async move {
-                            match Runtime::<Credentials>::new(state, stream, addr).await {
+                            match Runtime::<Credentials>::new(shared_state, stream, addr).await {
                                 Ok(mut cred) => {
                                     if let Err(e) = cred.run().await {
                                         info!(
@@ -43,7 +43,7 @@ impl LoginServer {
                 }
             }
         } else {
-            Err(RuntimeError::ConfigError)
+            Err(RuntimeError::UnexpectedError)
         }
     }
 }
@@ -51,15 +51,15 @@ impl LoginServer {
 pub struct WorldServer;
 
 impl WorldServer {
-    pub async fn run(state: &SharedState) -> Result<(), RuntimeError> {
-        if let Ok(addr) = settings::get_world_server_addr(&state.settings) {
+    pub async fn run(shared_state: &SharedState) -> Result<(), RuntimeError> {
+        if let Ok(addr) = settings::get_world_server_addr(&shared_state.settings) {
             let listener = tokio::net::TcpListener::bind(&addr).await?;
             loop {
                 match listener.accept().await {
                     Ok((stream, addr)) => {
-                        let state = state.clone();
+                        let shared_state = shared_state.clone();
                         tokio::spawn(async move {
-                            match Runtime::<World>::new(state, stream, addr).await {
+                            match Runtime::<World>::new(shared_state, stream, addr).await {
                                 Ok(mut world) => {
                                     if let Err(e) = world.run().await {
                                         info!(
@@ -82,7 +82,7 @@ impl WorldServer {
                 }
             }
         } else {
-            Err(RuntimeError::ConfigError)
+            Err(RuntimeError::UnexpectedError)
         }
     }
 }

@@ -42,7 +42,7 @@ impl TOSHandler {
             ))));
         }
         let session = ctx
-            .state
+            .shared_state
             .sessions
             .get(ctx.session_id)
             .ok_or(SessionError::NotFound(ctx.session_id))

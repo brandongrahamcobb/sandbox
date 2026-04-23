@@ -14,18 +14,18 @@ pub struct Channel {
 pub fn resolve_channel(
     channel_id: u8,
     world_id: u8,
-    state: &SharedState,
+    shared_state: &SharedState,
 ) -> Result<Channel, NetworkError> {
-    for world in state.worlds {
+    for world in &shared_state.worlds {
         if world.id == world_id {
-            for channel in world.channels {
-                if channel.channel_id == channel.id {
-                    return channel;
+            for channel in &world.channels {
+                if channel.channel_id == channel_id {
+                    return Ok(channel.clone());
                 }
             }
-            Err(NetworkError::from(ChannelError::NotFound))
+            return Err(NetworkError::from(ChannelError::NotFound(channel_id)));
         }
-        Err(NetworkError::from(WorldError::NotFound))
+        return Err(NetworkError::from(WorldError::NotFound(world_id)));
     }
     Err(NetworkError::UnexpectedError)
 }

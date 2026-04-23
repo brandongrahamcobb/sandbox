@@ -14,10 +14,10 @@ use std::time::UNIX_EPOCH;
 pub fn build_handshake_packet(
     recv_iv: &Vec<u8>,
     send_iv: &Vec<u8>,
-    state: &SharedState,
+    shared_state: &SharedState,
 ) -> Result<Packet, NetworkError> {
     let mut packet = Packet::new_empty();
-    let version = settings::get_version(&state.settings)?;
+    let version = settings::get_version(&shared_state.settings)?;
     packet
         .write_short(0x0E)
         .map_err(WriteError)
@@ -96,7 +96,7 @@ pub fn build_successful_login_packet(
     let gender = acc.gender;
     let account_name = &acc.username;
     let created_at: i64 = acc.created_at.duration_since(UNIX_EPOCH)?.as_secs() as i64;
-    let pin_required = settings::get_pin_required(&ctx.state.settings)?;
+    let pin_required = settings::get_pin_required(&ctx.shared_state.settings)?;
     packet
         .write_short(opcode)
         .map_err(WriteError)

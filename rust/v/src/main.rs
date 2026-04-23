@@ -4,29 +4,23 @@ use tracing_subscriber::EnvFilter;
 use v::config::settings;
 use v::db::pool;
 use v::net::world;
+use v::runtime::error::RuntimeError;
 use v::runtime::server::{LoginServer, WorldServer};
 use v::runtime::session::SessionStore;
+use v::runtime::state::{SharedState, State};
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), RuntimeError> {
     tracing_subscriber::fmt()
         .with_env_filter(
             EnvFilter::from_default_env().add_directive("server=info".parse().unwrap()),
         )
         .init();
-    info!("Loading settings...");
-    let settings = settings::get_settings()?;
-    info!("Starting Database...");
-    let db = db::establish_pool()?;
-    let session = SessionStore::new();
-    let worlds = world::core::load_worlds(&settings)?;
-    let state = Arc::new(State {
-        db,
-        settings,
-        session,
-    });
+    info!("Loading shared state...");
+    let shared_state: SharedState = Arc::new(State::new()?);
     info!("Starting Login Server...");
-    LoginServer::run(state.clone()).await?;
+    LoginServer::run(&shared_state.clone()).await?;
     info!("Starting World Server...");
-    WorldServer::run(state.clone()).await?;
+    WorldServer::run(&shared_state.clone()).await?;
+    Ok(())
 }

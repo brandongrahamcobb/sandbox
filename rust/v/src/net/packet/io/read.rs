@@ -23,11 +23,14 @@ impl PacketReader {
     pub fn new(
         read_half: OwnedReadHalf,
         recv_iv: &[u8],
-        state: &SharedState,
+        shared_state: &SharedState,
     ) -> Result<Self, NetworkError> {
         Ok(Self {
             reader: BufReader::new(read_half),
-            aes: AES::new(&recv_iv.to_vec(), settings::get_version(&state.settings)?),
+            aes: AES::new(
+                &recv_iv.to_vec(),
+                settings::get_version(&shared_state.settings)?,
+            ),
         })
     }
 
@@ -44,7 +47,7 @@ impl PacketReader {
             .await
             .map_err(ReadError)
             .map_err(PacketError::from)
-            .map_err(NetworkError::from);
+            .map_err(NetworkError::from)?;
         Ok(())
     }
 

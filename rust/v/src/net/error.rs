@@ -34,6 +34,6 @@ pub enum NetworkError {
     #[error("Channel error in network layer")]
     WorldError(#[from] WorldError),
 
-    #[error("Unsupported error in network layer")]
-    UnsupportedError,
+    #[error("Unexpected error in network layer")]
+    UnexpectedError,
 }
