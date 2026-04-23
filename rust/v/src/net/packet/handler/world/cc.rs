@@ -52,7 +52,7 @@ impl ChangeChannelHandler {
             channel_id,
             world_id,
         };
-        result.add_action(action);
+        result.add_action(action)?;
         Ok(result)
     }
 }

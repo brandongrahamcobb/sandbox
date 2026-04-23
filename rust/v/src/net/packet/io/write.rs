@@ -67,16 +67,16 @@ pub trait PktWrite: WriteBytesExt {
         self.write(bytes)
     }
 
-    fn write_short(&mut self, short: i16) -> std::io::Result<()> {
-        self.write_u16::<LittleEndian>(short as u16)
+    fn write_short(&mut self, short: u16) -> std::io::Result<()> {
+        self.write_u16::<LittleEndian>(short)
     }
 
-    fn write_int(&mut self, int: i32) -> std::io::Result<()> {
-        self.write_u32::<LittleEndian>(int as u32)
+    fn write_int(&mut self, int: u32) -> std::io::Result<()> {
+        self.write_u32::<LittleEndian>(int)
     }
 
-    fn write_long(&mut self, long: i64) -> std::io::Result<()> {
-        self.write_u64::<LittleEndian>(long as u64)
+    fn write_long(&mut self, long: u64) -> std::io::Result<()> {
+        self.write_u64::<LittleEndian>(long)
     }
 
     fn write_str(&mut self, string: &str) -> std::io::Result<usize> {
@@ -84,7 +84,7 @@ pub trait PktWrite: WriteBytesExt {
     }
 
     fn write_str_with_length(&mut self, string: &str) -> std::io::Result<usize> {
-        match self.write_short(string.len() as i16) {
+        match self.write_short(string.len() as u16) {
             Ok(_) => self.write_str(string),
             Err(e) => Err(e),
         }

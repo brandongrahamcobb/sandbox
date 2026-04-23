@@ -145,7 +145,7 @@ impl CredentialsHandler {
                 }
             }
         };
-        result.add_action(login_action);
+        result.add_action(login_action)?;
         Ok(result)
     }
 }

@@ -1,7 +1,7 @@
-use crate::{
-    net::{channel::error::ChannelError, error::NetworkError, world::error::WorldError},
-    runtime::state::SharedState,
-};
+use crate::net::channel::error::ChannelError;
+use crate::net::error::NetworkError;
+use crate::net::world::error::WorldError;
+use crate::runtime::state::SharedState;
 
 #[derive(Clone, Debug)]
 pub struct Channel {
@@ -9,6 +9,7 @@ pub struct Channel {
     pub channel_id: u8,
     pub name: String,
     pub capacity: u16,
+    pub port: u16,
 }
 
 pub fn resolve_channel(

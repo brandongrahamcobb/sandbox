@@ -1,12 +1,8 @@
 use std::sync::Arc;
-use tracing::{error, info};
+use tracing::info;
 use tracing_subscriber::EnvFilter;
-use v::config::settings;
-use v::db::pool;
-use v::net::world;
 use v::runtime::error::RuntimeError;
 use v::runtime::server::{LoginServer, WorldServer};
-use v::runtime::session::SessionStore;
 use v::runtime::state::{SharedState, State};
 
 #[tokio::main]

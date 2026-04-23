@@ -64,7 +64,7 @@ impl TOSHandler {
             .map_err(NetworkError::from)?;
         let mut result = HandlerResult::new();
         let action = LoginAction::AcceptLogin { acc, hwid };
-        result.add_action(action);
+        result.add_action(action)?;
         Ok(result)
     }
 }

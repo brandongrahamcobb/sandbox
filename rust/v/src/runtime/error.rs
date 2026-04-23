@@ -1,6 +1,6 @@
+use crate::config::error::ConfigError;
 use crate::db::error::DatabaseError;
 use crate::net::error::NetworkError;
-use config::ConfigError;
 use thiserror::Error;
 
 #[derive(Debug, Error)]

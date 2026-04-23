@@ -24,14 +24,16 @@ pub fn load_worlds(settings: &Config) -> Result<Vec<World>, NetworkError> {
     let flag: u8 = settings::get_world_flag(&settings)?;
     let event_message: String = settings::get_world_event_message(&settings)?;
     let pairs: Vec<(u8, u8)> = settings::get_channel_world_pairs(&settings)?;
+    let world_port = settings::get_world_port(&settings)?;
     for (id, count) in pairs {
         let name: &str = name_for_world_by_id(id).unwrap_or("Unkown");
         let channels: Vec<Channel> = (0..count)
             .map(|channel_id| Channel {
-                world_id: id,
+                capacity: capacity,
                 channel_id,
                 name: format!("{name}-{}", channel_id + 1),
-                capacity: capacity,
+                port: world_port + 1,
+                world_id: id,
             })
             .collect();
         worlds.push(World {

@@ -5,11 +5,11 @@ use aes::cipher::KeyInit;
 
 pub struct AES {
     pub iv: Vec<u8>,
-    pub version: i16,
+    pub version: u16,
 }
 
 impl AES {
-    pub fn new(iv: &Vec<u8>, version: i16) -> AES {
+    pub fn new(iv: &Vec<u8>, version: u16) -> AES {
         let iv = iv.clone();
         AES {
             iv,

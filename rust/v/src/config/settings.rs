@@ -1,6 +1,7 @@
+use crate::config::error::ConfigError;
 use crate::constants::WorldID;
-use config::{Config, ConfigError};
-use regex::Regex;
+use crate::inc::helpers;
+use config::Config;
 use std::net::{Ipv4Addr, SocketAddr, SocketAddrV4};
 
 pub fn get_settings() -> Result<Config, ConfigError> {
@@ -12,139 +13,142 @@ pub fn get_settings() -> Result<Config, ConfigError> {
 }
 
 fn get_address(settings: &Config) -> Result<String, ConfigError> {
-    let addr = settings.get_string("IP_ADDRESS")?;
+    let key = String::from("IP_ADDRESS");
+    let addr = settings
+        .get_string(&key)
+        .map_err(|_| ConfigError::InvalidString(key))?;
     Ok(addr)
 }
 
 fn get_login_port(settings: &Config) -> Result<u16, ConfigError> {
-    let port = settings.get_int("LOGIN_PORT")?;
+    let key = String::from("LOGIN_PORT");
+    let port = settings
+        .get_int(&key)
+        .map_err(|_| ConfigError::InvalidInt(key))?;
     Ok(port as u16)
 }
 
-fn get_world_port(settings: &Config) -> Result<u16, ConfigError> {
-    let port = settings.get_int("WORLD_PORT")?;
+pub fn get_world_port(settings: &Config) -> Result<u16, ConfigError> {
+    let key = String::from("WORLD_PORT");
+    let port = settings
+        .get_int(&key)
+        .map_err(|_| ConfigError::InvalidInt(key))?;
     Ok(port as u16)
 }
 
-pub fn get_version(settings: &Config) -> Result<i16, ConfigError> {
-    let version = settings.get_int("VERSION")?;
-    Ok(version as i16)
+pub fn get_version(settings: &Config) -> Result<u16, ConfigError> {
+    let key = String::from("VERSION");
+    let version = settings
+        .get_int(&key)
+        .map_err(|_| ConfigError::InvalidInt(key))?;
+    Ok(version as u16)
 }
 
 pub fn get_db_url(settings: &Config) -> Result<String, ConfigError> {
-    let db = settings.get_string("POSTGRES_DATABASE")?;
-    let ip = settings.get_string("IP_ADDRESS")?;
-    let port = settings.get_int("POSTGRES_PORT")?;
-    let user = settings.get_string("POSTGRES_USER")?;
-    let pw = settings.get_string("POSTGRES_PASSWORD")?;
-    let db_url = String::from(format!(
-        "postgres://{}:{}@{}:{}/{}",
-        &user, &pw, &ip, &port, &db
-    ));
-    Ok(db_url)
-}
-
-fn convert_to_ip_array(addr: String) -> Result<[u8; 4], ConfigError> {
-    let re = Regex::new(r"^/d{3}\./d{3}\./d{3}\./d{3}").unwrap();
-    let mut octets: [u8; 4] = [0u8; 4 as usize];
-    for (_, [a, b, c, d]) in re.captures_iter(&addr).map(|z| z.extract()) {
-        octets[0] = a.parse().unwrap();
-        octets[1] = b.parse().unwrap();
-        octets[2] = c.parse().unwrap();
-        octets[3] = d.parse().unwrap();
-    }
-    Ok(octets)
+    let db_key = String::from("POSTGRES_DATABASE");
+    let ip_key = String::from("POSTGRES_ADDRESS");
+    let port_key = String::from("POSTGRES_PORT");
+    let user_key = String::from("POSTGRES_USER");
+    let pw_key = String::from("POSTGRES_PASSWORD");
+    let db = settings
+        .get_string(&db_key)
+        .map_err(|_| ConfigError::InvalidString(db_key))?;
+    let ip = settings
+        .get_string(&ip_key)
+        .map_err(|_| ConfigError::InvalidString(ip_key))?;
+    let port = settings
+        .get_int(&port_key)
+        .map_err(|_| ConfigError::InvalidInt(port_key))?;
+    let user = settings
+        .get_string(&user_key)
+        .map_err(|_| ConfigError::InvalidString(user_key))?;
+    let pw = settings
+        .get_string(&pw_key)
+        .map_err(|_| ConfigError::InvalidString(pw_key))?;
+    Ok(format!("postgres://{}:{}@{}:{}/{}", user, pw, ip, port, db))
 }
 
 pub fn get_login_server_addr(settings: &Config) -> Result<SocketAddr, ConfigError> {
-    let addr = get_address(&settings)?;
-    let port = get_login_port(&settings)?;
-    let octets = convert_to_ip_array(addr)?;
-    let socker_addr: SocketAddr = SocketAddr::V4(SocketAddrV4::new(
+    let addr = get_address(settings)?;
+    let port: u16 = get_login_port(settings)?;
+    let octets = helpers::convert_to_ip_array(addr);
+    Ok(SocketAddr::V4(SocketAddrV4::new(
         Ipv4Addr::new(octets[0], octets[1], octets[2], octets[3]),
         port,
-    ));
-    Ok(socker_addr)
+    )))
 }
 
 pub fn get_world_server_addr(settings: &Config) -> Result<SocketAddr, ConfigError> {
-    let addr = get_address(&settings)?;
-    let port = get_world_port(&settings)?;
-    let octets = convert_to_ip_array(addr)?;
-    let socker_addr: SocketAddr = SocketAddr::V4(SocketAddrV4::new(
+    let addr = get_address(settings)?;
+    let port: u16 = get_world_port(settings)?;
+    let octets = helpers::convert_to_ip_array(addr);
+    Ok(SocketAddr::V4(SocketAddrV4::new(
         Ipv4Addr::new(octets[0], octets[1], octets[2], octets[3]),
         port,
-    ));
-    Ok(socker_addr)
+    )))
 }
 
 pub fn get_pin_required(settings: &Config) -> Result<bool, ConfigError> {
-    let pin_req = settings.get_bool("PIN_REQUIRED")?;
+    let key = String::from("PIN_REQUIRED");
+    let pin_req = settings
+        .get_bool(&key)
+        .map_err(|_| ConfigError::InvalidBool(key))?;
     Ok(pin_req)
 }
 
 pub fn get_gender_required(settings: &Config) -> Result<bool, ConfigError> {
-    let gender_req = settings.get_bool("GENDER_REQUIRED")?;
+    let key = String::from("GENDER_REQUIRED");
+    let gender_req = settings
+        .get_bool(&key)
+        .map_err(|_| ConfigError::InvalidBool(key))?;
     Ok(gender_req)
 }
 
 pub fn get_channel_world_pairs(settings: &Config) -> Result<Vec<(u8, u8)>, ConfigError> {
     let mut list = Vec::new();
-    let mut count: i64;
-    let scania: bool = settings.get_bool("SCANIA")?;
-    if scania {
-        count = settings.get_int("SCANIA_CHANNEL_COUNT")?;
-        list.push((WorldID::SCANIA as u8, count as u8))
-    }
-    let bera: bool = settings.get_bool("BERA")?;
-    if bera {
-        count = settings.get_int("BERA_CHANNEL_COUNT")?;
-        list.push((WorldID::BERA as u8, count as u8))
-    }
-    let windia: bool = settings.get_bool("WINDIA")?;
-    if windia {
-        count = settings.get_int("WINDIA_CHANNEL_COUNT")?;
-        list.push((WorldID::WINDIA as u8, count as u8))
-    }
-    let broa: bool = settings.get_bool("BROA")?;
-    if broa {
-        count = settings.get_int("BROA_CHANNEL_COUNT")?;
-        list.push((WorldID::BROA as u8, count as u8))
-    }
-    let khaini = settings.get_bool("KHAINI")?;
-    if khaini {
-        count = settings.get_int("KHAINI_CHANNEL_COUNT")?;
-        list.push((WorldID::KHAINI as u8, count as u8))
-    }
-    let mardia = settings.get_bool("MARDIA")?;
-    if mardia {
-        count = settings.get_int("MARDIA_CHANNEL_COUNT")?;
-        list.push((WorldID::MARDIA as u8, count as u8))
-    }
-    let yellonde = settings.get_bool("YELLONDE")?;
-    if yellonde {
-        count = settings.get_int("YELLONDE_CHANNEL_COUNT")?;
-        list.push((WorldID::YELLONDE as u8, count as u8))
-    }
-    let bellocan = settings.get_bool("BELLOCAN")?;
-    if bellocan {
-        count = settings.get_int("BELLOCAN_CHANNEL_COUNT")?;
-        list.push((WorldID::BELLOCAN as u8, count as u8))
+    let worlds = [
+        ("SCANIA", WorldID::SCANIA),
+        ("BERA", WorldID::BERA),
+        ("WINDIA", WorldID::WINDIA),
+        ("BROA", WorldID::BROA),
+        ("KHAINI", WorldID::KHAINI),
+        ("MARDIA", WorldID::MARDIA),
+        ("YELLONDE", WorldID::YELLONDE),
+        ("BELLOCAN", WorldID::BELLOCAN),
+    ];
+    for (name, id) in worlds {
+        if settings.get_bool(name)? {
+            let key = String::from(format!("{name}_CHANNEL_COUNT"));
+            let count: u8 = settings
+                .get_int(&key)?
+                .try_into()
+                .map_err(|e| ConfigError::IntConversion(e))?;
+            list.push((id as u8, count));
+        }
     }
     Ok(list)
 }
 
 pub fn get_channel_capacity(settings: &Config) -> Result<u16, ConfigError> {
-    let capacity = settings.get_int("CHANNEL_CAPACITY")?;
+    let key = String::from("CHANNEL_CAPACITY");
+    let capacity = settings
+        .get_int(&key)
+        .map_err(|_| ConfigError::InvalidInt(key))?;
     Ok(capacity as u16)
 }
 
 pub fn get_world_flag(settings: &Config) -> Result<u8, ConfigError> {
-    let flag = settings.get_int("WORLD_FLAG")?;
+    let key = String::from("WORLD_FLAG");
+    let flag = settings
+        .get_int(&key)
+        .map_err(|_| ConfigError::InvalidInt(key))?;
     Ok(flag as u8)
 }
 
 pub fn get_world_event_message(settings: &Config) -> Result<String, ConfigError> {
-    let event_message = settings.get_string("EVENT_MESSAGE")?;
-    Ok(event_message)
+    let key = String::from("EVENT_MESSAGE");
+    let msg = settings
+        .get_string(&key)
+        .map_err(|_| ConfigError::InvalidString(key))?;
+    Ok(msg)
 }

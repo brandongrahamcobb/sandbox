@@ -17,10 +17,10 @@ impl LoginServer {
             let listener = tokio::net::TcpListener::bind(&addr).await?;
             loop {
                 match listener.accept().await {
-                    Ok((stream, addr)) => {
+                    Ok((stream, _addr)) => {
                         let shared_state = shared_state.clone();
                         tokio::spawn(async move {
-                            match Runtime::<Credentials>::new(shared_state, stream, addr).await {
+                            match Runtime::<Credentials>::new(shared_state, stream).await {
                                 Ok(mut cred) => {
                                     if let Err(e) = cred.run().await {
                                         info!(
@@ -56,10 +56,10 @@ impl WorldServer {
             let listener = tokio::net::TcpListener::bind(&addr).await?;
             loop {
                 match listener.accept().await {
-                    Ok((stream, addr)) => {
+                    Ok((stream, _addr)) => {
                         let shared_state = shared_state.clone();
                         tokio::spawn(async move {
-                            match Runtime::<World>::new(shared_state, stream, addr).await {
+                            match Runtime::<World>::new(shared_state, stream).await {
                                 Ok(mut world) => {
                                     if let Err(e) = world.run().await {
                                         info!(

@@ -13,7 +13,6 @@ use crate::runtime::error::RuntimeError;
 use crate::runtime::session::{Session, SessionState};
 use crate::runtime::state::SharedState;
 use rand::{RngExt, rng};
-use std::net::SocketAddr;
 use tokio::net::TcpStream;
 
 pub struct RuntimeContext {
@@ -24,18 +23,13 @@ pub struct RuntimeContext {
 pub struct Runtime<T: RuntimeRelay> {
     reader: PacketReader,
     writer: PacketWriter,
-    addr: SocketAddr,
     shared_state: SharedState,
     relay: T,
     session_id: u32,
 }
 
 impl<T: RuntimeRelay + Default + Send> Runtime<T> {
-    pub async fn new(
-        shared_state: SharedState,
-        stream: TcpStream,
-        addr: SocketAddr,
-    ) -> Result<Self, RuntimeError> {
+    pub async fn new(shared_state: SharedState, stream: TcpStream) -> Result<Self, RuntimeError> {
         let (recv_iv, send_iv) = {
             let mut recv_iv = vec![0u8; 4];
             let mut send_iv = vec![0u8; 4];
@@ -58,7 +52,6 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
         Ok(Self {
             reader,
             writer,
-            addr,
             relay: T::default(),
             shared_state,
             session_id,
@@ -78,7 +71,8 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
     }
 }
 
-trait RuntimeRelay {
+#[allow(async_fn_in_trait)]
+pub trait RuntimeRelay {
     type HandlerAction;
 
     async fn handle_packet(
@@ -227,13 +221,13 @@ impl RuntimeRelay for World {
                     let channel =
                         channel::core::resolve_channel(channel_id, world_id, &ctx.shared_state)
                             .map_err(RuntimeError::from)?;
-                    let session = ctx.shared_state.sessions.get(ctx.session_id);
-                    // session.state = SessionState::Transition;
-                    // db::session::update_session(session)
-                    //     .map_err(|e| RuntimeError::Handler(e.to_string()))?;
-                    //
-                    // let mut redirect_packet =
-                    //     build::world::channel::build_channel_change(channel.host, channel.port)
+                    ctx.shared_state.sessions.update(ctx.session_id, |session| {
+                        session.session_state = SessionState::Transition;
+                    });
+                    let mut packet = build::core::build_channel_change_packet(
+                        &channel,
+                        &ctx.shared_state.settings,
+                    )?;
                     //         .map_err(|e| RuntimeError::Handler(e.to_string()))?;
                     // self.writer.send_packet(&mut redirect_packet).await?;
                     //
@@ -246,7 +240,7 @@ impl RuntimeRelay for World {
                     // self.client_id = 0;
                     // return Err(RuntimeError::ClientDisconnected);
                     // packet = build::core::build_disconnect_packet()?;
-                    // writer.send_packet(&mut packet).await?
+                    writer.send_packet(&mut packet).await?
                 }
                 _ => (),
             }

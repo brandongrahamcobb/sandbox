@@ -1,5 +1,6 @@
 use crate::config::settings;
 use crate::db::models::account::core::Account;
+use crate::net::channel::core::Channel;
 use crate::net::error::NetworkError;
 use crate::net::packet::core::Packet;
 use crate::net::packet::error::PacketError;
@@ -8,7 +9,8 @@ use crate::net::packet::io::write::PktWrite;
 use crate::op::send::SendOpcode;
 use crate::runtime::relay::RuntimeContext;
 use crate::runtime::state::SharedState;
-use std::net::Ipv4Addr;
+use config::Config;
+use std::net::IpAddr;
 use std::time::UNIX_EPOCH;
 
 pub fn build_handshake_packet(
@@ -62,7 +64,7 @@ pub fn build_handshake_packet(
 
 pub fn build_failed_login_packet(status: u8) -> Result<Packet, NetworkError> {
     let mut packet = Packet::new_empty();
-    let opcode = SendOpcode::AccountStatus as i16;
+    let opcode = SendOpcode::AccountStatus as u16;
     packet
         .write_short(opcode)
         .map_err(WriteError)
@@ -91,11 +93,11 @@ pub fn build_successful_login_packet(
     ctx: &RuntimeContext,
 ) -> Result<Packet, NetworkError> {
     let mut packet = Packet::new_empty();
-    let opcode = SendOpcode::AccountStatus as i16;
-    let account_id = acc.id;
+    let opcode = SendOpcode::AccountStatus as u16;
+    let account_id = acc.id as u64;
     let gender = acc.gender;
     let account_name = &acc.username;
-    let created_at: i64 = acc.created_at.duration_since(UNIX_EPOCH)?.as_secs() as i64;
+    let created_at: u64 = acc.created_at.duration_since(UNIX_EPOCH)?.as_secs();
     let pin_required = settings::get_pin_required(&ctx.shared_state.settings)?;
     packet
         .write_short(opcode)
@@ -181,11 +183,16 @@ pub fn build_successful_login_packet(
 }
 
 pub fn build_channel_change_packet(
-    server_ip: Ipv4Addr,
-    server_port: i16,
+    channel: &Channel,
+    settings: &Config,
 ) -> Result<Packet, NetworkError> {
     let mut packet = Packet::new_empty();
-    let op = SendOpcode::ChangeChannel as i16;
+    let addr = settings::get_world_server_addr(&settings)?;
+    let v4 = match addr.ip() {
+        IpAddr::V4(v4) => v4,
+        IpAddr::V6(_) => return Err(NetworkError::UnexpectedError),
+    };
+    let op = SendOpcode::ChangeChannel as u16;
     packet
         .write_short(op)
         .map_err(WriteError)
@@ -197,12 +204,12 @@ pub fn build_channel_change_packet(
         .map_err(PacketError::from)
         .map_err(NetworkError::from)?;
     packet
-        .write_bytes(&server_ip.octets())
+        .write_bytes(&v4.octets())
         .map_err(WriteError)
         .map_err(PacketError::from)
         .map_err(NetworkError::from)?;
     packet
-        .write_short(server_port)
+        .write_short(channel.port)
         .map_err(WriteError)
         .map_err(PacketError::from)
         .map_err(NetworkError::from)?;
