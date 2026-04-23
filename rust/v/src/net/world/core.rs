@@ -2,7 +2,7 @@ use crate::config::settings;
 use crate::constants::WORLDS;
 use crate::net::channel::core::Channel;
 use crate::net::error::NetworkError;
-use crate::runtime::state::SharedState;
+use config::Config;
 
 pub struct WorldInfo {
     pub id: u8,
@@ -18,12 +18,12 @@ pub struct World {
     pub channels: Vec<Channel>,
 }
 
-pub fn load_worlds(state: &SharedState) -> Result<Vec<World>, NetworkError> {
+pub fn load_worlds(settings: &Config) -> Result<Vec<World>, NetworkError> {
     let mut worlds: Vec<World> = Vec::new();
-    let capacity: u16 = settings::get_channel_capacity(&state.settings)?;
-    let flag: u8 = settings::get_world_flag(&state.settings)?;
-    let event_message: String = settings::get_world_event_message(&state.settings)?;
-    let pairs: Vec<(u8, u8)> = settings::get_channel_world_pairs(&state.settings)?;
+    let capacity: u16 = settings::get_channel_capacity(&settings)?;
+    let flag: u8 = settings::get_world_flag(&settings)?;
+    let event_message: String = settings::get_world_event_message(&settings)?;
+    let pairs: Vec<(u8, u8)> = settings::get_channel_world_pairs(&settings)?;
     for (id, count) in pairs {
         let name: &str = name_for_world_by_id(id).unwrap_or("Unkown");
         let channels: Vec<Channel> = (0..count)

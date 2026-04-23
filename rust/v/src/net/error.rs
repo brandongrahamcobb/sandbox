@@ -1,7 +1,9 @@
 use std::time::SystemTimeError;
 
 use crate::db::error::DatabaseError;
+use crate::net::channel::error::ChannelError;
 use crate::net::packet::error::PacketError;
+use crate::net::world::error::WorldError;
 use crate::runtime::error::SessionError;
 use config::ConfigError;
 use thiserror::Error;
@@ -25,4 +27,13 @@ pub enum NetworkError {
 
     #[error("System time error in network layer")]
     SystemTimeError(#[from] SystemTimeError),
+
+    #[error("Channel error in network layer")]
+    ChannelError(#[from] ChannelError),
+
+    #[error("Channel error in network layer")]
+    WorldError(#[from] WorldError),
+
+    #[error("Unsupported error in network layer")]
+    UnsupportedError,
 }

@@ -1,4 +1,4 @@
-use crate::{db::models::account::core::Account, runtime::session::LoginSessionState};
+use crate::{db::models::account::core::Account, runtime::session::SessionState};
 
 pub enum SessionAction {
     CreateSession {
@@ -6,11 +6,11 @@ pub enum SessionAction {
         hwid: String,
     },
     SessionSelectWorld {
-        state: LoginSessionState,
+        session_state: SessionState,
         world_id: u8,
     },
     SessionSelectChannel {
-        state: LoginSessionState,
+        session_state: SessionState,
         channel_id: u8,
     },
 }

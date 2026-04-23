@@ -16,6 +16,27 @@ impl ChangeChannelHandler {
         Self
     }
 
+    pub fn resolve_login_channel(
+        world_id: u8,
+        channel_id: u8,
+    ) -> Result<LoginChannel, ConfigError> {
+        let worlds = load_login_worlds()?;
+        let world = worlds
+            .into_iter()
+            .find(|world| world.world_id == world_id)
+            .ok_or_else(|| ConfigError::Message(format!("unknown world id {world_id}")))?;
+
+        world
+            .channels
+            .into_iter()
+            .find(|channel| channel.channel_id == channel_id)
+            .ok_or_else(|| {
+                ConfigError::Message(format!(
+                    "unknown channel id {channel_id} for world id {world_id}"
+                ))
+            })
+    }
+
     pub async fn handle(
         self: &Self,
         ctx: &RuntimeContext,

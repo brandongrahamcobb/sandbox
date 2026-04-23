@@ -3,6 +3,7 @@ use tracing::{error, info};
 use tracing_subscriber::EnvFilter;
 use v::config::settings;
 use v::db::pool;
+use v::net::world;
 use v::runtime::server::{LoginServer, WorldServer};
 use v::runtime::session::SessionStore;
 
@@ -18,6 +19,7 @@ async fn main() {
     info!("Starting Database...");
     let db = db::establish_pool()?;
     let session = SessionStore::new();
+    let worlds = world::core::load_worlds(&settings)?;
     let state = Arc::new(State {
         db,
         settings,

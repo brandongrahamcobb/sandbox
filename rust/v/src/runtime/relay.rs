@@ -1,4 +1,5 @@
-use crate::net::error::NetworkError::UnsupportedOpcodeError;
+use crate::net::channel::error::ChannelError;
+use crate::net::error::NetworkError::{self, UnsupportedOpcodeError};
 use crate::net::packet::build;
 use crate::net::packet::core::Packet;
 use crate::net::packet::handler::login::action::{LoginAction, RejectReason};
@@ -9,7 +10,7 @@ use crate::net::packet::handler::world::cc;
 use crate::net::packet::io::{read::PacketReader, write::PacketWriter};
 use crate::op::recv::RecvOpcode;
 use crate::runtime::error::RuntimeError;
-use crate::runtime::session::{LoginSession, LoginSessionState};
+use crate::runtime::session::{Session, SessionState};
 use crate::runtime::state::SharedState;
 use rand::{RngExt, rng};
 use std::net::SocketAddr;
@@ -31,7 +32,7 @@ pub struct Runtime<T: RuntimeRelay> {
 
 impl<T: RuntimeRelay + Default + Send> Runtime<T> {
     pub async fn new(
-        state: SharedState,
+        shared_state: SharedState,
         stream: TcpStream,
         addr: SocketAddr,
     ) -> Result<Self, RuntimeError> {
@@ -44,13 +45,13 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
             (recv_iv, send_iv)
         };
         let (read_half, write_half) = stream.into_split();
-        let reader = PacketReader::new(read_half, &recv_iv, &state)?;
-        let writer = PacketWriter::new(write_half, &send_iv, &state)?;
-        let session_id = state.sessions.insert(LoginSession {
+        let reader = PacketReader::new(read_half, &recv_iv, &shareD_state)?;
+        let writer = PacketWriter::new(write_half, &send_iv, &shared_state)?;
+        let session_id = state.sessions.insert(Session {
             id: 0,
             account_id: None,
             hwid: None,
-            login_state: LoginSessionState::BeforeLogin,
+            session_state: SessionState::BeforeLogin,
             selected_world_id: None,
             selected_channel_id: None,
         });
@@ -59,7 +60,7 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
             writer,
             addr,
             relay: T::default(),
-            state,
+            shared_state,
             session_id,
         })
     }
@@ -69,7 +70,7 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
             let packet = self.reader.read_packet().await?;
             let ctx = RuntimeContext {
                 session_id: self.session_id,
-                state: self.state.clone(),
+                shared_state: self.state.clone(),
             };
             let result = self.relay.handle_packet(&ctx, &packet).await?;
             self.relay.execute(&ctx, result, &mut self.writer).await?
@@ -139,18 +140,18 @@ impl RuntimeRelay for Credentials {
                     ctx.state.sessions.update(ctx.session_id, |session| {
                         session.account_id = Some(acc.id);
                         session.hwid = Some(hwid);
-                        session.login_state = LoginSessionState::Transition;
+                        session.login_state = SessionState::Transition;
                     });
                     writer.send_packet(&mut packet).await?;
                     ctx.state.sessions.update(ctx.session_id, |session| {
-                        session.login_state = LoginSessionState::AfterLogin;
+                        session.login_state = SessionState::AfterLogin;
                     });
                 }
                 LoginAction::RejectLogin { reason, acc } => {
                     if let Some(acc) = acc {
                         ctx.state.sessions.update(ctx.session_id, |session| {
                             session.account_id = Some(acc.id);
-                            session.login_state = LoginSessionState::Transition;
+                            session.login_state = SessionState::Transition;
                         });
                     }
                     match reason {
@@ -224,12 +225,9 @@ impl RuntimeRelay for World {
                     world_id,
                     channel_id,
                 } => {
-                    let channel = resolve_login_channel(world_id, channel_id)
-                        .map_err(ChannelNotFound)
+                    let channel = channel::resolve_channel(channel_id, world_id)?
                         .map_err(RuntimeError::from)?;
-                    //
-                    // session.selected_world_id = Some(i16::from(world_id));
-                    // session.selected_channel_id = Some(i16::from(channel_id));
+                    let session = self.state.sessions.get(self.session_id);
                     // session.state = SessionState::Transition;
                     // db::session::update_session(session)
                     //     .map_err(|e| RuntimeError::Handler(e.to_string()))?;
