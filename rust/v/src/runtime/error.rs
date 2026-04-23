@@ -28,6 +28,9 @@ pub enum RuntimeError {
 
     #[error("Unexpected error in runtime layer")]
     UnexpectedError,
+
+    #[error("Environment loading error in runtime layer")]
+    DotenvError(#[from] dotenvy::Error),
 }
 
 #[derive(Debug, Error)]

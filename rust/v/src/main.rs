@@ -8,11 +8,9 @@ use v::runtime::state::{SharedState, State};
 #[tokio::main]
 async fn main() -> Result<(), RuntimeError> {
     tracing_subscriber::fmt()
-        .with_env_filter(
-            EnvFilter::from_default_env().add_directive("server=info".parse().unwrap()),
-        )
+        .with_env_filter(EnvFilter::from_default_env().add_directive("v=info".parse().unwrap()))
         .init();
-    info!("Loading shared state...");
+    info!("Loading Shared State...");
     let shared_state: SharedState = Arc::new(State::new()?);
     info!("Starting Login Server...");
     LoginServer::run(&shared_state.clone()).await?;
