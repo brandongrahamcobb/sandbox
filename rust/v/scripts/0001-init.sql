@@ -6,11 +6,12 @@ CREATE TABLE accounts (
     pic TEXT NOT NULL,
     last_login_at TIMESTAMP NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     character_slots SMALLINT NOT NULL,
     gender SMALLINT NOT NULL,
     accepted_tos BOOLEAN NOT NULL,
     banned BOOLEAN NOT NULL,
-    connected BOOLEAN NOT NULL
+    playing BOOLEAN NOT NULL
 );
 
 CREATE TABLE characters (

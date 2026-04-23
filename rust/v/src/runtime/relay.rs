@@ -174,6 +174,7 @@ impl RuntimeRelay for Core {
 
                     ctx.shared_state.sessions.update(ctx.session_id, |session| {
                         session.account_id = Some(acc.id as u32);
+                        session.authenticated = true;
                         session.hwid = Some(hwid);
                         session.session_state = SessionState::Transition;
                     });

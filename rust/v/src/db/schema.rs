@@ -49,17 +49,4 @@ diesel::table! {
     }
 }
 
-diesel::table! {
-    sessions (id) {
-        id -> Int4,
-        account_id -> Int8,
-        ip -> Inet,
-        hwid -> Varchar,
-        updated_at -> Timestamp,
-        created_at -> Timestamp,
-        selected_world_id -> Nullable<Int2>,
-        selected_channel_id -> Nullable<Int2>,
-    }
-}
-
-diesel::allow_tables_to_appear_in_same_query!(accounts, characters, sessions,);
+diesel::allow_tables_to_appear_in_same_query!(accounts, characters,);
