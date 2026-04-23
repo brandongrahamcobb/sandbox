@@ -1,4 +1,5 @@
 use crate::config::settings;
+use crate::constants::HEADER_SIZE;
 use crate::net::error::NetworkError;
 use crate::net::packet::core::Packet;
 use crate::net::packet::error::PacketError;
@@ -11,8 +12,6 @@ use byteorder::{LittleEndian, ReadBytesExt};
 use std::io::Read;
 use tokio::io::{AsyncReadExt, BufReader};
 use tokio::net::tcp::OwnedReadHalf;
-
-const HEADER_SIZE: u8 = 4;
 
 pub struct PacketReader {
     reader: BufReader<OwnedReadHalf>,
@@ -35,9 +34,9 @@ impl PacketReader {
     }
 
     // 1st Level
-    pub fn get_packet_length(&self, header: &[u8]) -> i16 {
-        (header[0] as i16 + ((header[1] as i16) << 8))
-            ^ (header[2] as i16 + ((header[3] as i16) << 8))
+    pub fn get_packet_length(&self, header: &[u8]) -> u16 {
+        (header[0] as u16 + ((header[1] as u16) << 8))
+            ^ (header[2] as u16 + ((header[3] as u16) << 8))
     }
 
     // 2nd Level

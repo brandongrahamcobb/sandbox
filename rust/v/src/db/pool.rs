@@ -1,4 +1,4 @@
-use crate::db::error::{DatabaseError, DatabaseError::DatabasePoolError};
+use crate::db::error::{DatabaseError, DatabaseError::DieselError};
 use crate::runtime::error::RuntimeError;
 use diesel::PgConnection;
 use diesel::r2d2::{ConnectionManager, Pool};
@@ -16,7 +16,6 @@ where
     })
     .await
     .map_err(RuntimeError::JoinError)?
-    .map_err(DatabasePoolError)
-    .map_err(DatabaseError::from)
+    .map_err(DieselError)
     .map_err(RuntimeError::from)
 }

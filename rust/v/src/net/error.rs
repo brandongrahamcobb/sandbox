@@ -13,7 +13,7 @@ pub enum NetworkError {
     ConfigError(#[from] ConfigError),
 
     #[error("Unsupported upcode error in network layer: {0}")]
-    UnsupportedOpcodeError(i16),
+    UnsupportedOpcodeError(u16),
 
     #[error("Packet error in network layer")]
     PacketError(#[from] PacketError),

@@ -6,7 +6,7 @@ pub enum ValidationError {
     InvalidHeader,
 
     #[error("Invalid packet length in packet validation layer: {0}")]
-    InvalidPacketLength(i16),
+    InvalidPacketLength(u16),
 
     #[error("Empty packet in packet validation layer")]
     EmptyPacket,

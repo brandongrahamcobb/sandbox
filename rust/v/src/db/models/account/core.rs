@@ -5,7 +5,7 @@ use std::time::SystemTime;
 #[derive(Identifiable, Queryable, AsChangeset)]
 #[diesel(table_name = accounts)]
 pub struct Account {
-    pub id: i64,
+    pub id: i32,
     pub username: String,
     pub password: String,
     pub pin: String,

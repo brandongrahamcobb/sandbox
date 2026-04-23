@@ -13,6 +13,6 @@ pub enum DatabaseError {
     #[error("Database failed for model in database layer")]
     ModelError(#[from] ModelError),
 
-    #[error("Database pool failed in database layer")]
-    DatabasePoolError(#[from] diesel::result::Error),
+    #[error("Entry in database not found in database layer")]
+    DieselError(#[from] diesel::result::Error),
 }

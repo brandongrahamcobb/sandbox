@@ -32,6 +32,12 @@ pub const SHUFFLE_BYTES: [u8; 256] = [
 
 pub const DEFAULT_AES_KEY_VALUE: [u8; 4] = [0xF2, 0x53, 0x50, 0xC6];
 
+pub const INVALID_OPCODE: u16 = 9000;
+
+pub const MAX_PACKET_LENGTH: u16 = u16::MAX;
+
+pub const HEADER_SIZE: u8 = 4;
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum WorldID {
     BELLOCAN = 0,

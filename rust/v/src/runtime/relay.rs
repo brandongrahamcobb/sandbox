@@ -104,14 +104,14 @@ impl RuntimeRelay for Credentials {
     ) -> Result<HandlerResult<LoginAction>, RuntimeError> {
         let opcode = packet.opcode();
         match opcode {
-            x if x == RecvOpcode::RequestLogin as i16 => {
+            x if x == RecvOpcode::RequestLogin as u16 => {
                 let handler = credentials::CredentialsHandler::new();
                 handler
                     .handle(ctx, packet)
                     .await
                     .map_err(RuntimeError::from)
             }
-            x if x == RecvOpcode::AcceptTOS as i16 => {
+            x if x == RecvOpcode::AcceptTOS as u16 => {
                 let handler = tos::TOSHandler::new();
                 handler
                     .handle(ctx, packet)
@@ -134,7 +134,7 @@ impl RuntimeRelay for Credentials {
                 LoginAction::AcceptLogin { acc, hwid } => {
                     let mut packet = build::core::build_successful_login_packet(&acc, ctx)?;
                     ctx.shared_state.sessions.update(ctx.session_id, |session| {
-                        session.account_id = Some(acc.id);
+                        session.account_id = Some(acc.id as u32);
                         session.hwid = Some(hwid);
                         session.session_state = SessionState::Transition;
                     });
@@ -146,7 +146,7 @@ impl RuntimeRelay for Credentials {
                 LoginAction::RejectLogin { reason, acc } => {
                     if let Some(acc) = acc {
                         ctx.shared_state.sessions.update(ctx.session_id, |session| {
-                            session.account_id = Some(acc.id);
+                            session.account_id = Some(acc.id as u32);
                             session.session_state = SessionState::Transition;
                         });
                     }
@@ -196,7 +196,7 @@ impl RuntimeRelay for World {
     ) -> Result<HandlerResult<WorldAction>, RuntimeError> {
         let opcode = packet.opcode();
         match opcode {
-            x if x == RecvOpcode::RequestLogin as i16 => {
+            x if x == RecvOpcode::RequestLogin as u16 => {
                 let handler = cc::ChangeChannelHandler::new();
                 handler
                     .handle(ctx, packet)

@@ -16,7 +16,7 @@ pub fn get_account_by_username(user: &str, ctx: &RuntimeContext) -> QueryResult<
         .first::<Account>(&mut conn)
 }
 
-pub fn get_account_by_id(id: i64, ctx: &RuntimeContext) -> QueryResult<Account> {
+pub fn get_account_by_id(id: i32, ctx: &RuntimeContext) -> QueryResult<Account> {
     let mut conn = ctx.shared_state.db.get().map_err(|e| {
         diesel::result::Error::DatabaseError(
             diesel::result::DatabaseErrorKind::UnableToSendCommand,

@@ -13,7 +13,7 @@ pub enum SessionState {
 #[derive(Clone)]
 pub struct Session {
     pub id: u32,
-    pub account_id: Option<i64>,
+    pub account_id: Option<u32>,
     pub hwid: Option<String>,
     pub selected_world_id: Option<u8>,
     pub selected_channel_id: Option<u8>,

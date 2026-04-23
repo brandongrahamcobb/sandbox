@@ -94,7 +94,7 @@ pub fn build_successful_login_packet(
 ) -> Result<Packet, NetworkError> {
     let mut packet = Packet::new_empty();
     let opcode = SendOpcode::AccountStatus as u16;
-    let account_id = acc.id as u64;
+    let account_id = acc.id as u32;
     let gender = acc.gender;
     let account_name = &acc.username;
     let created_at: u64 = acc.created_at.duration_since(UNIX_EPOCH)?.as_secs();
@@ -115,7 +115,7 @@ pub fn build_successful_login_packet(
         .map_err(PacketError::from)
         .map_err(NetworkError::from)?;
     packet
-        .write_long(account_id)
+        .write_int(account_id)
         .map_err(WriteError)
         .map_err(PacketError::from)
         .map_err(NetworkError::from)?;

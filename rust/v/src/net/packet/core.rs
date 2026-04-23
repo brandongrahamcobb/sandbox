@@ -1,10 +1,7 @@
+use crate::constants::{INVALID_OPCODE, MAX_PACKET_LENGTH};
 use std::io::Result;
 use std::io::Write;
 use std::ops::{Deref, DerefMut};
-
-pub const INVALID_OPCODE: i16 = 1;
-
-pub const MAX_PACKET_LENGTH: i16 = i16::MAX;
 
 #[derive(Debug)]
 pub struct Packet {
@@ -29,9 +26,9 @@ impl Packet {
         Packet { bytes }
     }
 
-    pub fn opcode(&self) -> i16 {
+    pub fn opcode(&self) -> u16 {
         if self.bytes.len() > 1 {
-            let opcode: i16 = ((self.bytes[0] as u16) | ((self.bytes[1] as u16) << 8)) as i16;
+            let opcode: u16 = (self.bytes[0] as u16) | ((self.bytes[1] as u16) << 8);
             if opcode >= 0 { opcode } else { INVALID_OPCODE }
         } else {
             INVALID_OPCODE

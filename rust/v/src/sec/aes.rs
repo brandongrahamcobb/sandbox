@@ -11,9 +11,10 @@ pub struct AES {
 impl AES {
     pub fn new(iv: &Vec<u8>, version: u16) -> AES {
         let iv = iv.clone();
+        let adjusted_version = (version >> 8) & 0xFF | (((version as u16) << 8) & 0xFF00);
         AES {
             iv,
-            version: version,
+            version: adjusted_version,
         }
     }
 

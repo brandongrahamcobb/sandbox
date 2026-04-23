@@ -16,8 +16,8 @@ use bcrypt::verify;
 use std::io::BufReader;
 
 pub enum StatusCode {
-    InvalidCredentials = 0,
     Banned = 2,
+    InvalidCredentials = 5,
     PendingTOS = 7,
     Playing = 23,
 }
@@ -132,20 +132,30 @@ impl CredentialsHandler {
     ) -> Result<HandlerResult<LoginAction>, NetworkError> {
         let mut result = HandlerResult::new();
         let (user, pw, hwid) = self.read_credentials(packet)?;
-        let acc = db::models::account::service::get_account_by_username(&user, ctx)
-            .map_err(DatabaseError::from)
-            .map_err(NetworkError::from)?;
-        let login_action = {
-            if self.authenticate(&acc, &pw)? {
-                self.get_login_action(acc, hwid)?
-            } else {
-                LoginAction::RejectLogin {
+        match db::models::account::service::get_account_by_username(&user, ctx) {
+            Err(e) if e == diesel::result::Error::NotFound => {
+                let login_action = LoginAction::RejectLogin {
                     acc: None,
                     reason: RejectReason::InvalidCredentials,
-                }
+                };
+                result.add_action(login_action)?;
+                Ok(result)
             }
-        };
-        result.add_action(login_action)?;
-        Ok(result)
+            Err(e) => Err(NetworkError::from(DatabaseError::from(e))),
+            Ok(acc) => {
+                let login_action = {
+                    if self.authenticate(&acc, &pw)? {
+                        self.get_login_action(acc, hwid)?
+                    } else {
+                        LoginAction::RejectLogin {
+                            acc: None,
+                            reason: RejectReason::InvalidCredentials,
+                        }
+                    }
+                };
+                result.add_action(login_action)?;
+                Ok(result)
+            }
+        }
     }
 }

@@ -55,7 +55,7 @@ impl TOSHandler {
             .account_id
             .ok_or(SessionError::NoAccount)
             .map_err(NetworkError::from)?;
-        let mut acc = db::models::account::service::get_account_by_id(account_id, ctx)
+        let mut acc = db::models::account::service::get_account_by_id(account_id as i32, ctx)
             .map_err(DatabaseError::from)
             .map_err(NetworkError::from)?;
         acc.accepted_tos = true;
