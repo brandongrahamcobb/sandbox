@@ -74,9 +74,11 @@ class ReplaceWalk:
                 case "-c":
                     print()
                     return
+                case "-s":
+                    self.file_spec = f"*{sys.argv[i +1]}"
 
         if not self.directory:
-            self.directory == "."
+            self.directory = "."
         if not self.before or not self.after:
             raise ValueError("Missing before and after strings.")
         if not self.file_spec:
@@ -87,13 +89,22 @@ class ReplaceWalk:
             logger.debug(self.directory + "is not found.")
         paths = path.rglob(self.file_spec)
         for filename in paths:
+            print(filename)
             if filename.name == Path(__file__).name:
                 continue
             with open(filename, "r") as f:
-                content = f.read()
-            content = content.replace(self.before, self.after)
-            with open(filename, "w") as f:
-                f.write(content)
+                lines: list[str] = []
+                for line in f:
+                    if self.before in line:
+                        go = input(
+                            f"Do you want to replace the occurence in this line? {line}"
+                        )
+                        if go.lower() != "n":
+                            line = line.replace(self.before, self.after)
+                    lines.append(line)
+                with open(filename, "w") as f:
+                    for line in lines:
+                        f.write(f"{line}")
 
 
 if __name__ == "__main__":
