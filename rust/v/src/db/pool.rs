@@ -1,4 +1,4 @@
-use crate::db::error::{DatabaseError, DatabaseError::DieselError};
+use crate::db::error::DatabaseError::DieselError;
 use crate::runtime::error::RuntimeError;
 use diesel::PgConnection;
 use diesel::r2d2::{ConnectionManager, Pool};

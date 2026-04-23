@@ -1,4 +1,4 @@
-use crate::net::packet::handler::login::error::LoginError;
+use crate::net::packet::handler::core::login::error::LoginError;
 use thiserror::Error;
 
 #[derive(Debug, Error)]

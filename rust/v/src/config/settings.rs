@@ -152,3 +152,14 @@ pub fn get_world_event_message(settings: &Config) -> Result<String, ConfigError>
         .map_err(|_| ConfigError::InvalidString(key))?;
     Ok(msg)
 }
+
+pub fn get_recommended_worlds(settings: &Config) -> Result<Vec<String>, ConfigError> {
+    let key = String::from("recommended_worlds");
+    let worlds: Vec<String> = settings
+        .get_string(&key)
+        .map_err(|_| ConfigError::InvalidString(key))?
+        .split(",")
+        .map(|s| s.trim().to_string())
+        .collect::<Vec<String>>();
+    Ok(worlds)
+}

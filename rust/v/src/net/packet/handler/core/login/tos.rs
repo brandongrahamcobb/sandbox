@@ -3,9 +3,9 @@ use crate::db::error::DatabaseError;
 use crate::net::error::NetworkError;
 use crate::net::packet::core::Packet;
 use crate::net::packet::error::PacketError;
+use crate::net::packet::handler::core::action::CoreAction;
 use crate::net::packet::handler::error::HandlerError;
-use crate::net::packet::handler::login::action::LoginAction;
-use crate::net::packet::handler::login::error::LoginError;
+use crate::net::packet::handler::core::login::error::LoginError;
 use crate::net::packet::handler::result::HandlerResult;
 use crate::net::packet::io::error::IOError;
 use crate::prelude::*;
@@ -24,7 +24,7 @@ impl TOSHandler {
         &self,
         ctx: &RuntimeContext,
         packet: &Packet,
-    ) -> Result<HandlerResult<LoginAction>, NetworkError> {
+    ) -> Result<HandlerResult<CoreAction>, NetworkError> {
         let mut reader = BufReader::new(&**packet);
         reader
             .read_short()
@@ -55,7 +55,7 @@ impl TOSHandler {
             .account_id
             .ok_or(SessionError::NoAccount)
             .map_err(NetworkError::from)?;
-        let mut acc = db::models::account::service::get_account_by_id(account_id as i32, ctx)
+        let mut acc = db::models::account::service::get_account_by_id(account_id as u32, ctx)
             .map_err(DatabaseError::from)
             .map_err(NetworkError::from)?;
         acc.accepted_tos = true;
@@ -63,7 +63,7 @@ impl TOSHandler {
             .map_err(DatabaseError::from)
             .map_err(NetworkError::from)?;
         let mut result = HandlerResult::new();
-        let action = LoginAction::AcceptLogin { acc, hwid };
+        let action = CoreAction::AcceptLogin { acc, hwid };
         result.add_action(action)?;
         Ok(result)
     }

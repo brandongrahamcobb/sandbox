@@ -9,7 +9,7 @@ pub enum RecvOpcode {
     // SetGender = 0x08,
     // AfterLogin = 0x09,
     // RegisterPin = 0x0A,
-    // ServerListRequest = 0x0B,
+    ServerListRequest = 0x0B,
     // ViewAllChar = 0x0D,
     // PickAllChar = 0x0E,
     // CharSelect = 0x13,

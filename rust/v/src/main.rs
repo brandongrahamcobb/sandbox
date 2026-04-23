@@ -2,7 +2,7 @@ use std::sync::Arc;
 use tracing::info;
 use tracing_subscriber::EnvFilter;
 use v::runtime::error::RuntimeError;
-use v::runtime::server::{LoginServer, WorldServer};
+use v::runtime::server::{CoreServer, WorldServer};
 use v::runtime::state::{SharedState, State};
 
 #[tokio::main]
@@ -12,10 +12,10 @@ async fn main() -> Result<(), RuntimeError> {
         .init();
     info!("Loading Shared State...");
     let shared_state: SharedState = Arc::new(State::new()?);
-    info!("Starting Login Server...");
-    let login = LoginServer::run(&shared_state); //.await?;
+    info!("Starting Core Server...");
+    let core = CoreServer::run(&shared_state); //.await?;
     info!("Starting World Server...");
     let world = WorldServer::run(&shared_state); //.await?;
-    tokio::try_join!(login, world)?;
+    tokio::try_join!(core, world)?;
     Ok(())
 }

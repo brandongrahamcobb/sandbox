@@ -12,6 +12,9 @@ pub enum BroadcastScope {
 }
 
 pub enum WorldAction {
+    Simple {
+        packet: Packet,
+    },
     Broadcast {
         scope: BroadcastScope,
         packet: Packet,
