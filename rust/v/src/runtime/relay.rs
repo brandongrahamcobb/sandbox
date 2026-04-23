@@ -1,5 +1,5 @@
 use crate::net::channel;
-use crate::net::error::NetworkError::UnsupportedOpcodeError;
+use crate::net::error::NetworkError::{self, UnsupportedOpcodeError};
 use crate::net::packet::core::Packet;
 use crate::net::packet::handler::core;
 use crate::net::packet::handler::core::action::{CoreAction, RejectLoginReason};
@@ -10,7 +10,7 @@ use crate::net::packet::handler::world::action::WorldAction;
 use crate::net::packet::handler::world::cc;
 use crate::net::packet::io::{read::PacketReader, write::PacketWriter};
 use crate::op::recv::RecvOpcode;
-use crate::runtime::error::RuntimeError;
+use crate::runtime::error::{RuntimeError, SessionError};
 use crate::runtime::session::{Session, SessionState};
 use crate::runtime::state::SharedState;
 use rand::{RngExt, rng};
@@ -47,6 +47,7 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
         let session_id = shared_state.sessions.insert(Session {
             id: 0,
             account_id: None,
+            authenticated: false,
             hwid: None,
             session_state: SessionState::BeforeLogin,
             selected_world_id: None,
@@ -112,21 +113,48 @@ impl RuntimeRelay for Core {
                     .await
                     .map_err(RuntimeError::from)
             }
-            x if x == RecvOpcode::AcceptTOS as u16 => {
-                let handler = tos::TOSHandler::new();
-                handler
-                    .handle(ctx, packet)
-                    .await
-                    .map_err(RuntimeError::from)
-            }
-            x if x == RecvOpcode::LoginStarted as u16
-                || x == RecvOpcode::ServerListRequest as u16 =>
-            {
-                let handler = core::world_list::WorldListHandler::new();
-                handler
-                    .handle(ctx, packet)
-                    .await
-                    .map_err(RuntimeError::from)
+            x if x != RecvOpcode::RequestLogin as u16 => {
+                let session = ctx
+                    .shared_state
+                    .sessions
+                    .get(ctx.session_id)
+                    .ok_or(SessionError::NotFound(ctx.session_id))
+                    .map_err(NetworkError::from)
+                    .map_err(RuntimeError::from)?;
+                if session.authenticated == true {
+                    match opcode {
+                        x if x == RecvOpcode::AcceptTOS as u16 => {
+                            let handler = tos::TOSHandler::new();
+                            handler
+                                .handle(ctx, packet)
+                                .await
+                                .map_err(RuntimeError::from)
+                        }
+                        x if x == RecvOpcode::LoginStarted as u16
+                            || x == RecvOpcode::ServerListRequest as u16 =>
+                        {
+                            let handler = core::world_list::WorldListHandler::new();
+                            handler
+                                .handle(ctx, packet)
+                                .await
+                                .map_err(RuntimeError::from)
+                        }
+                        x if x == RecvOpcode::ServerStatusRequest as u16 => {
+                            let handler = core::server_status::ServerStatusHandler::new();
+                            handler
+                                .handle(ctx, packet)
+                                .await
+                                .map_err(RuntimeError::from)
+                        }
+                        _ => Err(RuntimeError::NetworkError(UnsupportedOpcodeError(opcode))),
+                    }
+                } else {
+                    let reason = RejectLoginReason::InvalidCredentials;
+                    let acc = None;
+                    let action = CoreAction::RejectLogin { acc, reason };
+                    let result = HandlerResult::new();
+                    return Ok(result);
+                }
             }
             _ => Err(RuntimeError::NetworkError(UnsupportedOpcodeError(opcode))),
         }

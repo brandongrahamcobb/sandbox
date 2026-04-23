@@ -68,6 +68,9 @@ pub enum SessionError {
 
     #[error("Failed to retrieve hardware id in session")]
     NoHWID,
+
+    #[error("Failed to validate successful authentication in session")]
+    NotAuthenticated,
 }
 
 #[cfg(test)]

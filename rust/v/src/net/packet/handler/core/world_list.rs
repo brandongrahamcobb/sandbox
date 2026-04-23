@@ -20,7 +20,7 @@ impl WorldListHandler {
     }
 
     pub async fn handle(
-        &self,
+        self: &Self,
         ctx: &RuntimeContext,
         _packet: &Packet,
     ) -> Result<HandlerResult<CoreAction>, NetworkError> {

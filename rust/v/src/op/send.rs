@@ -2,7 +2,7 @@
 pub enum SendOpcode {
     AccountStatus = 0x00,
     // GuestIdLogin = 0x01,
-    // ServerStatus = 0x03,
+    ServerStatus = 0x03,
     // CheckPin = 0x06,
     // UpdatePin = 0x07,
     ServerList = 0x0A,
