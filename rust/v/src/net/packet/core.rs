@@ -6,6 +6,7 @@ pub const INVALID_OPCODE: i16 = 1;
 
 pub const MAX_PACKET_LENGTH: i16 = i16::MAX;
 
+#[derive(Debug)]
 pub struct Packet {
     pub bytes: Vec<u8>,
 }

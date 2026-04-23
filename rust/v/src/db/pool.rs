@@ -15,7 +15,7 @@ where
         f(&mut conn)
     })
     .await
-    .map_err(|_| RuntimeError::JoinError)?
+    .map_err(RuntimeError::JoinError)?
     .map_err(DatabasePoolError)
     .map_err(DatabaseError::from)
     .map_err(RuntimeError::from)

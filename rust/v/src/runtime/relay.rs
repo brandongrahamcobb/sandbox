@@ -40,7 +40,9 @@ impl<T: RuntimeRelay + Default + Send> Runtime<T> {
         };
         let (read_half, write_half) = stream.into_split();
         let reader = PacketReader::new(read_half, &recv_iv, &shared_state)?;
-        let writer = PacketWriter::new(write_half, &send_iv, &shared_state)?;
+        let mut writer = PacketWriter::new(write_half, &send_iv, &shared_state)?;
+        let mut handshake = build::core::build_handshake_packet(&recv_iv, &send_iv, &shared_state)?;
+        writer.send_unencrypted_packet(&mut handshake).await?;
         let session_id = shared_state.sessions.insert(Session {
             id: 0,
             account_id: None,
@@ -136,7 +138,7 @@ impl RuntimeRelay for Credentials {
                         session.hwid = Some(hwid);
                         session.session_state = SessionState::Transition;
                     });
-                    writer.send_packet(&mut packet).await?;
+                    writer.send_encrypted_packet(&mut packet).await?;
                     ctx.shared_state.sessions.update(ctx.session_id, |session| {
                         session.session_state = SessionState::AfterLogin;
                     });
@@ -153,25 +155,25 @@ impl RuntimeRelay for Credentials {
                             let mut packet = build::core::build_failed_login_packet(
                                 credentials::StatusCode::InvalidCredentials as u8,
                             )?;
-                            writer.send_packet(&mut packet).await?
+                            writer.send_encrypted_packet(&mut packet).await?
                         }
                         RejectReason::Banned => {
                             let mut packet = build::core::build_failed_login_packet(
                                 credentials::StatusCode::Banned as u8,
                             )?;
-                            writer.send_packet(&mut packet).await?
+                            writer.send_encrypted_packet(&mut packet).await?
                         }
                         RejectReason::PendingTOS => {
                             let mut packet = build::core::build_failed_login_packet(
                                 credentials::StatusCode::PendingTOS as u8,
                             )?;
-                            writer.send_packet(&mut packet).await?
+                            writer.send_encrypted_packet(&mut packet).await?
                         }
                         RejectReason::Playing => {
                             let mut packet = build::core::build_failed_login_packet(
                                 credentials::StatusCode::Playing as u8,
                             )?;
-                            writer.send_packet(&mut packet).await?
+                            writer.send_encrypted_packet(&mut packet).await?
                         }
                     }
                 }
@@ -240,11 +242,20 @@ impl RuntimeRelay for World {
                     // self.client_id = 0;
                     // return Err(RuntimeError::ClientDisconnected);
                     // packet = build::core::build_disconnect_packet()?;
-                    writer.send_packet(&mut packet).await?
+                    writer.send_encrypted_packet(&mut packet).await?
                 }
                 _ => (),
             }
         }
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn test_credentials_relay() {
+        println!("Relay test is not implemented");
     }
 }

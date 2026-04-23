@@ -13,8 +13,9 @@ async fn main() -> Result<(), RuntimeError> {
     info!("Loading Shared State...");
     let shared_state: SharedState = Arc::new(State::new()?);
     info!("Starting Login Server...");
-    LoginServer::run(&shared_state.clone()).await?;
+    let login = LoginServer::run(&shared_state); //.await?;
     info!("Starting World Server...");
-    WorldServer::run(&shared_state.clone()).await?;
+    let world = WorldServer::run(&shared_state); //.await?;
+    tokio::try_join!(login, world)?;
     Ok(())
 }

@@ -31,7 +31,26 @@ impl PacketWriter {
         })
     }
 
-    pub async fn send_packet(&mut self, packet: &mut Packet) -> Result<(), NetworkError> {
+    pub async fn send_unencrypted_packet(
+        &mut self,
+        packet: &mut Packet,
+    ) -> Result<(), NetworkError> {
+        self.writer
+            .write_all(&packet.bytes)
+            .await
+            .map_err(WriteError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from)?;
+        self.writer
+            .flush()
+            .await
+            .map_err(WriteError)
+            .map_err(PacketError::from)
+            .map_err(NetworkError::from)?;
+        Ok(())
+    }
+
+    pub async fn send_encrypted_packet(&mut self, packet: &mut Packet) -> Result<(), NetworkError> {
         let header = self.aes.gen_packet_header(packet.len() + 2);
         self.aes.crypt(&mut packet.bytes);
         custom::encrypt(&mut packet.bytes);

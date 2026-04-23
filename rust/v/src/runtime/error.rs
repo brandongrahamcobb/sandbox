@@ -2,6 +2,7 @@ use crate::config::error::ConfigError;
 use crate::db::error::DatabaseError;
 use crate::net::error::NetworkError;
 use thiserror::Error;
+use tokio::task::JoinError;
 
 #[derive(Debug, Error)]
 pub enum RuntimeError {
@@ -12,7 +13,7 @@ pub enum RuntimeError {
     NetworkError(#[from] NetworkError),
 
     #[error("Concurrency join error in runtime layer")]
-    JoinError,
+    JoinError(#[from] JoinError),
 
     #[error("Unexpected end of output in runtime layer")]
     UnexpectedOf(#[from] std::io::Error),
@@ -67,4 +68,17 @@ pub enum SessionError {
 
     #[error("Failed to retrieve hardware id in session")]
     NoHWID,
+}
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+    use tracing::error;
+
+    #[test]
+    fn test_session_error() {
+        println!("Fail?: {}", SessionError::NoAccount);
+        assert!(false);
+    }
 }
