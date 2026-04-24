@@ -1,0 +1,12 @@
+model_list:
+  - model_name: claude-opus-4-6
+    litellm_params:
+      model: openai/qwen
+      api_base: http://localhost:8080/v1
+  - model_name: claude-opus-4-5
+    litellm_params:
+      model: openai/qwen3.5:latest
+      api_base: http://localhost:11434/v1
+server:
+  host: 0.0.0.0
+  port: 4000

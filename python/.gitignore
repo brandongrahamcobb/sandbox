@@ -1,4 +1,7 @@
 .env
 .venv
+.venv12
 __pycache__
 .pytest_cache
+scripts/__pycache__
+scripts/.pytest_cache

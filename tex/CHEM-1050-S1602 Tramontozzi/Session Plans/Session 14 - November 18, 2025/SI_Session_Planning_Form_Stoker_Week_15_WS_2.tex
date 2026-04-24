@@ -1,0 +1,724 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{chemfig}
+\usepackage{mhchem}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{chemformula}
+\usepackage{siunitx}
+\usetikzlibrary{positioning, calc}
+\usepackage{longtable}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+\usepackage{cancel}
+
+
+\begin{document}
+
+\begin{center}
+    \vspace*{-1cm}
+    \begin{tabular}{p{12cm} r}
+        & \textbf{Name:} \underline{\hspace{5cm}} \\
+    \end{tabular}
+
+    \vspace{0.2cm}
+    {\LARGE \textbf{Week 15.2 Worksheet}}
+\end{center}    
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(1)} Which solution has the highest [OH$^-$]? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item pH = 6.10 \item pH = 8.23 \item pH = 9.50 \item pH = 3.33
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(2)} Which substance is a strong base? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NH$_3$ \item Ca(OH)$_2$ \item HF \item HNO$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(3)} Which of the following statements about salt hydrolysis is correct? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Only salts of strong acids hydrolyze
+\item Only salts of strong bases hydrolyze
+\item Salts of weak acids or weak bases hydrolyze
+\item No salts hydrolyze in water
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(4)} Which salt forms a basic solution upon hydrolysis? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item KClO \item NH$_4$Br \item NaNO$_3$ \item LiCl
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(5)} Which describes a neutral solution? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $[H_3O^+] > [OH^-]$
+\item $[H_3O^+] < [OH^-]$
+\item $[H_3O^+] = [OH^-]$
+\item $[H_3O^+] = 0$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(6)} A solution has [$H_3O^+$] = $3.20\times10^{-6}$ M. Its pH is closest to: \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 4.49 \item 5.49 \item 6.49 \item 7.49
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(7)} Which salt will produce a basic solution upon dissolution due to its parent species? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NaF \item NH$_4$Br \item KCl \item Ca(NO$_3$)$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(8)} In the reaction HCOOH + H$_2$O $\rightleftharpoons$ HCOO$^-$ + H$_3$O$^+$, HCOOH is acting as a(n): \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Base \item Acid \item Salt \item Neutral compound
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(9)} Which of the following solutions is most basic? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item pH = 9.00 \item pH = 11.00 \item pH = 7.00 \item pH = 5.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(10)} Which of the following best explains why pKa values are useful? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item They show how fast an acid reacts
+\item They show the strength of an acid using a log scale
+\item They show solubility of an acid
+\item They show the molecular mass of an acid
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(11)} Which term describes an acid that ionizes partially in water? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Strong acid \item Weak acid \item Strong base \item Neutral compound
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(12)} Which description correctly identifies the parent acid of the salt sodium acetate (NaOAc)? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl \item CH$_3$COOH \item HNO$_3$ \item HF
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(13)} Which species is the conjugate acid of NH$_3$? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NH$_2^-$ \item NH$_4^+$ \item N$^{3-}$ \item NH$_2$OH
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(14)} In the stepwise dissociation of H$_2$SO$_4$, which statement is correct? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Both protons dissociate completely \item The first proton dissociates strongly, the second weakly \item Neither proton dissociates \item The second proton dissociates more strongly than the first
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(15)} For the equilibrium $\text{HA} + \text{H}_2\text{O} \rightleftharpoons \text{H}_3\text{O}^+ + \text{A}^-$, which expression represents $K_a$? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\dfrac{[\text{HA}]}{[\text{H}_3\text{O}^+][\text{A}^-]}$ \item $\dfrac{[\text{H}_3\text{O}^+][\text{A}^-]}{[\text{HA}]}$ \item $[\text{H}_3\text{O}^+][\text{A}^-][\text{HA}]$ \item $\dfrac{1}{[\text{HA}]}$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(16)} In the reaction $\text{NH}_3 + \text{H}_2\text{O} \rightarrow \text{NH}_4^+ + \text{OH}^-$, which species acts as the Brönsted-Lowry base?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NH$_3$
+\item H$_2$O
+\item NH$_4^+$
+\item OH$^-$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(17)} Which species is amphiprotic? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item OH$^-$ \item HSO$_4^-$ \item Cl$^-$ \item NH$_4^+$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(18)} A solution has pH = 5.00. What is the hydronium concentration? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.00\times10^{-3}$ M \item $1.00\times10^{-5}$ M \item $1.00\times10^{-7}$ M \item $1.00\times10^{-9}$ M
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(19)} If a salt's anion is the conjugate base of a weak acid, what will be the pH of its aqueous solution? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Acidic \item Basic \item Neutral \item Impossible to determine
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(20)} A weak acid has Ka = $3.00\times10^{-7}$. Which pKa is closest? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 3.96 \item 4.22 \item 5.44 \item 6.80
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(21)} A solution has a hydronium concentration of $1.0\times10^{-4}\ \text{M}$. What is its pH? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2 \item 3 \item 4 \item 5
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(22)} Which statement correctly distinguishes dissociation from ionization? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Dissociation involves breaking covalent bonds to form new ions, while ionization separates pre-existing ions in an ionic lattice.
+\item Dissociation separates pre-existing ions from an ionic compound without altering their identity or overall charge, while ionization forms ions from a molecular substance through a chemical change.
+\item Dissociation always produces H$_3$O$^+$, while ionization never does.
+\item Dissociation only occurs in strong acids, while ionization only occurs in weak acids.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(23)} A weak base has $[\text{OH}^-] = 1.00\times10^{-5}\ \text{M}$. What is the pOH? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 3.00 \item 5.00 \item 7.00 \item 9.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(24)} For the equilibrium HF + H$_2$O $\rightleftharpoons$ H$_3$O$^+$ + F$^-$, which species is the conjugate base? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HF \item H$_3$O$^+$ \item F$^-$ \item H$_2$O
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(25)} A base that ionizes only slightly in water is classified as a: \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Strong base \item Weak base \item Neutral molecule \item Strong acid
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(26)} The parent acid of NO$_2^-$ is: \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HNO$_3$ \item HNO$_2$ \item HNO \item HNO$_4$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(27)} A solution has pOH = 3.60. Determine the pH, [H$_3$O$^+$], and [OH$^-$] of the solution.  Ensure concentrations are in molarity and pH/pOH to two decimals. \\[4cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(28)} Calcium hydroxide reacts with hydrochloric acid to form calcium chloride and water. Which statement best describes the acid-base behavior occurring in this reaction?\\[0.2cm]
+Ca(OH)$_2$ + 2HCl $\rightarrow$ CaCl$_2$ + 2H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl donates protons to OH$^-$ ions, forming water as Ca$^{2+}$ pairs with Cl$^-$
+\item Ca(OH)$_2$ donates protons to HCl, forming hydrogen gas
+\item Both reactants accept protons, preventing water formation
+\item Ca$^{2+}$ acts as the proton donor while Cl$^-$ acts as the proton acceptor
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(29)} Which statement correctly describes a strong base? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Completely dissociates in water \item Partially dissociates in water \item Does not react with water \item Cannot accept protons
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(30)} A solution with pOH = 3.00 has what [OH$^-$]? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.00\times10^{-3}$ M \item $1.00\times10^{-7}$ M \item $1.00\times10^{-11}$ M \item $1.00\times10^{-14}$ M
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(31)} Which statement best describes the logarithmic nature of pKa? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item A decrease of 1 pKa means the acid is ten times stronger
+\item A decrease of 1 pKa means the acid is half as strong
+\item A decrease of 1 pKa means no measurable change
+\item A decrease of 1 pKa means the acid becomes more basic
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(32)} Which of the following is a triprotic acid? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl \item H$_2$CO$_3$ \item H$_3$PO$_4$ \item HF
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(33)} Which is the conjugate acid of CO$_3^{2-}$? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item CO$_2$ \item HCO$_3^-$ \item H$_2$CO$_3$ \item CO$_3$H$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(34)} Which salt will undergo acidic hydrolysis when dissolved in water? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item KNO$_3$ \item NH$_4$Cl \item NaClO$_3$ \item CaCl$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(35)} A solution has pH = 11.00 What is the hydroxide concentration? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.00\times10^{-3}$ M \item $1.00\times10^{-11}$ M \item $1.00\times10^{-7}$ M \item $1.00\times10^{-14}$ M
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(36)} A Brönsted-Lowry acid is defined as a substance that: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Donates a proton
+\item Accepts a proton
+\item Releases electrons
+\item Accepts electrons
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(37)} A weak acid has pKa = 4.25 and [HA] = 0.10 M. If [H$_3$O$^+$] = $5.6\times10^{-5}$ M, calculate pH, pOH, and [OH$^-$].  Ensure concentrations are in molarity and pH/pOH to two decimals. \\[4cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(38)} In the reaction $\text{H}_2\text{PO}_4^-$ + H$_2$O \rightleftharpoons \text{HPO}_4^{2-} + \text{H}_3O^+$, the conjugate base is: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item H$_2$PO$_4^-$
+\item HPO$_4^{2-}$
+\item H$_3$O$^+$
+\item None of the above
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(39)} Which of the following best defines ionization for a weak acid in water? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Complete separation into ions \item Partial separation into ions \item Reaction with a base to form a salt \item Combination with water molecules without forming ions
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(40)} A weak acid has pKa = 3.97. Its solution has [H$_3$O$^+$] = $8.00\times10^{-5}$ M. Determine pH, pOH, and [OH$^-$].  Ensure concentrations are in molarity and pH/pOH to two decimals.\\[4cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(41)} Which pair represents a conjugate acid-base pair?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NH$_3$/NH$_4^+$
+\item OH$^-$/O$^{2-}$
+\item Na$^+$/Na
+\item Cl$^-$/Cl$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(42)} Which describes the relationship between Ka and acid strength? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Larger Ka means stronger acid \item Smaller Ka means stronger acid \item Ka does not relate to strength \item Ka only applies to bases
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(43)} If the pH of a solution increases from 8.00 to 10.00, the [H$^+$] changes by a factor of: \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2x \item 10x \item 50x \item 100x
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(44)} A strong base solution has [OH$^-$] = $6.08\times10^{-4}$ M. Calculate pOH, pH, and [H$_3$O$^+$] to two decimal places, with concentrations in molarity. \\[4cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(45)} A solution with pH = 2.00 has a hydronium concentration that is how many times larger than a solution with pH = 4.00? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2x \item 10x \item 100x \item 1000x
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(46)} If an acid has $K_a = 1.00\times10^{-5}$, which of the following is closest to its pKa? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.20 \item 3.50 \item 5.33 \item 7.25
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(47)} A solution has pH = 5.83. Find [H$_3$O$^+$], pOH, and [OH$^-$]. Concentrations in M, pH/pOH to two decimal places. \\[4cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(48)} Which statement correctly defines ionization for a base in water? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Forming OH$^-$ by reacting chemically with water rather than releasing pre-existing ions
+\item Separating into pre-existing ions without chemical change
+\item Producing H$_3$O$^+$ by transferring a proton to water
+\item Splitting into neutral molecules without forming ions
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(49)} Which species will act as a base according to Brönsted-Lowry? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item H$_3$O$^+$ \item NH$_3$ \item HCl \item HNO$_3$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(50)} A solution has [H$_3$O$^+$] = $2.22\times10^{-6}$ M. Calculate the pH, pOH, and [OH$^-$]. \\[4cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(51)} Which of the following is a strong acid? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HF \item HCl \item HCN \item CH$_3$COOH
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(52)} A solution has [H$_3$O$^+$] = $4.58\times10^{-5}$ M. Calculate the pH, pOH, and [OH$^-$]. Express concentrations in molarity and pH/pOH to two decimal places. \\[4cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(53)} Which salt produces an acidic solution? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NaCl \item KCN \item NH$_4$NO$_3$ \item NaOAc
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(54)} Which salt is formed from a strong acid and strong base and therefore produces a neutral solution? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NaCl \item NH$_4$Cl \item NaOAc \item KCN
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(55)} When hydrochloric acid reacts with sodium hydroxide to form sodium chloride and water, which statement best describes the acid-base process taking place?\\[0.2cm]
+HCl + NaOH $\rightarrow$ NaCl + H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl donates a proton to OH$^-$, forming water as Na$^+$ pairs with Cl$^-$
+\item NaOH donates protons to HCl, forming hydrogen gas
+\item Both reactants act as proton donors, preventing neutralization
+\item Cl$^-$ acts as the proton donor while Na$^+$ accepts the proton
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(56)} A weak acid HA has a pKa of 4.70. Which of the following pH values will favor the deprotonated form, A$^-$? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.00 \item 3.00 \item 4.70 \item 7.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(57)} According to the Arrhenius definition, which statement correctly describes an acid and a base?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item An acid produces H$^+$ in water, and a base produces OH$^-$ in water
+\item An acid donates a proton, and a base accepts a proton
+\item An acid accepts an electron pair, and a base donates an electron pair
+\item An acid and base both increase the concentration of ions equally
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(58)} In the equilibrium $\text{HF} + \text{H}_2\text{O} \rightleftharpoons \text{H}_3\text{O}^+ + \text{F}^-$, which is the conjugate acid of F$^-$? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HF
+\item H$_3$O$^+$
+\item H$_2$O
+\item F$^-$ has no conjugate acid
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(59)} Which acid has the strongest conjugate base? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl \item HNO$_3$ \item HF \item CH$_3$COOH
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(60)} Which statement is true about conjugate acid-base pairs? \\[0.2cm]
+\begin{minipage}{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item They differ by two protons \item They differ by one proton \item They differ by one electron \item They differ by two electrons
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\end{document}
+
+
+

@@ -1,0 +1,701 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{chemfig}
+\usepackage{mhchem}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{chemformula}
+\usepackage{siunitx}
+\usepackage{longtable}
+\usepackage{pdfpages}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+
+\usetikzlibrary{positioning, shapes.geometric, arrows.meta, decorations.pathreplacing, fit, backgrounds}
+\begin{center}
+    {\LARGE \textbf{SI Session Planning Form}}
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent
+\begin{flushleft}
+\textbf{SI Leader:} Brandon Cobb \\
+\textbf{Session Week:} 5 \\
+\textbf{Session \#:} 5 \\
+\textbf{Instructor:} Professor Dudgeon \\
+\textbf{Old Plans:} \href{https://macombedu.sharepoint.com/:b:/s/ASC-SupplementalInstructionEmbeddedTutoring/IQBvRyfNvxGGQYObfgZOKn8UARbteAbUZFaLhS7nR4OoDmQ?e=Ic6HHf}{SharePoint} \\
+\textbf{Session Goal:} Students will review Chapters 1-3 and for chapter 4 and 5 they will be able to: identify a chemical bond, determine its type (ionic or covalent). They will be able to differentiate a molecular compound and an ionic compound. They will review valence electrons and the common charges ions adopt based on their position in the periodic table. They will be able to draw lewis structures of ionic compounds and molecular compounds. They will be able to describe a formula unit with correct subscripts. They will be able to name ionic compounds, including polyatomics. They will have memorized nomenclature. They will understand both regular and coordinate covalent bonds. \\
+
+\vspace{1em}
+\textbf{\underline{Opener}}
+{\centering\large\textbf{\hl{Take Attendance}}\par}\vspace{-0.25\baselineskip}
+
+
+\begin{tabular}{|p{4.2cm}|p{9.8cm}|}
+\hline
+\textbf{Collaborative Learning Techniques} & Teams \\
+\hline
+\textbf{Learning Strategy} & Jeopardy \\
+\hline
+\textbf{Time} & 12:00---12:10 \\
+\hline
+\textbf{Materials} & Ready to speak \\
+\hline
+\textbf{Lecture/Textbook/Old Plans/Slide References} & Computer, class roster, jeopardy program \\
+\hline
+\end{tabular}
+\newpage
+\vspace{0.5cm}
+\noindent
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\subsection*{Managing the Timer}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Use the \textbf{Start Timer} button to begin countdown for a clue or round.
+    \item Use the \textbf{Pause Timer} button to temporarily stop the countdown.
+    \item Use the \textbf{Reset Timer} button to reset it back to 3 minutes.
+    \item The timer display will change color as time runs low:
+        \begin{itemize}
+            \item Green/normal: > 60 seconds
+            \item Yellow: 31--60 seconds
+            \item Red: 30 seconds or less
+        \end{itemize}
+\end{enumerate}
+
+\subsection*{Scoring}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Inside the clue modal, you will see \textbf{team buttons} for each team:
+        \begin{itemize}
+            \item \textbf{+} adds the clue value to that team.
+            \item \textbf{-} subtracts the clue value from that team.
+        \end{itemize}
+    \item Scores cannot go below zero.
+    \item The scoreboard updates automatically after each point change.
+\end{enumerate}
+
+\subsection*{Showing the Answer}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Click the \textbf{Show Answer} button in the modal to reveal the correct answer.
+    \item After viewing the answer, close the modal to return to the board.
+\end{enumerate}
+
+\subsection*{Starting a New Game}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Click the \textbf{New Game} button to generate a new set of clues.
+    \item Team scores are preserved unless you click \textbf{Reset Scores}.
+    \item If a category runs out of clues, the board will automatically skip or mark empty squares.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\newpage
+\vspace{0.5cm}
+\noindent
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\subsection*{Closing and Navigation}
+
+\begin{itemize}
+    \item Close the modal at any time using the \textbf{Close} button or pressing \textbf{Escape}.
+    \item Navigate the board using the mouse or keyboard (Enter/Space to select a clue).
+\end{itemize}
+
+\subsection*{Notes}
+
+\begin{itemize}
+    \item Encourage teams to discuss answers before selecting who will respond.
+    \item Track time for responses using the on-screen timer or your own stopwatch if desired.
+    \item The game automatically prevents duplicate clues from appearing in the same game.
+    \item Make sure all team members can see the screen clearly for fairness.
+\end{itemize} \\
+
+\hline
+\end{tabular}
+\newpage
+
+\noindent
+{\large \textbf{Content (fully worked out problems \& answers)}} \\
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\hline
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.center) {\begin{tikzpicture}[scale=1]
+\node[draw, very thick, minimum width=6in, minimum height=9in] (frame) {};
+\node[scale=20, anchor=center] (N) at (-2.5,0) {\textbf{N}};
+\node[scale=20, anchor=center] (slash) at (0,0) {\textbf{/}};
+\node[scale=20, anchor=center] (A) at (2.5,0) {\textbf{A}};
+\draw[thick, dashed] (N.east) -- (slash.west);
+\draw[thick, dashed] (slash.east) -- (A.west);
+\node[rotate=90, scale=1.5] at (-5,0) {Not};
+\node[rotate=90, scale=1.5] at (5,0) {Applicable};
+
+\draw[dotted, thick] (-4,-3) -- (-1,-1);
+\draw[dotted, thick] (1,-1) -- (4,-3);
+\node[scale=1.2] at (-4.2,-3.3) {Unavailable};
+\node[scale=1.2] at (4.2,-3.3) {Undefined};
+\end{tikzpicture}};
+\end{tikzpicture} \\
+\hline
+\end{tabular}
+\hline
+\end{tabular}
+
+\newpage
+\noindent
+{\large \textbf{Checking for Understanding (questions \& answers)}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\hline
+Q: Can the team explain how they decided on an answer before selecting? \\
+A: Look for discussion and reasoning, not just guessing. \\
+\hline
+Q: Did students take turns contributing, or did one person dominate? \\
+A: Understanding teamwork and equal participation. \\
+\hline
+Q: Are students able to explain why a particular answer is correct or incorrect? \\
+A: Check for reasoning skills and ability to articulate thought processes. \\
+\hline
+Q: Can students connect the clue to prior knowledge or class skills? \\
+A: Seeing if they can apply learned strategies or concepts, not just memorize. \\
+\hline
+Q: Did students discuss strategies for approaching questions with limited information? \\
+A: Shows problem-solving and critical thinking skills. \\
+\hline
+Q: Are students aware of scoring and how it affects their decisions? \\
+A: Checks understanding of game mechanics and risk-reward reasoning. \\
+\hline
+Q: Can students identify which parts of the clue were key to finding the answer? \\
+A: Shows comprehension of clue structure and critical analysis. \\
+\hline
+Q: Did students reflect on how the team performed after answering? \\
+A: Checks self-assessment, metacognition, and group reflection. \\
+\hline
+Q: Can students suggest how the skills practiced could help in homework or tests? \\
+A: Checks transfer of learning to other contexts. \\
+\hline
+Q: Did students actively listen to each other and build on others’ ideas? \\
+A: Observes collaboration, communication, and peer learning. \\
+\hline
+\end{tabular}
+\newpage
+
+
+
+
+
+
+
+
+
+% \begin{tabular}{|p{0.9\linewidth}|}
+% \hline
+% \begin{tikzpicture}[remember picture,overlay]
+% \node at (current page.center) {\begin{tikzpicture}[scale=1]
+% \node[draw, very thick, minimum width=6in, minimum height=9in] (frame) {};
+% \node[scale=20, anchor=center] (N) at (-2.5,0) {\textbf{N}};
+% \node[scale=20, anchor=center] (slash) at (0,0) {\textbf{/}};
+% \node[scale=20, anchor=center] (A) at (2.5,0) {\textbf{A}};
+% \draw[thick, dashed] (N.east) -- (slash.west);
+% \draw[thick, dashed] (slash.east) -- (A.west);
+% \node[rotate=90, scale=1.5] at (-5,0) {Not};
+% \node[rotate=90, scale=1.5] at (5,0) {Applicable};
+
+% \draw[dotted, thick] (-4,-3) -- (-1,-1);
+% \draw[dotted, thick] (1,-1) -- (4,-3);
+% \node[scale=1.2] at (-4.2,-3.3) {Unavailable};
+% \node[scale=1.2] at (4.2,-3.3) {Undefined};
+% \end{tikzpicture}};
+% \end{tikzpicture} \\
+% \hline
+% \end{tabular}
+
+
+
+
+
+
+
+
+\newpage
+\noindent
+\textbf{\underline{Activity 1}} \\
+\begin{tabular}{|p{4.2cm}|p{9.8cm}|}
+\hline
+\textbf{Collaborative Learning Techniques} & Clusters \\
+\hline
+\textbf{Learning Strategy} & Mixed Medium Boardwork Model \\
+\hline
+\textbf{Time} & 12:10---12:35 \\
+\hline
+\textbf{Materials} & Expo markers, scrap paper, pencil, magnets, two shuffled decks with charges and elements \\
+\hline
+\textbf{Lecture/Textbook/Old Plans/Slide References} & Chapters 4-5\\
+\hline
+\end{tabular}
+\newpage
+
+\noindent
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\subsection*{Group Setup}
+
+\begin{enumerate}
+    \item Divide students into small groups (3--4 students per group).
+    \item Each group selects (or is assigned) a \textbf{scribe}.
+    \item Give each group a small stack of cards from the decks.
+\end{enumerate}
+
+\subsection*{Part 1: Exploring Ions}
+
+\begin{enumerate}
+    \item Students examine their cards and identify the ions they have been given.
+    \item Students should briefly discuss whether the listed charges make sense based on periodic trends.
+\end{enumerate}
+
+\subsection*{Part 2: Creating Formula Units}
+
+\begin{enumerate}
+    \item Using their ions, each group must construct \textbf{10 different neutral formula units}.
+    \item All compounds must have a total charge of zero.
+    \item The group scribe records each formula on paper.
+    \item \textbf{Exclude polyatomic ions during this phase.}
+\end{enumerate}
+
+\subsection*{Part 3: Lewis Diagrams on the Board}
+
+\begin{enumerate}
+    \item Each group selects \textbf{seven} of their written formulas.
+    \item One representative from each group writes their chosen formulas on the board.
+    \item Students draw Lewis diagrams for these seven compounds directly on the board.
+\end{enumerate}
+
+\subsection*{Part 4: Polyatomic Ions}
+
+\begin{enumerate}
+    \item Erase the Lewis diagrams from the board.
+    \item Ask groups to identify all polyatomic ions they have in their card sets.
+    \item Students now come to the board and draw Lewis structures for \textbf{each polyatomic ion}.
+    \item Discuss resonance (if applicable), formal charge, and overall ion charge.
+\end{enumerate} \\
+\hline
+\end{tabular}
+
+
+
+\newpage
+
+\noindent
+{\large \textbf{Checking for Understanding (questions and answers)}} \\[0.2em]
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+
+\begin{enumerate}
+
+\item Why must every formula unit you created have an overall charge of zero?
+
+\textbf{Example answer:} Ionic compounds must be electrically neutral because positive and negative charges balance. If the total charge were not zero, the compound would be unstable.
+
+\item If you combine Mg$^{2+}$ with Cl$^{-}$, why does the formula become MgCl$_2$ instead of MgCl?
+
+\textbf{Example answer:} Magnesium has a $2+$ charge and chloride has a $1-$ charge, so two chloride ions are needed to balance the $2+$ charge on magnesium.
+
+\item How can you tell how many of each ion are needed when forming a compound?
+
+\textbf{Example answer:} Use the ion charges and adjust the subscripts so the total positive charge equals the total negative charge.
+
+\item What periodic trend helps you predict whether an element forms a positive or negative ion?
+
+\textbf{Example answer:} Metals on the left side of the periodic table tend to lose electrons and form positive ions, while nonmetals on the right tend to gain electrons and form negative ions.
+
+\item When drawing Lewis diagrams for ionic compounds, what do the brackets and charges represent?
+
+\textbf{Example answer:} The brackets show each ion separately, and the charges indicate whether electrons were lost or gained.
+
+\item Why are Lewis structures for polyatomic ions different from those for single ions?
+
+\textbf{Example answer:} Polyatomic ions contain multiple atoms connected by covalent bonds, so we must show shared electrons and overall charge, not just individual ions.
+
+\item What stayed the same and what changed when you moved from monatomic ions to polyatomic ions?
+
+\textbf{Example answer:} The total charge still had to match the ion charge, but now we had to account for bonding and shared electrons within the ion.
+
+\end{enumerate}
+
+\\
+\hline
+\end{tabular}
+
+
+\hline
+\end{tabular}
+\newpage
+
+\noindent
+\textbf{\underline{Activity 2}} \\
+\begin{tabular}{|p{4.2cm}|p{9.8cm}|}
+\hline
+\textbf{Collaborative Learning Techniques} & Walkthrough \\
+\hline
+\textbf{Learning Strategy} & Think-Pair-Share\\
+\hline
+\textbf{Time} & 12:35---12:50 \\
+\hline
+\textbf{Materials} & A computer, topic.txt,  main.py, ready to speak \\
+\hline
+\textbf{Lecture/Textbook/Old Plans/Slide References} &  Chapter 1-5 \\
+\hline
+\end{tabular}
+\newpage
+\noindent
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+
+\section{Interactive Walkthrough Review Process}
+
+This walkthrough review is designed to identify perceived areas of difficulty, prioritize instruction based on student feedback, and measure learning gains after guided review.
+
+The process relies on three components:
+\begin{itemize}
+\item A \texttt{topics.md} file organized using \texttt{\#}, \texttt{\#\#}, and \texttt{\#\#\#} headings.
+\item A Python program (\texttt{main.py}) which parses this file.
+\item A generated CSV used to record student difficulty ratings before and after review.
+\end{itemize} \\
+
+\subsection{Preparation}
+
+\begin{enumerate}
+\item Ensure \texttt{topics.md} contains all course material organized hierarchically:
+\begin{itemize}
+\item \texttt{\#} Major units
+\item \texttt{\#\#} Topics
+\item \texttt{\#\#\#} Questions and examples
+\end{itemize}
+
+\item Run the program with:
+\begin{verbatim}
+python main.py --create-csv
+\end{verbatim}
+
+\item Enter each student's name when prompted.
+
+\item A CSV file will be generated containing:
+\begin{itemize}
+\item One row per topic
+\item A ``before'' and ``after'' column for each student
+\item Topic headings used as primary keys
+\end{itemize}
+
+\item Open the CSV in Apple Numbers.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\newpage
+\noindent
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\subsection{Initial Difficulty Calibration}
+
+Students first establish a personal reference point:
+
+\begin{quote}
+Select one topic you feel represents a \textbf{3/10} difficulty for you.
+\end{quote}
+
+This anchors their internal scale for consistent scoring.
+
+For each topic:
+
+\begin{enumerate}
+\item Ask students to rate perceived difficulty relative to their chosen 3/10 baseline.
+\item Record these values in the \texttt{before} columns of the CSV.
+\item Export the updated CSV.
+\end{enumerate}
+
+\subsection{Ordering Topics by Difficulty}
+
+Run:
+
+\begin{verbatim}
+python main.py --before
+\end{verbatim}
+
+The program will:
+
+\begin{itemize}
+\item Compute average perceived difficulty per topic.
+\item Sort topics in descending order.
+\item Pretty-print each topic.
+\item Interactively display associated questions and examples from \texttt{topics.md}.
+\end{itemize} \\
+\hline
+\end{tabular}
+\newpage
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\subsection{Guided Walkthrough}
+
+Facilitate discussion starting with the highest-difficulty topic.
+
+For each topic:
+
+\begin{enumerate}
+\item Review conceptual definitions.
+\item Work through provided examples.
+\item Invite student reasoning.
+\item Address misconceptions.
+\item Proceed sequentially toward easier topics.
+\end{enumerate}
+
+Instruction always begins with the material students collectively find most difficult.
+
+\subsection{Post-Review Assessment}
+
+After completing the walkthrough:
+
+\begin{enumerate}
+\item Ask students to provide updated difficulty scores for each topic.
+\item Enter these values into the \texttt{after} columns.
+\item Export the CSV.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\newpage
+\noindent
+{\large \textbf{Instructions (please provide a \hl{DETAILED} activity breakdown below (and/or attached}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+Run:
+
+\begin{verbatim}
+python main.py --after
+\end{verbatim}
+
+Optionally, analyze individual students:
+
+\begin{verbatim}
+python main.py --after --student <student_id>
+\end{verbatim}
+
+This produces:
+
+\begin{itemize}
+\item Average final difficulty
+\item Top 10 hardest topics overall
+\item Per-student hardest topics (when specified)
+\end{itemize}
+
+\subsection{Pedagogical Rationale}
+
+This method:
+
+\begin{itemize}
+\item Centers instruction on student-perceived needs.
+\item Provides quantitative feedback on learning gains.
+\item Encourages metacognition through self-assessment.
+\item Creates a repeatable, data-driven review structure.
+\end{itemize}
+
+The workflow transforms subjective difficulty into actionable instructional order.
+
+\hline
+\end{tabular}
+\newpage
+
+
+\noindent
+{\large \textbf{Content (fully worked out problems \& answers)}} \\
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\hline
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.center) {\begin{tikzpicture}[scale=1]
+\node[draw, very thick, minimum width=6in, minimum height=9in] (frame) {};
+\node[scale=20, anchor=center] (N) at (-2.5,0) {\textbf{N}};
+\node[scale=20, anchor=center] (slash) at (0,0) {\textbf{/}};
+\node[scale=20, anchor=center] (A) at (2.5,0) {\textbf{A}};
+\draw[thick, dashed] (N.east) -- (slash.west);
+\draw[thick, dashed] (slash.east) -- (A.west);
+\node[rotate=90, scale=1.5] at (-5,0) {Not};
+\node[rotate=90, scale=1.5] at (5,0) {Applicable};
+
+\draw[dotted, thick] (-4,-3) -- (-1,-1);
+\draw[dotted, thick] (1,-1) -- (4,-3);
+\node[scale=1.2] at (-4.2,-3.3) {Unavailable};
+\node[scale=1.2] at (4.2,-3.3) {Undefined};
+\end{tikzpicture}};
+\end{tikzpicture} \\
+\hline
+\end{tabular}
+\newpage
+
+\noindent
+{\large \textbf{Checking for Understanding (questions \& answers)}} \\
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+Remeasure the student's difficulty of each subject and go through averaging again, taking volunteers if they want to do it.
+\begin{enumerate}
+    \item While we worked through the activity, what did you notice about how you were taking in new information?
+    \begin{itemize}
+        \item Did you rely more on listening, writing, watching, or discussing?
+        \item At what points did something begin to make more sense?
+    \end{itemize}
+
+    \item What thinking strategies did you try when you were unsure?
+    \begin{itemize}
+        \item Did you make estimates, comparisons, or educated guesses?
+        \item Did you adjust your thinking as new information appeared?
+    \end{itemize}
+
+    \item During the walkthrough, what skills did you actively practice?
+    \begin{itemize}
+        \item Interpreting information step-by-step
+        \item Checking whether a result made sense
+        \item Revising an initial idea when it did not fit
+    \end{itemize}
+
+    \item How did assigning a number to difficulty change how you thought about the topic?
+    \begin{itemize}
+        \item Did it make the challenge feel more manageable?
+        \item Did it help separate confusion from uncertainty?
+    \end{itemize}
+
+    \item Why might it be useful to measure how hard a concept feels before studying it deeply?
+    \begin{itemize}
+        \item How could this help you estimate how long to spend on a topic?
+        \item How could it guide which topics to start with?
+    \end{itemize}
+
+    \item When one idea builds on another, how might difficulty ratings help you plan your learning?
+    \begin{itemize}
+        \item What happens if a foundational idea feels unclear?
+        \item How might you adjust your approach when topics are connected?
+    \end{itemize}
+
+    \item How does this process compare to how measurements are used in science?
+    \begin{itemize}
+        \item Why do scientists take multiple measurements?
+        \item How does averaging help represent what is typical rather than extreme?
+    \end{itemize}
+
+    \item Going forward, how could you apply this way of thinking to studying outside of this session?
+    \begin{itemize}
+        \item How might you track difficulty over time?
+        \item How could this help you study more intentionally?
+    \end{itemize}
+\end{enumerate} \\
+\hline
+\end{tabular}
+
+
+
+
+\newpage
+\noindent
+\textbf{\underline{Closer}}\\
+\begin{tabular}{|p{4.2cm}|p{9.8cm}|}
+\hline
+\textbf{Collaborative Learning Techniques} & Peer Review & Self-Reflection \\
+\hline
+\textbf{Learning Strategy} & Test-Taking Simulation and Error Analysis \\
+\hline
+\textbf{Time} & 12:50---12:55 \\
+\hline
+\textbf{Materials} & Previous quizzes/tests, pen/pencil, notebook, timer \\
+\hline
+\textbf{Lecture/Textbook/Old Plans/Slide References} & Relevant recent assessments or practice problems \\
+\hline
+\end{tabular}
+
+\vspace{0.5cm}
+\noindent
+{\large \textbf{Instructions}} \\[0.2em]
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+
+Students pair up and exchange a recent quiz or practice assessment.
+
+Each student identifies one question they answered incorrectly and explains why the error occurred (misreading the question, calculation mistake, time pressure, etc.).
+
+Partners discuss strategies to avoid that type of error in future assessments.
+
+Each student writes one practical test-taking tip they learned from the discussion in their notebook.
+
+Students share one tip with the class to reinforce collective learning.
+
+Teacher highlights common pitfalls and effective strategies for managing time, checking work, and approaching questions logically. \\
+\hline
+\end{tabular}
+
+\newpage
+\noindent
+{\large \textbf{Checking for Understanding (questions & answers)}} \\[0.2em]
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{Q1:} What is one common reason students lose points on assessments? \\
+\textbf{A1:} Misreading instructions, calculation errors, or misunderstanding the question. \\0.5em]
+
+\textbf{Q2:} How can breaking problems into smaller steps help during tests? \\
+\textbf{A2:} It reduces mistakes, makes thinking clearer, and allows easier tracking of reasoning. \\0.5em]
+
+\textbf{Q3:} Why is peer discussion helpful after completing a test or quiz? \\
+\textbf{A3:} It helps identify misconceptions, provides new strategies, and reinforces correct understanding. \\0.5em]
+
+\textbf{Q4:} Name one strategy for managing time effectively during an assessment. \
+\textbf{A4:} Answer easier questions first, allocate time per section, or skip and return to harder questions. \\0.5em]
+
+\textbf{Q5:} What is a reliable way to double-check answers before submitting a test? \\
+\textbf{A5:} Review calculations, check reasoning step-by-step, and verify instructions were followed. \\
+\hline
+\end{tabular}
+
+\newpage
+\textbf{Plan Checklist}
+
+\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\begin{itemize}
+\item[$\Box$] Variety of Collaborative Learning Techniques and Learning Strategies
+\item[$\Box$] Chapter/slide \# where information is coming from
+\item[$\Box$] Included timestamps (and buffer time as needed)
+\item[$\Box$] Details on how leader will break up students
+\item[$\Box$] Checking for Understanding questions
+\item[$\Box$] Fully worked out problems and examples for each activity
+\item[$\Box$] Necessary links required for online implementation (if applicable)
+\item[$\Box$] Source material correctly cited (if applicable)
+\item[$\Box$] Plan is uploaded to Teams
+\end{itemize}
+\\ \hline
+\end{tabular}
+\newpage
+% \includepdf[pages=-,fitpaper=true]{ptable.pdf}
+
+\end{document}

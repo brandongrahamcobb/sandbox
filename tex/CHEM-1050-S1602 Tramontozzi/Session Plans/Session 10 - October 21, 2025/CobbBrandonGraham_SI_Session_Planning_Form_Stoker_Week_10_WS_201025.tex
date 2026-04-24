@@ -1,0 +1,871 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{chemfig}
+\usepackage{mhchem}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{chemformula}
+\usepackage{siunitx}
+\usetikzlibrary{positioning, calc}
+\usepackage{longtable}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+\usepackage{cancel}
+
+
+\begin{document}
+
+\begin{center}
+    \vspace*{-1cm}
+    \begin{tabular}{p{12cm} r}
+        & \textbf{Name:} \underline{\hspace{5cm}} \\
+    \end{tabular}
+
+    \vspace{0.2cm}
+    {\LARGE \textbf{Week 10 Worksheet}}
+\end{center}    
+\\
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(1)} Which of the following solutes is generally soluble in water according to solubility rules?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item BaSO$_4$
+\item AgCl
+\item KNO$_3$
+\item PbI$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(2)} A chemist has 50.0~mL of 2.0~M HCl solution. She adds water to dilute it to a final volume of 200.0~mL. What is the molarity of the diluted solution?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.25~M
+\item 0.50~M
+\item 1.0~M
+\item 2.0~M
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(3)} A balloon has a volume of 2.0~L at 300~K. If it is heated to 600~K at constant pressure, what will the new volume be?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.0~L
+\item 2.0~L
+\item 3.0~L
+\item 4.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(4)} A diver's breathing mixture contains helium and oxygen at a total pressure of 8.0~atm. If the partial pressure of oxygen is 1.6~atm, what fraction of the total gas mixture is oxygen?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.10
+\item 0.20
+\item 0.50
+\item 0.80
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(5)} A 5.0~L sample of hydrogen gas is collected at 310~K. If it is cooled to 155~K at constant pressure, what is the new volume?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.0~L
+\item 2.5~L
+\item 5.0~L
+\item 10.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(6)} A solvent is the substance present in the largest amount in a solution.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(7)} A sample of gas has a volume of 3.0~L at 27~°C. What will its volume be at 127~°C if pressure remains constant?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.5~L
+\item 3.0~L
+\item 4.0~L
+\item 5.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(8)} A mixture of helium and argon gases in a sealed 10~L container has a total pressure of 5.0~atm. If the partial pressure of helium is 2.0~atm, what is the partial pressure of argon?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 3.0~atm
+\item 7.0~atm
+\item 2.5~atm
+\item 5.0~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(9)} A gas sample occupies 400~mL at 273~K. What volume will it occupy at 546~K if pressure remains constant?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 100~mL
+\item 200~mL
+\item 400~mL
+\item 800~mL
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(10)} A drop of water beads up on a freshly waxed car surface. Which statement best explains why this happens?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Water's adhesion to the wax is stronger than its cohesion.
+\item Hydrogen bonding causes strong cohesion within water.
+\item London forces between wax molecules attract water.
+\item Dipole-induced dipole forces repel water from wax.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(11)} Carlos opens a bottle of perfume and quickly smells it from across the room. Which intermolecular force primarily determines how easily the perfume molecules enter the air?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Hydrogen bonding
+\item Ionic bonding
+\item London dispersion forces
+\item Metallic bonding
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(12)} A student notices that hexane and water do not mix when shaken together. Which type of intermolecular forces explains this behavior?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item London dispersion forces dominate in hexane, but water is polar.
+\item Both substances form hydrogen bonds with each other.
+\item Hexane is polar, and water is nonpolar.
+\item Dipole-dipole interactions attract the two liquids together.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(13)} A saturated solution of NaNO$_3$ contains 90~g solute in 100~g water at 50~°C. If 10~g more NaNO$_3$ is added, what happens?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Dissolves completely
+\item Remains undissolved
+\item Reacts with water
+\item Turns into a supersaturated solution spontaneously
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(14)} A weather balloon at 1.20~atm has a volume of 100.~L near the ground. When it rises to a region where the pressure is 0.900~atm, what is its new volume (temperature constant)?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 75.0~L
+\item 90.0~L
+\item 100.~L
+\item 133~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(15)} A scuba diver breathes from a tank where the air occupies 12.0~L at 200~atm. If the diver uses half of the air (6.00~L) while underwater at the same temperature, what is the new pressure in the tank?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 50~atm
+\item 100~atm
+\item 200~atm
+\item 400~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(16)} In a sugar-water mixture, sugar is the solvent and water is the solute.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(17)} A diver's air bubble has a volume of 3.0~L at a depth where the pressure is 2.0~atm. If the bubble rises to the surface where the pressure is 1.0~atm, what will its new volume be (assuming constant temperature)?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.5~L
+\item 2.0~L
+\item 3.0~L
+\item 6.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(18)} In percent by volume concentration, both solute and solvent volumes are measured in the same units.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(19)} When comparing HF and HCl, HF has a much higher boiling point. Which force best explains this difference?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Dipole-dipole interactions
+\item Hydrogen bonding
+\item London dispersion forces
+\item Covalent bonding
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(20)} A piston traps 4.0~L of gas at 1.5~atm. The piston is pushed so that the gas pressure increases to 3.0~atm. What is the new volume of the gas?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.0~L
+\item 2.0~L
+\item 3.0~L
+\item 6.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(21)} The concentration of a solution in percent by mass is calculated using the mass of solute divided by the total mass of the solution.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(22)} A steel tank of fixed volume contains 1.0~mol of nitrogen gas at 2.0~atm. If another 1.0~mol of nitrogen is added at the same temperature, what is the new pressure in the tank?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.0~atm
+\item 2.0~atm
+\item 3.0~atm
+\item 4.0~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(23)} A sealed container holds 5.00~L of oxygen gas at 1.00~mol. If half the gas leaks out while temperature and pressure stay constant, what will the new volume be?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.25~L
+\item 2.50~L
+\item 5.00~L
+\item 10.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(24)} What is the molarity of a solution containing 5.00~mol of KBr in 2.00~L of solution?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.00~M
+\item 2.50~M
+\item 5.00~M
+\item 10.0~M
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(25)} Molarity expresses concentration as moles of solute per liter of solvent.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(26)} An unsaturated solution contains less solute than the maximum that can dissolve at that temperature.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(27)} A scuba tank contains 0.80~mol of air in a 6.0~L tank. How many moles of air would fill a 12.0~L tank at the same temperature and pressure?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.400~mol
+\item 0.800~mol
+\item 1.60~mol
+\item 3.20~mol
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(28)} A scuba tank contains oxygen at 3.0~atm and nitrogen at 6.0~atm. What is the total pressure in the tank according to Dalton's Law?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.0~atm
+\item 3.0~atm
+\item 6.0~atm
+\item 9.0~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(29)} According to solubility rules, most silver chloride (AgCl) salts are soluble in water.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(30)} A gas sample in a steel container has a volume of 12.0~L at 600.~mmHg. If the pressure is reduced to 400.~mmHg, what is the new volume (temperature constant)?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 8.0~L
+\item 12.0~L
+\item 18.0~L
+\item 20.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(31)} A solution with visible solid particles remaining after stirring is considered supersaturated.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(32)} A saturated solution can dissolve more solute if the temperature is increased.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(33)} A chemist mixes CO$_2$ and N$_2$ gases in a flask. If CO$_2$ exerts a pressure of 0.750~atm and N$_2$ exerts 0.950~atm, what is the total pressure?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.200~atm
+\item 1.70~atm
+\item 0.850~atm
+\item 1.00~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(34)} A balloon inflated to 10.0~L at 293~K is placed in a freezer at 263~K. What is the new volume if pressure is constant?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 8.00~L
+\item 8.98~L
+\item 10.0~L
+\item 11.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(35)} A 10.0~L rigid container holds 0.50~mol of oxygen gas at 1.5~atm. If the amount of gas doubles while temperature stays constant, what will the final pressure be?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.75~atm
+\item 1.5~atm
+\item 3.0~atm
+\item 6.0~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(36)} A weather balloon has a volume of 50.0~L at 250.~K. If it rises and the temperature drops to 200.~K while pressure stays constant, what is the new volume?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 25.0~L
+\item 40.0~L
+\item 50.0~L
+\item 62.5~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(37)} A tire is inflated with 3.0~mol of air to a volume of 18.0~L. If an additional 1.0~mol of air is added without changing temperature or pressure, what is the final volume?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 13.5~L
+\item 18.0~L
+\item 24.0~L
+\item 30.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(38)} A balloon contains 1.00~mol of helium and occupies 24.5~L at room conditions. If 2.00~mol of helium are added at the same temperature and pressure, what is the new volume of the balloon?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 12.3~L
+\item 24.5~L
+\item 36.8~L
+\item 49.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(39)} Two similar compounds, CH$_3$CH$_2$CH$_2$OH and CH$_3$OCH$_2$CH$_3$, have different boiling points. The alcohol boils at a much higher temperature. Why?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item The alcohol has hydrogen bonding, while the ether does not.
+\item The ether has stronger dipole-dipole forces.
+\item Both compounds have identical London dispersion forces.
+\item The ether forms ionic interactions in liquid form.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(40)} Maya accidentally spills water and ethanol on the same counter. She notices that the ethanol evaporates faster. Which statement best explains why?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Ethanol molecules have stronger hydrogen bonding than water. 
+\item Water has stronger hydrogen bonding, which slows evaporation.
+\item Ethanol is nonpolar, so it doesn't interact with itself.
+\item Water molecules lack dipole-dipole forces.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(41)} Two rigid containers are connected by a closed valve. One container holds helium at 2.0~atm in 4.0~L, and the other holds neon at 4.0~atm in 2.0~L. When the valve is opened and gases mix, what is the total pressure in the combined 6.0~L system (assume constant temperature)?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.0~atm
+\item 2.7~atm
+\item 4.0~atm
+\item 6.0~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(42)} When cooking pasta, steam rises from the boiling water. Which intermolecular forces are overcome as the water vaporizes?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Hydrogen bonding between water molecules
+\item Ionic attractions between H$^+$ and O$^{2-}$
+\item Metallic bonding between hydrogen atoms
+\item Covalent bonds within H$_2$O molecules
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(43)} A solution is prepared by dissolving 10.0~g of NaCl in 90.0~g of water. What is the mass percent of NaCl in the solution?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 10.0\%
+\item 11.1\%
+\item 9.00\%
+\item 12.0\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(44)} A sample of gas occupies 8.0~L at 1.0~atm. The gas is compressed until its volume is 2.0~L. What is the new pressure, assuming temperature is constant?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.25~atm
+\item 2.0~atm
+\item 4.0~atm
+\item 8.0~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(45)} A balloon containing 2.50~mol of nitrogen occupies 60.0~L. If another 1.50~mol of nitrogen are added at constant temperature and pressure, what is the final volume?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 36.0~L
+\item 60.0~L
+\item 96.0~L
+\item 120.~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(46)} According to solubility rules, most nitrate (NO$_3^-$) salts are soluble in water.\\[0.2cm]
+\textbf{True} \hspace{1cm} \textbf{False}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(47)} A lab technician finds that NaCl dissolves easily in water but not in hexane. What is the main reason for this?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Water's polarity allows it to interact strongly with ionic compounds.
+\item Hexane forms hydrogen bonds with Na$^+$ ions.
+\item NaCl forms London forces with water.
+\item Hexane is polar and repels ions.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(48)} A scientist collects hydrogen gas over water at 25.0~°C. The total pressure is 745~torr, and the vapor pressure of water at 25.0~°C is 24.0~torr. What is the partial pressure of hydrogen?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 721~torr
+\item 769~torr
+\item 24.0~torr
+\item 745~torr
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(49)} A gas syringe contains 50.0~mL of nitrogen at 750~torr. If the gas is compressed to 25.0~mL, what is the final pressure (in torr) if temperature remains constant?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 375~torr
+\item 500.~torr
+\item $1.0*10^3$~torr
+\item $1.5*10^3$~torr
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(50)} A balloon is filled with a gas mixture containing 0.6~mol O$_2$ and 0.4~mol N$_2$ at a total pressure of 1.0~atm. What is the partial pressure of O$_2$?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.4~atm
+\item 0.6~atm
+\item 1.0~atm
+\item 1.5~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(51)} Dry ice (solid CO$_2$) sublimes directly into a gas at room temperature. Which type of intermolecular force is responsible for holding its molecules together in the solid phase?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Ionic forces
+\item Hydrogen bonding
+\item London dispersion forces
+\item Dipole-dipole interactions
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(52)} Liquid nitrogen boils at -196~°C, while water boils at 100~°C. What difference in intermolecular forces best explains this vast difference?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Nitrogen has hydrogen bonding; water has dispersion only.
+\item Water forms hydrogen bonds; nitrogen has only London forces.
+\item Both have identical intermolecular forces.
+\item Nitrogen has dipole-dipole interactions stronger than water. 
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(53)} A sample of hydrogen occupies 10.0~L when it contains 0.400~mol of gas. What would be the volume if the amount were increased to 1.00~mol under the same conditions?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 4.00~L
+\item 10.0~L
+\item 25.0~L
+\item 40.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(54)} A sealed cylinder of gas has a volume of 8.00~L at 280.~K. If it is heated to 350.~K at constant pressure, what is the final volume?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 6.40~L
+\item 8.00~L
+\item 10.0~L
+\item 12.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(55)} A rigid 2.0~L cylinder contains 3.0~mol of gas at 5.0~atm. Some gas leaks until only 1.5~mol remain, while temperature and volume remain unchanged. What is the new pressure?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.5~atm
+\item 2.5~atm
+\item 5.0~atm
+\item 10.~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(56)} A 15.0~L balloon contains 0.600~mol of helium. If the balloon is filled until it contains 1.50~mol of helium, what will the new volume be at the same temperature and pressure?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 6.00~L
+\item 15.0~L
+\item 25.0~L
+\item 37.5~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(57)} A solution contains 0.50~mol of NaCl in 250~mL of solution. What is the molarity?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.50~M
+\item 1.0~M
+\item 2.0~M
+\item 0.25~M
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(58)} A 10.0~L container holds 0.500~mol of gas at constant temperature and pressure. What volume would 2.00~mol of the same gas occupy under identical conditions?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.50~L
+\item 5.00~L
+\item 10.0~L
+\item 40.0~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(59)} A chemist dissolves 50.0~mL of ethanol in 150.~mL of water. What is the percent by volume of ethanol?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 25.0\%
+\item 33.3\%
+\item 50.0\%
+\item 66.7\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(60)} What is the mass percent of glucose in a solution prepared by dissolving 18~g of glucose in 82~g of water?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 18\%
+\item 20\%
+\item 22\%
+\item 25\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\end{document}

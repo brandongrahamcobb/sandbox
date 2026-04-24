@@ -1,0 +1,993 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{chemfig}
+\usepackage{mhchem}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{chemformula}
+\usepackage{siunitx}
+\usetikzlibrary{positioning, calc}
+\usepackage{longtable}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+\usepackage{cancel}
+
+
+\begin{document}
+
+\begin{center}
+    \vspace*{-1cm}
+    \begin{tabular}{p{12cm} r}
+        & \textbf{Name:} \underline{\hspace{5cm}} \\
+    \end{tabular}
+
+    \vspace{0.2cm}
+    {\LARGE \textbf{Week 9 Worksheet}}
+\end{center}    
+\\
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(1)} How many moles are in 25.0~g of NaCl?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.427
+\item 2.50
+\item 0.125
+\item 1.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(2)} $2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}$. If 3.0~mol of H$_2$ react with excess O$_2$, how many moles of H$_2$O are formed?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.5
+\item 3.0
+\item 6.0
+\item 2.0
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(3)} $\text{N}_2 + 3\text{H}_2 \rightarrow 2\text{NH}_3$. If 4.0~mol H$_2$ react with 2.0~mol N$_2$, which is the limiting reagent?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item N$_2$
+\item H$_2$
+\item Neither
+\item Both
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(4)} In the reaction $\text{C} + \text{O}_2 \rightarrow \text{CO}_2$, how many grams of CO$_2$ form when 10.0~g of carbon reacts completely?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 22.0
+\item 36.7
+\item 10.0
+\item 44.0
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(5)} $\text{Ca} + 2\text{H}_2\text{O} \rightarrow \text{Ca(OH)}_2 + \text{H}_2$. How many liters of H$_2$ are produced at 298~K and 1.50~atm from 2.00~mol Ca?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 36.5
+\item 44.8
+\item 24.7
+\item 32.6
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(6)} $2\text{K} + \text{Cl}_2 \rightarrow 2\text{KCl}$. How many moles of KCl are formed from 0.500~mol Cl$_2$?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.250
+\item 1.00
+\item 0.500
+\item 2.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(7)} How many molecules are present in 0.300~mol of CO$_2$?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.81\times10^{23}$
+\item $3.01\times10^{23}$
+\item $6.02\times10^{23}$
+\item $9.03\times10^{23}$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(8)} If 50.0~g of Fe reacts with excess O$_2$ to form Fe$_2$O$_3$, and the actual yield is 68.0~g, what is the percent yield if the theoretical yield was 80.0~g?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 85.0\%
+\item 90.0\%
+\item 68.0\%
+\item 80.0\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(9)} $\text{Zn} + 2\text{HCl} \rightarrow \text{ZnCl}_2 + \text{H}_2$. How many grams of ZnCl$_2$ form when 0.500~mol of Zn reacts completely?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 34.0
+\item 68.0
+\item 136
+\item 17.0
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(10)} How many oxygen atoms are in 0.200~mol of Al$_2$O$_3$?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $3.61\times10^{23}$
+\item $1.20\times10^{23}$
+\item $6.02\times10^{23}$
+\item $7.23\times10^{23}$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(11)} $2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}$. If 4.0~mol H$_2$ react with 2.0~mol O$_2$, which is limiting?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item H$_2$
+\item O$_2$
+\item Neither
+\item Both
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(12)} If the theoretical yield of NH$_3$ from $\text{N}_2 + 3\text{H}_2 \rightarrow 2\text{NH}_3$ is 10.0~g, and the actual yield is 7.80~g, what is the percent yield?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 78.0\%
+\item 100\%
+\item 82.0\%
+\item 70.0\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(13)} How many moles of oxygen gas are needed to completely burn 2.0~mol CH$_4$? ($\text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}$)\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.0
+\item 2.0
+\item 4.0
+\item 8.0
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(14)} $2\text{Na} + \text{Cl}_2 \rightarrow 2\text{NaCl}$. If 5.00~mol Na react with 1.50~mol Cl$_2$, what is the limiting reagent?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Na
+\item Cl$_2$
+\item Neither
+\item Both
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(15)} If 0.750.~mol CaCO$_3$ decomposes to $\text{CaO} + \text{CO}_2$, how many moles of CO$_2$ are produced?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.50
+\item 0.750
+\item 0.375
+\item 0.250
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(16)} $\text{Zn} + \text{S} \rightarrow \text{ZnS}$. If 3.00~mol Zn react with 2.00~mol S, which is the limiting reagent?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Zn
+\item S
+\item Neither
+\item Both
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(17)} If 5.00~mol of O$_2$ react with excess H$_2$, how many grams of H$_2$O are formed? ($2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}$)\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 90.0
+\item 45.0
+\item 180
+\item 22.4
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(18)} $2\text{Al} + 3\text{Cl}_2 \rightarrow 2\text{AlCl}_3$. If 2.0~mol Al react with 4.0~mol Cl$_2$, what is the limiting reagent?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Al
+\item Cl$_2$
+\item Neither
+\item Both
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(19)} $2\text{H}_2\text{O}_2 \rightarrow 2\text{H}_2\text{O} + \text{O}_2$. If 6.00~mol H$_2$O$_2$ decompose, how many moles of O$_2$ form?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 3.00
+\item 6.00
+\item 12.0
+\item 1.50
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(20)} What is the percent yield if 10.0~g of product are expected but only 8.20~g are obtained?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 82.0\%
+\item 92.0\%
+\item 80.0\%
+\item 88.0\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(21)} $2\text{HCl} + \text{Mg} \rightarrow \text{MgCl}_2 + \text{H}_2$. How many moles of H$_2$ are produced from 5.00~mol of HCl?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 5.00
+\item 2.50
+\item 10.0
+\item 1.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(22)} Complete the combustion reaction of methane and calculate how many grams of CO$_2$ are produced from 0.500~mol CH$_4$: \\[0.2cm]
+\hspace{1em} $\text{CH}_4 + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}$ \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 11.0
+\item 22.0
+\item 44.0
+\item 16.0
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(23)} $2\text{Na} + 2\text{H}_2\text{O} \rightarrow 2\text{NaOH} + \text{H}_2$. If 4.00~mol Na react, how many moles of H$_2$ are released?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.00
+\item 2.00
+\item 4.00
+\item 8.00
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(24)} In the reaction $\text{CaCO}_3 \rightarrow \text{CaO} + \text{CO}_2$, if 50.0~g of CaCO$_3$ produce 25.0~g of CaO, what is the percent yield if 28.0~g was expected?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 89.3\%
+\item 75.0\%
+\item 92.0\%
+\item 100\%
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(25)} $\text{Fe}_2\text{O}_3 + 3\text{CO} \rightarrow 2\text{Fe} + 3\text{CO}_2$. If 2.00~mol Fe$_2$O$_3$ react with 6.00~mol CO, what mass of Fe is formed assuming 100\% yield?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 56.0
+\item 112
+\item 224
+\item 168
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(26)} A 425~mL cylinder contains nitrogen at $2.50\times10^{2}$~kPa and 22.0$^\circ$C. What pressure (in atm) will result if the gas is moved to a 1.00~L container and heated to 125$^\circ$C, assuming moles constant?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.564~atm
+\item 1.41~atm
+\item 0.282~atm
+\item 2.24~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(27)} 0.375~mol of an ideal gas occupies $6.50\times10^{2}$~mL at 27.0$^\circ$C. Using the ideal gas law, what is the pressure in mmHg? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 575~mmHg
+\item 760.~mmHg
+\item 430.~mmHg
+\item $1.08\times10^{4}$~mmHg
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(28)} A sealed syringe has 8.00~mL of gas at 295~K and 750.~torr. If the plunger is pulled to 24.0~mL and temperature falls to 270.~K, what is the new pressure (in kPa)?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 125~kPa
+\item 188~kPa
+\item 62.5~kPa
+\item 30.5~kPa
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(29)} 1.50~g of helium is confined in a 2.00~L flask at 350.~K. Using the ideal gas law, what is the pressure in atm? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.650.~atm
+\item 5.39~atm
+\item 0.325~atm
+\item 1.45~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(30)} A gas at 1.20~atm and 300~K fills a 5.00~L vessel. If the temperature is increased to 450.~K and pressure is allowed to equilibrate at constant moles, what is the final volume (L)?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 7.50~L
+\item 3.33~L
+\item 5.00~L
+\item 11.3~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(31)} A sample of gas has a volume of 2.50~L at a pressure of 1.20~atm. If the pressure is increased to 3.00~atm at constant temperature, what is the new volume of the gas? (Boyle’s Law — indirect relationship)\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.00~L
+\item 2.10.~L
+\item 0.950~L
+\item 3.75~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(32)} A gas mixture in a 10.0~L tank exerts total pressure 4.00~atm. The partial pressures are $P_A=1.50$~atm and $P_B=0.75$~atm. What is $P_C$ and how many moles of C are present at 25.0$^\circ$C?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $P_C=1.75$~atm, $n_C=7.22\times10^{-1}$~mol
+\item $P_C=1.75$~atm, $n_C=1.63$~mol
+\item $P_C=1.25$~atm, $n_C=0.722$~mol
+\item $P_C=1.75$~atm, $n_C=3.61\times10^{-1}$~mol
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(33)} A gas initially at 640.~mmHg and 20.0$^\circ$C is compressed to 300~mL from 750.~mL while temperature changes to 60.0$^\circ$C. What is final pressure in mmHg?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.12\times10^{3}$~mmHg
+\item 512~mmHg
+\item 290.~mmHg
+\item $1.50\times10^{3}$~mmHg
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(34)} 0.250~mol of oxygen gas is collected at 740.~mmHg and 18.0$^\circ$C in a 2.00~L flask. What would be the pressure at 0.500~mol in same flask and same T? (assume ideal)\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1480.~mmHg
+\item 740.~mmHg
+\item 370.~mmHg
+\item 1110.~mmHg
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(35)} A gas at 1.00~atm and 298~K is allowed to expand isothermally from 2.00~L to 6.00~L. What is final pressure in atm?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 3.00~atm
+\item 0.333~atm
+\item 0.667~atm
+\item 1.00~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(36)} A sample of gas weighing 4.80~g exerts 0.900~atm in a 2.50~L container at 300.~K. What is the molar mass of the gas? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 58.2~g~mol$^{-1}$
+\item 120.~g~mol$^{-1}$
+\item 52.5~g~mol$^{-1}$
+\item 16.0~g~mol$^{-1}$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(37)} At 1.00~atm and 298~K, a gas sample has density 0.860~g/L. What is its molar mass?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 19.4~g~mol$^{-1}$
+\item 24.7~g~mol$^{-1}$
+\item 29.0~g~mol$^{-1}$
+\item 256~g~mol$^{-1}$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(38)} A 150.~mL sample of gas at 25$^\circ$C and 755~mmHg contains $2.00\times10^{21}$ molecules. What is Avogadro's number implied by these measurements? (students must convert units and compute $N_A$)\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $6.02\times10^{23}$
+\item $5.12\times10^{23}$
+\item $7.30\times10^{23}$
+\item $3.01\times10^{23}$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(39)} A gas occupies 500.~mL at 25$^\circ$C. What volume will it occupy at 100.$^\circ$C if the pressure remains constant? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 583~mL
+\item 625~mL
+\item 665~mL
+\item 740.~mL
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(40)} A gas initially at 1.20~atm, 298~K and 250.~mL is heated to 350.~K and allowed to expand until pressure is 1.00~atm. What is the final volume (mL)?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 330.~mL
+\item 250.~mL
+\item 290.~mL
+\item 400~mL
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(41)} A gas is stored in a container at 2.00~atm and 20.0$^\circ$C. If the temperature is increased to 80.0$^\circ$C at constant volume, what will be the new pressure? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.35~atm
+\item 2.60.~atm
+\item 2.80.~atm
+\item 3.00~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(42)} A cylinder contains 0.850~mol of gas at 2.50~atm. What is the temperature (K) if the volume is 15.0~L?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 210.~K
+\item 298~K
+\item 425~K
+\item 512~K
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(43)} A sealed vessel at 1.00~atm and 300.~K contains $3.00\times10^{22}$ molecules. If vessel is evacuated and recharged with the same number of molecules at 600.~K, what will be the new pressure (atm) in the same vessel?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 0.500~atm
+\item 1.00~atm
+\item 2.00~atm
+\item 4.00~atm
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(44)} True or False: Gas particles are in constant, random motion.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(45)} True or False: Gas pressure is caused by collisions of particles with the container walls.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(46)} Increasing the temperature of a gas increases the average:\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Pressure only
+\item Molecular speed
+\item Volume only
+\item Mass
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(47)} True or False: Lighter gas particles move faster than heavier ones at the same temperature.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(48)} Gas particles collide with each other:\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Inelastically, losing energy each time
+\item Perfectly elastically, no net energy loss
+\item Only with container walls
+\item Only at high pressure
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(49)} True or False: Real gases behave more like ideal gases at low pressure.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(50)} A gas sample occupies 1.20~L when it contains 0.050~mol of gas. What will its volume be if 0.200~mol of gas is added at constant temperature and pressure? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 2.40.~L
+\item 3.60.~L
+\item 4.80.~L
+\item 6.00~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(51)} True or False: Gas particles are so small that their volume is negligible compared to the volume of the container.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(52)} True or False: All gases at the same temperature have the same average kinetic energy.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(53)} Increasing the number of gas particles in a container at constant volume and temperature:\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Increases pressure
+\item Decreases molecular speed
+\item Lowers temperature
+\item Decreases collisions
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(54)} True or False: Increasing volume at constant temperature decreases gas pressure.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(55)} True or False: Gas particles attract each other significantly in an ideal gas.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(56)} True or False: The faster a gas particle moves, the more kinetic energy it has.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(57)} Which of the following increases when temperature increases for a gas at constant volume?\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Pressure
+\item Molecular mass
+\item Intermolecular forces
+\item Volume
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(58)} A gas has a volume of 3.00~L at 760.~mmHg and 300.~K. What will be its volume at 600.~mmHg and 350.~K? \\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 4.50.~L
+\item 5.00~L
+\item 5.25~L
+\item 6.00~L
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(59)} True or False: Gas particle collisions are perfectly elastic, meaning no kinetic energy is lost.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(60)} True or False: Gas particles are very far apart compared to their size.\\[0.2cm]
+
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item True
+\item False
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\end{document}

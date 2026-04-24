@@ -1,0 +1,82 @@
+\documentclass{article}[]
+\begin{document}\
+root@archiso ~ # timedatectl
+root@archiso ~ # fdisk /dev/nvme0n1 
+root@archiso ~ # cryptsetup -y -v luksFormat /dev/nvme0n1p3
+root@archiso ~ # cryptsetup open /dev/nvme0n1p3 root
+root@archiso ~ # mkfs.ext4 /dev/mapper/root
+root@archiso ~ # mount /dev/mapper/root /mnt
+root@archiso ~ # mount --mkdir /dev/nvme0n1p1 /mnt/boot 
+root@archiso ~ # cryptsetup luksFormat /dev/nvme0n1p2
+root@archiso ~ # cryptsetup open /dev/nvme0n1p2 swap
+root@archiso ~ # mkswap /dev/mapper/swap
+root@archiso ~ # nano /mnt/etc/initcpio/hooks/openswap
+root@archiso ~ # nano /mnt/etc/initcpio/install/openswap
+root@archiso ~ # nano /mnt/etc/mkinticpio.conf
+root@archiso ~ # swapon /dev/mapper/swap
+root@archiso ~ # pacstrap -K base linux linux-firmware intel-ucode iwd dhcpcd nano make fakeroot cmus ffmpeg lynx
+root@archiso ~ # genfstab -U /mnt >> /mnt/etc/fstab
+root@archiso ~ # nano /mnt/etc/fstab
+root@archiso ~ # arch-chroot /mnt
+[root@archiso /]# bootctl install
+[root@archiso /]# nano /boot/loader/loader.conf
+[root@archiso /]# nano /boot/loader/entries/arch.conf
+[root@archiso /]# ln -sf /usr/share/zoneinfo/America/Detroit /etc/localtime
+[root@archiso /]# hwclock --systohc
+[root@archiso /]# nano /etc/locale.gen
+[root@archiso /]# locale-gen
+[root@archiso /]# nano /etc/locale.conf
+[root@archiso /]# nano /etc/hostname
+[root@archiso /]# mkinitcpio -P
+[root@archiso /]# passwd
+[root@archiso /]# useradd spawd -G users -m -s /bin/bash
+[root@archiso /]# exit
+root@archiso ~ # shutdown now
+
+initcpio/install/openswap
+build ()
+{
+  add_runscript
+}
+help ()
+{
+cat<<HELPOF
+  This opens the swap encrypted partition /dev/nvme0n1p2 in /dev/mapper/swap
+HELPOF
+}
+
+initcpio/hooks/openswap
+run_hook ()
+{
+  ## Optional: To avoid race conditions
+  x=0;
+  while [ ! -b /dev/mapper/root ] && [ $x -le 10 ]; do
+    x=$((x+1))
+    sleep .2
+  done
+  ## End of optional
+  
+  mkdir crypto_key_device
+  mount /dev/mapper/root crypto_key_device
+  cryptsetup open --key-file crypto_key_device/swap.key /dev/nvme0n1p2 swap
+  umount crypto_key_device
+}
+
+arch.conf
+title       Arch Linux
+linux       /vmlinuz-linux
+initrd      /intel-ucode.img
+initrd      /initramfs-linux.img
+options     cryptdevice=/dev/nvme0n1p3:root root=/dev/mapper/root resume=/dev/mapper/swap ro
+
+mixxx
+SUBSYSTEM=="usb",
+ENV{DEVTYPE}=="usb_device",
+ATTRS{idVendor}=="2b73",
+GROUP="users",
+MODE="0660"
+
+audio
+@audio	-	rtprio	95
+@uadio	-	memlock	unlimited
+\end{document}

@@ -1,0 +1,918 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{chemfig}
+\usepackage{mhchem}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{chemformula}
+\usepackage{siunitx}
+\usetikzlibrary{positioning, calc}
+\usepackage{longtable}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+\usepackage{cancel}
+
+
+\begin{document}
+
+\begin{center}
+    \vspace*{-1cm}
+    \begin{tabular}{p{12cm} r}
+        & \textbf{Name:} \underline{\hspace{5cm}} \\
+    \end{tabular}
+
+    \vspace{0.2cm}
+    {\LARGE \textbf{Week 15.1 Worksheet}}
+\end{center}    
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(1)} A Brönsted-Lowry acid is defined as a substance that: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Donates a proton
+\item Accepts a proton
+\item Releases electrons
+\item Accepts electrons
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(2)} What is the oxidation number of chlorine in NaCl?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item +1
+\item -1
+\item 0
+\item +2
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(3)} Which of the following reactions is a redox reaction?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Zn + CuSO$_4$ $\rightarrow$ ZnSO$_4$ + Cu\\[0.1cm]
+\item AgNO$_3$ + NaCl $\rightarrow$ AgCl + NaNO$_3$\\[0.1cm]
+\item CaCO$_3$ $\rightarrow$ CaO + CO$_2$\\[0.1cm]
+\item H$_2$O + SO$_3$ $\rightarrow$ H$_2$SO$_4$\\[0.1cm]
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(4)} In the reaction $\text{H}_2\text{PO}_4^- \rightleftharpoons \text{HPO}_4^{2-} + \text{H}^+$, the conjugate base is: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item H$_2$PO$_4^-$
+\item HPO$_4^{2-}$
+\item H$^+$
+\item None of the above
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(5)} For the equilibrium $\text{C}(s) + \text{CO}_2(g) \rightleftharpoons 2\text{CO}(g)$, what happens when pressure increases?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item The system shifts left because fewer gas moles are on the CO$_2$ side
+\item The system shifts right because more gas moles are produced
+\item No effect because solids and gases respond equally
+\item Pressure changes only affect liquids, not gases
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(6)} What is the oxidation number of sulfur in SO$_2$?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item +2
+\item +4
+\item +6
+\item 0
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(7)} In the reaction $\text{HCl} + \text{H}_2\text{O} \rightarrow \text{H}_3\text{O}^+ + \text{Cl}^-$, which is the Brönsted-Lowry acid?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl
+\item H$_2$O
+\item H$_3$O$^+$
+\item Cl$^-$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(8)} For the exothermic reaction $2\text{SO}_2 + \text{O}_2 \rightarrow 2\text{SO}_3$, increasing temperature will: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Increase SO$_3$ production
+\item Shift equilibrium to left
+\item Not affect equilibrium
+\item Increase both forward and reverse rate equally
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(9)} Calcium hydroxide reacts with hydrochloric acid to form calcium chloride and water. Which statement best describes the acid-base behavior occurring in this reaction?\\[0.2cm]
+Ca(OH)$_2$ + 2HCl $\rightarrow$ CaCl$_2$ + 2H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl donates protons to OH$^-$ ions, forming water as Ca$^{2+}$ pairs with Cl$^-$
+\item Ca(OH)$_2$ donates protons to HCl, forming hydrogen gas
+\item Both reactants accept protons, preventing water formation
+\item Ca$^{2+}$ acts as the proton donor while Cl$^-$ acts as the proton acceptor
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(10)} For the reaction $\text{R} + \text{S} \rightleftharpoons \text{RS}$, which change could temporarily increase Q?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Adding RS
+\item Adding R
+\item Removing S
+\item Diluting all species equally
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(11)} For the reaction $2\text{A} \rightleftharpoons \text{B}$, which expression is correct?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $K_{eq}=\frac{[\text{B}]}{[\text{A}]^2}$
+\item $K_{eq}=\frac{[\text{A}]^2}{[\text{B}]}$
+\item $K_{eq}=\frac{1}{[\text{A}][\text{B}]}$
+\item $K_{eq}=[\text{A}][\text{B}]$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(12)} Identify the reaction type:\\[0.2cm]
+BaCl$_2$ + Na$_2$SO$_4$ $\rightarrow$ BaSO$_4$ + 2NaCl\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Combination
+\item Decomposition
+\item Exchange
+\item Single replacement
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(13)} In a redox reaction, the oxidizing agent is the species that:\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Loses electrons
+\item Gains electrons
+\item Is always neutral
+\item Has the highest atomic mass
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(14)} For the endothermic reaction $\text{N}_2\text{O}_4 \rightarrow 2\text{NO}_2$, decreasing temperature favors: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Formation of NO$_2$
+\item Formation of N$_2$O$_4$
+\item Equal amounts of each
+\item Faster formation of NO$_2$ only
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(15)} For the equilibrium $ \text{PCl}_5(g) \rightleftharpoons \text{PCl}_3(g) + \text{Cl}_2(g)$, increasing pressure causes the reaction to shift: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Left, toward PCl$_5$
+\item Right, toward PCl$_3$ and Cl$_2$
+\item No shift because gases are unaffected by pressure
+\item Toward whichever side has the higher total mass
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(16)} In the reaction 2Na + Cl$_2$ $\rightarrow$ 2NaCl, which is the oxidizing agent?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Na
+\item Cl$_2$
+\item NaCl
+\item Both Na and Cl$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(17)} For the reaction $\text{A} + \text{C} \rightleftharpoons \text{AC}$ with $K_{eq} = 0.02$, which is true?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Reactants are strongly favored
+\item Products are strongly favored
+\item Equal amounts of A and AC form
+\item Keq must be recalculated using solids only
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(18)} According to the Arrhenius definition, which statement correctly describes an acid and a base?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item An acid produces H$^+$ in water, and a base produces OH$^-$ in water
+\item An acid donates a proton, and a base accepts a proton
+\item An acid accepts an electron pair, and a base donates an electron pair
+\item An acid and base both increase the concentration of ions equally
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(19)} What type of reaction occurs when methane burns in oxygen to produce carbon dioxide and water?\\[0.2cm]
+CH$_4$ + 2O$_2$ $\rightarrow$ CO$_2$ + 2H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Combination
+\item Decomposition
+\item Combustion
+\item Single displacement
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(20)} What type of chemical reaction occurs between sodium phosphate and calcium nitrate to form calcium phosphate and sodium nitrate?\\[0.2cm]
+2Na$_3$PO$_4$ + 3Ca(NO$_3$)$_2$ $\rightarrow$ Ca$_3$(PO$_4$)$_2$ + 6NaNO$_3$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Decomposition
+\item Exchange
+\item Combination
+\item Combustion
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(21)} In the reaction $\text{CO}(g) + 2\text{H}_2(g) \rightleftharpoons \text{CH}_3\text{OH}(g)$, which change increases methanol production? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Increasing pressure because the product side has fewer gas moles
+\item Decreasing pressure because the reactant side has more gas moles
+\item Increasing volume of the container
+\item Adding more inert gas at constant volume
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(22)} If $Q > K_{eq}$ for the reaction $\text{F} \rightleftharpoons \text{G}$, which direction will the system shift?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Toward reactants
+\item Toward products
+\item No shift
+\item The reaction stops
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(23)} When sodium reacts with chlorine to produce sodium chloride, what type of reaction is this?\\[0.2cm]
+2Na + Cl$_2$ $\rightarrow$ 2NaCl\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Decomposition
+\item Combustion
+\item Exchange
+\item Combination
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(24)} For the reaction $\text{P} \rightleftharpoons \text{Q}$, which condition must be true at equilibrium?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Rate forward = rate reverse
+\item $[P]$ = [Q]
+\item $K_{eq}$ = 0
+\item All reactant is converted to product
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(25)} For the reaction $\text{A} + \text{heat} \rightarrow \text{B}$, which statement is correct? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Adding heat increases [B]
+\item Adding heat decreases [B]
+\item Removing heat increases [B]
+\item Heat has no effect on equilibrium
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(26)} The burning of benzene in air to form carbon dioxide and water is an example of what type of reaction?\\[0.2cm]
+2C$_6$H$_6$ + 15O$_2$ $\rightarrow$ 12CO$_2$ + 6H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Oxidation-reduction
+\item Combustion
+\item Decomposition
+\item Neutralization
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(27)} Which element is being reduced in the reaction Fe$_2$O$_3$ + 3CO $\rightarrow$ 2Fe + 3CO$_2$?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Fe
+\item O
+\item C
+\item CO$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(28)} What happens to an atom's oxidation number when it is oxidized?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item It increases
+\item It decreases
+\item It stays the same
+\item It becomes zero
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(29)} When ammonium chloride reacts with silver nitrate to form silver chloride and ammonium nitrate, the reaction is classified as:\\[0.2cm]
+NH$_4$Cl + AgNO$_3$ $\rightarrow$ AgCl + NH$_4$NO$_3$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Combination
+\item Exchange
+\item Decomposition
+\item Combustion
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(30)} What type of reaction occurs when potassium iodide reacts with lead(II) nitrate to form lead(II) iodide and potassium nitrate?\\[0.2cm]
+2KI + Pb(NO$_3$)$_2$ $\rightarrow$ 2KNO$_3$ + PbI$_2$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Exchange
+\item Combination
+\item Decomposition
+\item Combustion
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(31)} When hydrochloric acid reacts with sodium hydroxide to form sodium chloride and water, which statement best describes the acid-base process taking place?\\[0.2cm]
+HCl + NaOH $\rightarrow$ NaCl + H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl donates a proton to OH$^-$, forming water as Na$^+$ pairs with Cl$^-$
+\item NaOH donates protons to HCl, forming hydrogen gas
+\item Both reactants act as proton donors, preventing neutralization
+\item Cl$^-$ acts as the proton donor while Na$^+$ accepts the proton
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(32)} In the reaction $\text{NH}_3 + \text{H}_2\text{O} \rightarrow \text{NH}_4^+ + \text{OH}^-$, which species acts as the Brönsted-Lowry base?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NH$_3$
+\item H$_2$O
+\item NH$_4^+$
+\item OH$^-$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(33)} Identify the reaction type:\\[0.2cm]
+2H$_2$O$_2$ $\rightarrow$ 2H$_2$O + O$_2$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Combination
+\item Combustion
+\item Decomposition
+\item Exchange
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(34)} Which pair represents a conjugate acid-base pair?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NH$_3$/NH$_4^+$
+\item OH$^-$/O$^{2-}$
+\item Na$^+$/Na
+\item Cl$^-$/Cl$_2$
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(35)} Which of the following elements always has an oxidation number of +1 in compounds?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Sodium
+\item Oxygen
+\item Fluorine
+\item Sulfur
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(36)} What is the oxidation number of manganese in KMnO$_4$?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item +2
+\item +4
+\item +6
+\item +7
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(37)} In a redox reaction, the reducing agent is the substance that:\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Gains electrons
+\item Loses electrons
+\item Is neither oxidized nor reduced
+\item Lowers its oxidation number
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(38)} For the reaction $2\text{SO}_2(g) + \text{O}_2(g) \rightleftharpoons 2\text{SO}_3(g)$, decreasing pressure favors: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Formation of SO$_3$
+\item Formation of SO$_2$ and O$_2$
+\item No change in equilibrium
+\item Formation of whichever side absorbs heat
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(39)} For the endothermic reaction $\text{heat} + \text{H}_2 + \text{I}_2 \rightarrow 2\text{HI}$, decreasing temperature shifts equilibrium: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Toward products
+\item Toward reactants
+\item No shift
+\item Depends only on pressure
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(40)} For the reaction $\text{A} + \text{B} \rightleftharpoons \text{C}$, if $K_{eq} = 12$, which statement is true?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Products are favored
+\item Reactants are favored
+\item Neither side is favored
+\item The reaction goes to completion
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(41)} What type of reaction occurs when lithium sulfate reacts with barium nitrate to form barium sulfate and lithium nitrate?\\[0.2cm]
+Li$_2$SO$_4$ + Ba(NO$_3$)$_2$ $\rightarrow$ BaSO$_4$ + 2LiNO$_3$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Combination
+\item Decomposition
+\item Exchange
+\item Combustion
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(42)} For the reaction $2\text{X} \rightleftharpoons \text{Y}$, $K_{eq} = 1.0$. Which is true at equilibrium?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $[Y]$ = [X]
+\item $[Y]$ = $[X]^2$
+\item $[X]$ = 2[Y]
+\item $K_{eq}$ cannot equal 1 for reversible reactions
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(43)} What kind of reaction is the burning of glucose in oxygen to form carbon dioxide and water?\\[0.2cm]
+C$_6$H$_{12}$O$_6$ + 6O$_2$ $\rightarrow$  6CO$_2$ + 6H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Double displacement
+\item Combustion
+\item Decomposition
+\item Combination
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(44)} A substance that gains electrons during a reaction is:\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Oxidized
+\item Reduced
+\item Neutralized
+\item Dissociated
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(45)} Which of the following represents a redox reaction?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HCl + NaOH $\rightarrow$ NaCl + H$_2$O\\[0.1cm]
+\item Zn + 2HCl $\rightarrow$ ZnCl$_2$ + H$_2$\\[0.1cm]
+\item CaCO$_3$ $\rightarrow$ CaO + CO$_2$\\[0.1cm]
+\item NaOH + HNO$_3$ $\rightarrow$ NaNO$_3$ + H$_2$O\\[0.1cm]
+\end{enumerate}
+
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(46)} For the exothermic decomposition $2\text{NO}_{(g)} \rightarrow {\text{N}_{2}}_{(g)} + {\text{O}_{2}}_{(g)} + \text{heat}$, adding heat will favor: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Formation of N$_2$ and O$_2$
+\item Formation of NO
+\item No change
+\item Whichever side has fewer gas particles
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(47)} What type of reaction occurs when silver nitrate reacts with sodium chloride to produce silver chloride and sodium nitrate?\\[0.2cm]
+AgNO$_3$ + NaCl $\rightarrow$ AgCl + NaNO$_3$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Combination
+\item Decomposition
+\item Exchange
+\item Combustion
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(48)} For the reaction $\text{H}_2 + \text{I}_2 \rightleftharpoons 2\text{HI}$, which change increases $Q$?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Adding HI
+\item Removing HI
+\item Adding H$_2$
+\item Removing heat
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(49)} What type of chemical reaction does ethanol undergo in air?\\[0.2cm]
+C$_2$H$_5$OH + 3O$_2$ $\rightarrow$ 2CO$_2$ + 3H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Neutralization
+\item Single replacement
+\item Combustion
+\item Precipitation
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(50)} For the reaction $\text{A} + \text{B} + \text{heat} \rightarrow \text{C}$, which way does equilibrium shift when heat is added?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Toward products
+\item Toward reactants
+\item No change
+\item It depends on pressure only
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(51)} For the exothermic reaction $\text{X} + \text{Y} \rightarrow \text{Z} + \text{heat}$, removing heat shifts equilibrium: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Toward reactants
+\item Toward products
+\item Causes no shift
+\item Only affects rate, not equilibrium
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(52)} In the equilibrium $\text{HF} + \text{H}_2\text{O} \rightleftharpoons \text{H}_3\text{O}^+ + \text{F}^-$, which is the conjugate acid of F$^-$? \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item HF
+\item H$_3$O$^+$
+\item H$_2$O
+\item F$^-$ has no conjugate acid
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(53)} What type of reaction occurs when acetylene reacts with oxygen to produce CO$_2$ and H$_2$O?\\[0.2cm]
+2C$_2$H$_2$ + 5O$_2$ $\rightarrow$ 4CO$_2$ + 2H$_2$O\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Neutralization
+\item Combustion
+\item Combination
+\item Decomposition
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(54)} For the reaction $\text{N}_2(g) + 3\text{H}_2(g) \rightleftharpoons 2\text{NH}_3(g)$, increasing pressure shifts the equilibrium: \\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Toward products because fewer gas moles are present
+\item Toward reactants because more gas moles are present
+\item No shift because pressure does not affect gases
+\item Toward whichever side has more volume
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(55)} In the reaction Zn + Cu$^{2+}$ $\rightarrow$ Zn$^{2+}$ + Cu, which species is oxidized?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Cu$^{2+}$
+\item Cu
+\item Zn
+\item H$_2$O
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(56)} Identify the type of reaction below:\\[0.2cm]
+K$_2$SO$_4$ + Ba(NO$_3$)$_2$ $\rightarrow$ 2KNO$_3$ + BaSO$_4$\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Exchange
+\item Combination
+\item Combustion
+\item Decomposition
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\newpage
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(57)} For the reaction $\text{A} + \text{C} \rightleftharpoons \text{AC}$ with $K_{eq} = 0.02$, which is true?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Reactants are strongly favored
+\item Products are strongly favored
+\item Equal amounts of A and AC form
+\item $K_{eq}$ must be recalculated using solids only
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(58)} Which of the following compounds acts as an Arrhenius base when dissolved in water?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item NaOH, because it increases the concentration of OH$^-$ in solution
+\item HCl, because it donates protons to other species
+\item NH$_3$, because it donates an electron pair to H$^+$
+\item CO$_2$, because it produces H$^+$ in water
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(59)} For $\text{D} \rightleftharpoons \text{E}$, which scenario decreases the value of the reaction quotient $Q$?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Adding D
+\item Removing D
+\item Adding E
+\item Both b. and c.
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+
+\noindent\begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\textbf{(60)} For the reaction $\text{M} \rightleftharpoons \text{N}$, if $K_{eq}$ is extremely large, which is true?\\[0.2cm]
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item Products dominate at equilibrium
+\item Reactants dominate at equilibrium
+\item $[M]$ must be greater than [N]
+\item Q must equal zero
+\end{enumerate}
+\end{minipage}\\[0.2cm]
+\hline
+\end{tabular}
+\end{document}
+
+
+

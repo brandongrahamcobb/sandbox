@@ -21,20 +21,34 @@ app.get('/v1/models', async (req, res) => {
   }
 });
 
-app.post('/api/chat',async(req,res)=>{
-const body={...req.body,stream:false}
-const r=await fetch(`${LLAMA_SERVER}/v1/chat/completions`,{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify(body)
-})
-const j=await r.json()
-res.json({
-model:j.model,
-created_at:new Date().toISOString(),
-message:j.choices[0].message,
-done:true
-})
+app.post('/api/chat', async (req, res) => {
+  const body = { ...req.body, stream: false }
+
+  const r = await fetch(`${LLAMA_SERVER}/v1/chat/completions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  })
+
+  const j = await r.json()
+  const message = j.choices?.[0]?.message || { role: 'assistant', content: '' }
+
+  res.setHeader('Content-Type', 'application/x-ndjson')
+
+  res.write(JSON.stringify({
+    id: "1",
+    object: "chat.completion.chunk",
+    model: req.body.model,
+    choices: [
+      {
+        index: 0,
+        message: message,
+        finish_reason: "stop"
+      }
+    ]
+  }) + "\n")
+
+  res.end()
 })
 
 app.listen(9000, () => {

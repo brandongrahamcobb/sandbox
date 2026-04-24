@@ -1,0 +1,914 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath, amssymb}
+\usepackage{chemfig}
+\usepackage{mhchem}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{chemformula}
+\usepackage{siunitx}
+\usetikzlibrary{positioning, calc}
+\usepackage{longtable}
+\geometry{margin=1in}
+\setlength{\parskip}{0.5em}
+\usepackage{cancel}
+
+
+\begin{document}
+
+\begin{center}
+    \vspace*{-1cm}
+    \begin{tabular}{p{12cm} r}
+        & \textbf{Name:} \underline{\hspace{5cm}} \\
+    \end{tabular}
+
+    \vspace{0.2cm}
+    {\LARGE \textbf{Week 7 Worksheet}}
+\end{center}    
+\\
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(1)} Balance: \(\mathrm{H_2 + O_2 \rightarrow H_2O}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{H_2 + O_2 \rightarrow 2H_2O}\)
+   \item \(\mathrm{4H_2 + 2O_2 \rightarrow 4H_2O}\)
+   \item \(\mathrm{2H_2 + O_2 \rightarrow 2H_2O}\)
+   \item \(\mathrm{H_2 + \tfrac{1}{2}O_2 \rightarrow H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(2)} Balance: \(\mathrm{C_3H_8 + O_2 \rightarrow CO_2 + H_2O}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2C_3H_8 + 7O_2 \rightarrow 6CO_2 + 8H_2O}\)
+   \item \(\mathrm{C_3H_8 + 3O_2 \rightarrow 3CO_2 + 4H_2O}\)
+   \item \(\mathrm{C_3H_8 + 5O_2 \rightarrow 3CO_2 + 4H_2O}\)
+   \item \(\mathrm{C_3H_8 + 4O_2 \rightarrow 3CO_2 + 4H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(3)} Balance: \(\mathrm{Fe + O_2 \rightarrow Fe_2O_3}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2Fe + O_2 \rightarrow Fe_2O_3}\)
+   \item \(\mathrm{Fe + \tfrac{3}{2}O_2 \rightarrow Fe_2O_3}\)
+   \item \(\mathrm{4Fe + 3O_2 \rightarrow 2Fe_2O_3}\)
+   \item \(\mathrm{4Fe + 6O_2 \rightarrow 4Fe_2O_3}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(4)} Balance: \(\mathrm{N_2 + H_2 \rightarrow NH_3}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{N_2 + H_2 \rightarrow 2NH_3}\)
+   \item \(\mathrm{N_2 + \tfrac{3}{2}H_2 \rightarrow NH_3}\)
+   \item \(\mathrm{2N_2 + 3H_2 \rightarrow 4NH_3}\)
+   \item \(\mathrm{N_2 + 3H_2 \rightarrow 2NH_3}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(5)} Balance: \(\mathrm{KClO_3 \rightarrow KCl + O_2}\) (thermal decomposition)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{KClO_3 \rightarrow KCl + O_2}\)
+   \item \(\mathrm{2KClO_3 \rightarrow KCl + 3O_2}\)
+   \item \(\mathrm{2KClO_3 \rightarrow 2KCl + 3O_2}\)
+   \item \(\mathrm{4KClO_3 \rightarrow 4KCl + 3O_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(6)} Balance: \(\mathrm{Al + O_2 \rightarrow Al_2O_3}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2Al + O_2 \rightarrow Al_2O_3}\)
+   \item \(\mathrm{4Al + 3O_2 \rightarrow 2Al_2O_3}\)
+   \item \(\mathrm{Al + \tfrac{3}{2}O_2 \rightarrow Al_2O_3}\)
+   \item \(\mathrm{4Al + 6O_2 \rightarrow 4Al_2O_3}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(7)} Balance: \(\mathrm{CuO + H_2 \rightarrow Cu + H_2O}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{CuO + 2H_2 \rightarrow Cu + 2H_2O}\)
+   \item \(\mathrm{CuO + H_2 \rightarrow Cu + H_2O}\)
+   \item \(\mathrm{2CuO + 2H_2 \rightarrow 2Cu + 2H_2O}\)
+   \item \(\mathrm{2CuO + H_2 \rightarrow 2Cu + H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(8)} Balance: \(\mathrm{Zn + HCl \rightarrow ZnCl_2 + H_2}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2Zn + HCl \rightarrow ZnCl_2 + H_2}\)
+   \item \(\mathrm{Zn + HCl \rightarrow ZnCl_2 + 2H_2}\)
+   \item \(\mathrm{Zn + 2HCl \rightarrow ZnCl_2 + H_2}\)
+   \item \(\mathrm{Zn + 2HCl \rightarrow ZnCl + H_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(9)} Balance: \(\mathrm{Na + H_2O \rightarrow NaOH + H_2}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{Na + 2H_2O \rightarrow NaOH + H_2}\)
+   \item \(\mathrm{2Na + 2H_2O \rightarrow 2NaOH + H_2}\)
+   \item \(\mathrm{Na + H_2O \rightarrow NaOH + H_2}\)
+   \item \(\mathrm{2Na + H_2O \rightarrow 2NaOH + H_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(10)} Balance: \(\mathrm{AgNO_3 + NaCl \rightarrow AgCl + NaNO_3}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2AgNO_3 + NaCl \rightarrow AgCl + 2NaNO_3}\)
+   \item \(\mathrm{2AgNO_3 + 2NaCl \rightarrow 2AgCl + 2NaNO_3}\)
+   \item \(\mathrm{AgNO_3 + NaCl \rightarrow AgCl + NaNO_3}\)
+   \item \(\mathrm{AgNO_3 + 2NaCl \rightarrow AgCl + 2NaNO_3}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(11)} Balance: \(\mathrm{HCl + NaOH \rightarrow NaCl + H_2O}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2HCl + NaOH \rightarrow NaCl + 2H_2O}\)
+   \item \(\mathrm{HCl + NaOH \rightarrow NaCl + H_2O}\)
+   \item \(\mathrm{HCl + 2NaOH \rightarrow NaCl + 2H_2O}\)
+   \item \(\mathrm{2HCl + 2NaOH \rightarrow 2NaCl + 2H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(12)} Balance: \(\mathrm{C_6H_{12}O_6 + O_2 \rightarrow CO_2 + H_2O}\) (combustion)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{C_6H_{12}O_6 + 3O_2 \rightarrow 6CO_2 + 6H_2O}\)
+   \item \(\mathrm{2C_6H_{12}O_6 + 12O_2 \rightarrow 12CO_2 + 12H_2O}\)
+   \item \(\mathrm{C_6H_{12}O_6 + 9O_2 \rightarrow 6CO_2 + 6H_2O}\)
+   \item \(\mathrm{C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(13)} Balance: \(\mathrm{CaO + CO_2 \rightarrow CaCO_3}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{CaO + 2CO_2 \rightarrow CaCO_3}\)
+   \item \(\mathrm{CaO + CO_2 \rightarrow CaCO_3}\)
+   \item \(\mathrm{2CaO + 2CO_2 \rightarrow 2CaCO_3}\)
+   \item \(\mathrm{CaO + CO_2 \rightarrow 2CaCO_3}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(14)} Balance: \(\mathrm{Mg + N_2 \rightarrow Mg_3N_2}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2Mg + N_2 \rightarrow Mg_3N_2}\)
+   \item \(\mathrm{6Mg + 2N_2 \rightarrow 2Mg_3N_2}\)
+   \item \(\mathrm{3Mg + N_2 \rightarrow Mg_3N_2}\)
+   \item \(\mathrm{Mg + N_2 \rightarrow Mg_3N_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(15)} Balance: \(\mathrm{Na_2CO_3 + HCl \rightarrow NaCl + H_2O + CO_2}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{Na_2CO_3 + 3HCl \rightarrow 2NaCl + H_2O + CO_2}\)
+   \item \(\mathrm{Na_2CO_3 + HCl \rightarrow NaCl + H_2O + CO_2}\)
+   \item \(\mathrm{Na_2CO_3 + 2HCl \rightarrow 2NaCl + H_2O + CO_2}\)
+   \item \(\mathrm{2Na_2CO_3 + 4HCl \rightarrow 4NaCl + 2H_2O + 2CO_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(16)} Balance: \(\mathrm{H_2O_2 \rightarrow H_2O + O_2}\) (decomposition)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{H_2O_2 \rightarrow 2H_2O + O_2}\)
+   \item \(\mathrm{4H_2O_2 \rightarrow 4H_2O + 2O_2}\)
+   \item \(\mathrm{2H_2O_2 \rightarrow 2H_2O + O_2}\)
+   \item \(\mathrm{H_2O_2 \rightarrow H_2O + O_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(17)} Balance: \(\mathrm{C_2H_5OH + O_2 \rightarrow CO_2 + H_2O}\) (ethanol combustion)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{C_2H_5OH + 6O_2 \rightarrow 2CO_2 + 3H_2O}\)
+   \item \(\mathrm{2C_2H_5OH + 6O_2 \rightarrow 4CO_2 + 6H_2O}\)
+   \item \(\mathrm{C_2H_5OH + \tfrac{3}{2}O_2 \rightarrow 2CO_2 + 3H_2O}\)
+   \item \(\mathrm{C_2H_5OH + 3O_2 \rightarrow 2CO_2 + 3H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(18)} Balance: \(\mathrm{SO_2 + O_2 \rightarrow SO_3}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{SO_2 + \tfrac{1}{2}O_2 \rightarrow SO_3}\)
+   \item \(\mathrm{4SO_2 + 2O_2 \rightarrow 4SO_3}\)
+   \item \(\mathrm{2SO_2 + O_2 \rightarrow 2SO_3}\)
+   \item \(\mathrm{SO_2 + O_2 \rightarrow SO_3}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(19)} Balance: \(\mathrm{SO_3 + H_2O \rightarrow H_2SO_4}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2SO_3 + H_2O \rightarrow H_2SO_4}\)
+   \item \(\mathrm{SO_3 + 2H_2O \rightarrow H_2SO_4}\)
+   \item \(\mathrm{2SO_3 + 2H_2O \rightarrow 2H_2SO_4}\)
+   \item \(\mathrm{SO_3 + H_2O \rightarrow H_2SO_4}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(20)} Balance: \(\mathrm{CH_4 + Cl_2 \rightarrow CH_3Cl + HCl}\) (chlorination, first step)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2CH_4 + Cl_2 \rightarrow CH_3Cl + HCl}\)
+   \item \(\mathrm{CH_4 + 2Cl_2 \rightarrow CH_3Cl + 2HCl}\)
+   \item \(\mathrm{CH_4 + Cl_2 \rightarrow CH_3Cl + HCl}\)
+   \item \(\mathrm{2CH_4 + 2Cl_2 \rightarrow 2CH_3Cl + 2HCl}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(21)} Balance: \(\mathrm{C_2H_4 + H_2 \rightarrow C_2H_6}\) (hydrogenation)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{C_2H_4 + \tfrac{1}{2}H_2 \rightarrow C_2H_6}\)
+   \item \(\mathrm{C_2H_4 + 2H_2 \rightarrow C_2H_6}\)
+   \item \(\mathrm{2C_2H_4 + H_2 \rightarrow 2C_2H_6}\)
+   \item \(\mathrm{C_2H_4 + H_2 \rightarrow C_2H_6}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(22)} Balance: \(\mathrm{NH_4NO_3 \rightarrow N_2O + H_2O}\) (thermal decomposition)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{NH_4NO_3 \rightarrow N_2 + 2H_2O}\)
+   \item \(\mathrm{2NH_4NO_3 \rightarrow 2N_2O + 2H_2O}\)
+   \item \(\mathrm{NH_4NO_3 \rightarrow N_2O + H_2O}\)
+   \item \(\mathrm{NH_4NO_3 \rightarrow N_2O + 2H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(23)} Balance: \(\mathrm{P_4 + O_2 \rightarrow P_4O_{10}}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{P_4 + 10O_2 \rightarrow P_4O_{10}}\)
+   \item \(\mathrm{P_4 + \tfrac{5}{2}O_2 \rightarrow P_4O_{10}}\)
+   \item \(\mathrm{2P_4 + 5O_2 \rightarrow 2P_4O_{10}}\)
+   \item \(\mathrm{P_4 + 5O_2 \rightarrow P_4O_{10}}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(24)} Balance: \(\mathrm{KMnO_4 + HCl \rightarrow KCl + MnCl_2 + Cl_2 + H_2O}\) (acidic chloride reaction)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{KMnO_4 + 16HCl \rightarrow KCl + MnCl_2 + 5Cl_2 + 8H_2O}\)
+   \item \(\mathrm{2KMnO_4 + 8HCl \rightarrow 2KCl + 2MnCl_2 + 5Cl_2 + 8H_2O}\)
+   \item \(\mathrm{KMnO_4 + 8HCl \rightarrow KCl + MnCl_2 + 4Cl_2 + 4H_2O}\)
+   \item \(\mathrm{2KMnO_4 + 16HCl \rightarrow 2KCl + 2MnCl_2 + 5Cl_2 + 8H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(25)} Balance: \(\mathrm{C_6H_6 + O_2 \rightarrow CO_2 + H_2O}\) (benzene combustion)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{C_6H_6 + 9O_2 \rightarrow 6CO_2 + 6H_2O}\)
+   \item \(\mathrm{C_6H_6 + 3O_2 \rightarrow 6CO_2 + 3H_2O}\)
+   \item \(\mathrm{2C_6H_6 + 15O_2 \rightarrow 12CO_2 + 6H_2O}\)
+   \item \(\mathrm{C_6H_6 + 7.5O_2 \rightarrow 6CO_2 + 3H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(26)} Balance: \(\mathrm{H_2SO_4 + NaOH \rightarrow Na_2SO_4 + H_2O}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{2H_2SO_4 + 2NaOH \rightarrow Na_2SO_4 + 2H_2O}\)
+   \item \(\mathrm{H_2SO_4 + NaOH \rightarrow Na_2SO_4 + H_2O}\)
+   \item \(\mathrm{H_2SO_4 + 2NaOH \rightarrow 2Na_2SO_4 + H_2O}\)
+   \item \(\mathrm{H_2SO_4 + 2NaOH \rightarrow Na_2SO_4 + 2H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(27)} Balance: \(\mathrm{Al + HCl \rightarrow AlCl_3 + H_2}\)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{Al + HCl \rightarrow AlCl_3 + H_2}\)
+   \item \(\mathrm{Al + 3HCl \rightarrow AlCl_3 + \tfrac{3}{2}H_2}\)
+   \item \(\mathrm{4Al + 12HCl \rightarrow 4AlCl_3 + 6H_2}\)
+   \item \(\mathrm{2Al + 6HCl \rightarrow 2AlCl_3 + 3H_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(28)} Balance: \(\mathrm{FeS_2 + O_2 \rightarrow Fe_2O_3 + SO_2}\) (pyrite oxidation)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{FeS_2 + O_2 \rightarrow Fe_2O_3 + SO_2}\)
+   \item \(\mathrm{4FeS_2 + 5O_2 \rightarrow 2Fe_2O_3 + 8SO_2}\)
+   \item \(\mathrm{4FeS_2 + 11O_2 \rightarrow 2Fe_2O_3 + 8SO_2}\)
+   \item \(\mathrm{2FeS_2 + 5.5O_2 \rightarrow Fe_2O_3 + 4SO_2}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(29)} Balance: \(\mathrm{C_4H_{10} + O_2 \rightarrow CO_2 + H_2O}\) (butane combustion)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{C_4H_{10} + 9O_2 \rightarrow 4CO_2 + 5H_2O}\)
+   \item \(\mathrm{C_4H_{10} + \tfrac{13}{2}O_2 \rightarrow 4CO_2 + 5H_2O}\)
+   \item \(\mathrm{C_4H_{10} + 6.5O_2 \rightarrow 4CO_2 + 5H_2O}\)
+   \item \(\mathrm{2C_4H_{10} + 13O_2 \rightarrow 8CO_2 + 10H_2O}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(30)} Balance: \(\mathrm{C_4H_8 + Br_2 \rightarrow C_4H_8Br_2}\) (addition)\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+   \item \(\mathrm{C_4H_8 + 2Br_2 \rightarrow C_4H_8Br_4}\)
+   \item \(\mathrm{C_4H_8 + Br_2 \rightarrow C_4H_8Br_2}\)
+   \item \(\mathrm{2C_4H_8 + Br_2 \rightarrow 2C_4H_8Br_2}\)
+   \item \(\mathrm{C_4H_8 + \tfrac{1}{2}Br_2 \rightarrow C_4H_8Br}\)
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(31)} Balance: $\mathrm{H_2 + O_2 \rightarrow H_2O}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{H_2 + O_2 \rightarrow H_2O}$
+\item $\mathrm{2H_2 + O_2 \rightarrow 2H_2O}$
+\item $\mathrm{H_2 + 2O_2 \rightarrow 2H_2O}$
+\item $\mathrm{4H_2 + O_2 \rightarrow 2H_2O}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(32)} True or False: The coefficients in a balanced equation represent the ratio of atoms, not moles.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(33)} How many moles of $\mathrm{CO_2}$ are in 88 g of $\mathrm{CO_2}$?\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1 mol
+\item 2 mol
+\item 3 mol
+\item 4 mol
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(34)} True or False: The total mass of products must equal the total mass of reactants in a chemical equation.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(35)} Balance: $\mathrm{Al + O_2 \rightarrow Al_2O_3}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{2Al + 3O_2 \rightarrow Al_2O_3}$
+\item $\mathrm{4Al + 3O_2 \rightarrow 2Al_2O_3}$
+\item $\mathrm{Al + O_2 \rightarrow Al_2O_3}$
+\item $\mathrm{3Al + 2O_2 \rightarrow Al_2O_3}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(36)} True or False: The molar mass of a substance links the number of moles to the mass in grams.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(37)} What is the molar mass of $\mathrm{CaCl_2}$?\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 75.5 g/mol
+\item 95.0 g/mol
+\item 110.98 g/mol
+\item 147.0 g/mol
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(38)} True or False: Moles and atoms are directly proportional.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(39)} How many atoms are in 2.0 mol of Na?\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $3.01\times10^{23}$
+\item $6.02\times10^{23}$
+\item $1.20\times10^{24}$
+\item $2.40\times10^{24}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(40)} True or False: A formula unit applies to ionic compounds.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(41)} Convert 0.5 mol of $\mathrm{H_2O}$ to molecules.\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.20\times10^{23}$
+\item $3.01\times10^{23}$
+\item $6.02\times10^{23}$
+\item $1.20\times10^{24}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(42)} Balance: $\mathrm{N_2 + H_2 \rightarrow NH_3}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{N_2 + 3H_2 \rightarrow 2NH_3}$
+\item $\mathrm{N_2 + H_2 \rightarrow NH_3}$
+\item $\mathrm{2N_2 + 3H_2 \rightarrow 2NH_3}$
+\item $\mathrm{3N_2 + 2H_2 \rightarrow NH_3}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(43)} True or False: Subscripts can be changed to balance an equation.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(44)} Find the formula mass of $\mathrm{H_2SO_4}$.\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 49.0 g/mol
+\item 75.0 g/mol
+\item 98.1 g/mol
+\item 120.0 g/mol
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(45)} True or False: Moles can be converted to grams using molar mass.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(46)} Balance: $\mathrm{CH_4 + O_2 \rightarrow CO_2 + H_2O}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{CH_4 + 2O_2 \rightarrow CO_2 + 2H_2O}$
+\item $\mathrm{2CH_4 + O_2 \rightarrow 2CO_2 + H_2O}$
+\item $\mathrm{CH_4 + O_2 \rightarrow CO + H_2O}$
+\item $\mathrm{2CH_4 + 4O_2 \rightarrow 4CO_2 + 8H_2O}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(47)} True or False: The coefficient ``2'' in $2\mathrm{H_2O}$ means there are 4 hydrogen atoms and 2 oxygen atoms.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(48)} How many moles of $\mathrm{NaCl}$ are in 117 g of $\mathrm{NaCl}$?\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 1.0 mol
+\item 2.0 mol
+\item 3.0 mol
+\item 4.0 mol
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(49)} True or False: Formula mass is the sum of atomic masses in a compound.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(50)} Balance: $\mathrm{Fe + O_2 \rightarrow Fe_2O_3}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{4Fe + 3O_2 \rightarrow 2Fe_2O_3}$
+\item $\mathrm{2Fe + O_2 \rightarrow Fe_2O_3}$
+\item $\mathrm{3Fe + 2O_2 \rightarrow Fe_2O_3}$
+\item $\mathrm{Fe + O_2 \rightarrow Fe_2O_3}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(51)} True or False: $6.02\times10^{23}$ formula units equal one mole of an ionic compound.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(52)} Convert 3.0 mol of $\mathrm{O_2}$ to molecules.\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $1.81\times10^{23}$
+\item $6.02\times10^{23}$
+\item $1.81\times10^{24}$
+\item $3.61\times10^{24}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(53)} True or False: One mole of $\mathrm{H_2O}$ contains the same number of oxygen atoms as one mole of $\mathrm{CO_2}$.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(54)} What is the molar mass of $\mathrm{Mg(OH)_2}$?\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 34.0 g/mol
+\item 48.3 g/mol
+\item 58.3 g/mol
+\item 74.3 g/mol
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(55)} True or False: Balancing equations ensures conservation of charge as well as mass.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(56)} Balance: $\mathrm{K + Cl_2 \rightarrow KCl}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{K + Cl_2 \rightarrow KCl}$
+\item $\mathrm{2K + Cl_2 \rightarrow 2KCl}$
+\item $\mathrm{2K + 2Cl_2 \rightarrow 2KCl_2}$
+\item $\mathrm{K + 2Cl_2 \rightarrow 2KCl}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\newpage
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(57)} True or False: The number of atoms of each element must be equal on both sides of a balanced equation.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(58)} How many grams are in 0.25 mol of $\mathrm{Na_2CO_3}$?\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item 13.25 g
+\item 26.5 g
+\item 26.8 g
+\item 53.0 g
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(59)} True or False: One mole of hydrogen gas and one mole of oxygen gas contain the same number of molecules.\\
+\textbf{Answer:} \underline{\hspace{2cm}}\\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\noindent \begin{tabular}{|p{0.9\linewidth}|}
+\hline
+\vspace{0.2cm}
+\textbf{(60)} Balance: $\mathrm{Na + H_2O \rightarrow NaOH + H_2}$\\
+\begin{minipage}[t]{0.85\linewidth}
+\begin{enumerate}[label=\alph*.]
+\item $\mathrm{Na + H_2O \rightarrow NaOH + H_2}$
+\item $\mathrm{2Na + 2H_2O \rightarrow 2NaOH + H_2}$
+\item $\mathrm{Na + 2H_2O \rightarrow NaOH + 2H_2}$
+\item $\mathrm{2Na + H_2O \rightarrow NaOH + 2H_2}$
+\end{enumerate}
+\end{minipage}\\
+\hline
+\end{tabular}
+\end{document}

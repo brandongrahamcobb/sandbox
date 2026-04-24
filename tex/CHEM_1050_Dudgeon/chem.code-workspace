@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+  "settings": {
+    "editor.formatOnSave": false,
+    "latex-workshop.latex.rootFile.useSubFile": false,
+    "latex-workshop.latex.rootFile.doNotPrompt": true
+  },
+  "extensions": {
+    "recommendations": [
+      "james-yu.latex-workshop"
+    ]
+  }
+}

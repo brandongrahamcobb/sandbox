@@ -1,0 +1,2 @@
+seems like voice mutes are counting unmutes when switching rooms
+this makes it harder to identify if they're being right click unmuted
