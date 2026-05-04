@@ -79,7 +79,7 @@ class ReplaceWalk:
 
         if not self.directory:
             self.directory = "."
-        if not self.before or not self.after:
+        if self.before is None or self.after is None:
             raise ValueError("Missing before and after strings.")
         if not self.file_spec:
             self.file_spec = "*.py"
@@ -93,18 +93,50 @@ class ReplaceWalk:
             if filename.name == Path(__file__).name:
                 continue
             with open(filename, "r") as f:
-                lines: list[str] = []
-                for line in f:
-                    if self.before in line:
-                        go = input(
-                            f"Do you want to replace the occurence in this line? {line}"
-                        )
-                        if go.lower() != "n":
-                            line = line.replace(self.before, self.after)
-                    lines.append(line)
-                with open(filename, "w") as f:
-                    for line in lines:
-                        f.write(f"{line}")
+                content = f.read()
+
+            search_start = 0
+            result = []
+
+            while True:
+                pos = content.find(self.before, search_start)
+                if pos == -1:
+                    result.append(content[search_start:])
+                    break
+
+                # grab some surrounding context
+                context_start = content.rfind("\n", 0, pos) + 1
+                context_end = content.find("\n", pos + len(self.before))
+                context = content[
+                    context_start : context_end if context_end != -1 else None
+                ]
+
+                go = input(f"Replace in {filename}?\n{context}\n[y/n]: ")
+
+                if go.lower() != "n":
+                    result.append(content[search_start:pos])
+                    result.append(self.after)
+                    search_start = pos + len(self.before)
+                else:
+                    result.append(content[search_start : pos + len(self.before)])
+                    search_start = pos + len(self.before)
+
+            with open(filename, "w") as f:
+                f.write("".join(result))
+            # with open(filename, "r") as f:
+            #     lines: list[str] = []
+            #     for line in f:
+            #         if self.before in line:
+            #             go = input(
+            #                 f"Do you want to replace the occurence in this line? {line}"
+            #             )
+            #             if go.lower() != "n":
+            #                 line = line.replace(self.before, self.after)
+            #         lines.append(line)
+            #     with open(filename, "w") as f:
+            #         for line in lines:
+            #             f.write(f"{line}")
+            #
 
 
 if __name__ == "__main__":
